@@ -15,7 +15,6 @@
 		2448818F22DE3E64001BF872 /* StoplightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448818E22DE3E64001BF872 /* StoplightTests.m */; };
 		2448819A22DE3E64001BF872 /* StoplightUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448819922DE3E64001BF872 /* StoplightUITests.m */; };
 		373D107763C3D0757F4C10EC /* Pods_StoplightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */; };
-		70886B5222DE707C009F3DB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B5122DE707C009F3DB8 /* LoginViewController.m */; };
 		70886B5522DE709E009F3DB8 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B5422DE709E009F3DB8 /* FeedViewController.m */; };
 		70886B5822DE70C8009F3DB8 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B5722DE70C8009F3DB8 /* SignupViewController.m */; };
 		70886B5B22DE7102009F3DB8 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B5A22DE7102009F3DB8 /* SetupViewController.m */; };
@@ -62,8 +61,6 @@
 		2448819B22DE3E64001BF872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoplightUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FFDF166D25AFEE8C65BF820 /* Pods-StoplightUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightUITests.debug.xcconfig"; path = "Target Support Files/Pods-StoplightUITests/Pods-StoplightUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		70886B5022DE707C009F3DB8 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		70886B5122DE707C009F3DB8 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		70886B5322DE709E009F3DB8 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		70886B5422DE709E009F3DB8 /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		70886B5622DE70C8009F3DB8 /* SignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
@@ -145,8 +142,6 @@
 				70886B6322DE7855009F3DB8 /* ArticleCell.m */,
 				70886B5322DE709E009F3DB8 /* FeedViewController.h */,
 				70886B5422DE709E009F3DB8 /* FeedViewController.m */,
-				70886B5022DE707C009F3DB8 /* LoginViewController.h */,
-				70886B5122DE707C009F3DB8 /* LoginViewController.m */,
 				70886B5922DE7102009F3DB8 /* SetupViewController.h */,
 				70886B5A22DE7102009F3DB8 /* SetupViewController.m */,
 				70886B5622DE70C8009F3DB8 /* SignupViewController.h */,
@@ -422,7 +417,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70886B5222DE707C009F3DB8 /* LoginViewController.m in Sources */,
 				2448818522DE3E64001BF872 /* main.m in Sources */,
 				70886B6722DE7D56009F3DB8 /* User.m in Sources */,
 				70886B5E22DE7550009F3DB8 /* Article.m in Sources */,
