@@ -15,6 +15,9 @@
 		2448818522DE3E64001BF872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448818422DE3E64001BF872 /* main.m */; };
 		2448818F22DE3E64001BF872 /* StoplightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448818E22DE3E64001BF872 /* StoplightTests.m */; };
 		2448819A22DE3E64001BF872 /* StoplightUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448819922DE3E64001BF872 /* StoplightUITests.m */; };
+		373D107763C3D0757F4C10EC /* Pods_StoplightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */; };
+		B21A5D4C790187AE56B6CBC5 /* Pods_StoplightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */; };
+		C2BD654EAD96C4B6D5644B49 /* Pods_Stoplight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stoplight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		234E754C9FC2B55DAEC64298 /* Pods-Stoplight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stoplight.release.xcconfig"; path = "Target Support Files/Pods-Stoplight/Pods-Stoplight.release.xcconfig"; sourceTree = "<group>"; };
 		2448817222DE3E64001BF872 /* Stoplight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stoplight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448817522DE3E64001BF872 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2448817622DE3E64001BF872 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +56,13 @@
 		2448819522DE3E64001BF872 /* StoplightUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoplightUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448819922DE3E64001BF872 /* StoplightUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoplightUITests.m; sourceTree = "<group>"; };
 		2448819B22DE3E64001BF872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoplightUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FFDF166D25AFEE8C65BF820 /* Pods-StoplightUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightUITests.debug.xcconfig"; path = "Target Support Files/Pods-StoplightUITests/Pods-StoplightUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoplightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E73920B81AF7502AC91B586 /* Pods-Stoplight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stoplight.debug.xcconfig"; path = "Target Support Files/Pods-Stoplight/Pods-Stoplight.debug.xcconfig"; sourceTree = "<group>"; };
+		A5C2C6156C57B752C3E9DA80 /* Pods-StoplightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightUITests.release.xcconfig"; path = "Target Support Files/Pods-StoplightUITests/Pods-StoplightUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D4E31C989648A2743929109F /* Pods-StoplightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightTests.debug.xcconfig"; path = "Target Support Files/Pods-StoplightTests/Pods-StoplightTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E7BDF2D6C231F2953035071D /* Pods-StoplightTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightTests.release.xcconfig"; path = "Target Support Files/Pods-StoplightTests/Pods-StoplightTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2BD654EAD96C4B6D5644B49 /* Pods_Stoplight.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				373D107763C3D0757F4C10EC /* Pods_StoplightTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B21A5D4C790187AE56B6CBC5 /* Pods_StoplightUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +100,8 @@
 				2448818D22DE3E64001BF872 /* StoplightTests */,
 				2448819822DE3E64001BF872 /* StoplightUITests */,
 				2448817322DE3E64001BF872 /* Products */,
+				6112322C97C0C80342E17421 /* Pods */,
+				520C38EE5D0260FC57F8382E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +149,30 @@
 			path = StoplightUITests;
 			sourceTree = "<group>";
 		};
+		520C38EE5D0260FC57F8382E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */,
+				7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */,
+				682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6112322C97C0C80342E17421 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8E73920B81AF7502AC91B586 /* Pods-Stoplight.debug.xcconfig */,
+				234E754C9FC2B55DAEC64298 /* Pods-Stoplight.release.xcconfig */,
+				D4E31C989648A2743929109F /* Pods-StoplightTests.debug.xcconfig */,
+				E7BDF2D6C231F2953035071D /* Pods-StoplightTests.release.xcconfig */,
+				6FFDF166D25AFEE8C65BF820 /* Pods-StoplightUITests.debug.xcconfig */,
+				A5C2C6156C57B752C3E9DA80 /* Pods-StoplightUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +180,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2448819E22DE3E64001BF872 /* Build configuration list for PBXNativeTarget "Stoplight" */;
 			buildPhases = (
+				A173F40151FE6E41ADA5EC06 /* [CP] Check Pods Manifest.lock */,
 				2448816E22DE3E64001BF872 /* Sources */,
 				2448816F22DE3E64001BF872 /* Frameworks */,
 				2448817022DE3E64001BF872 /* Resources */,
+				DAF7A067F9A20745F2CE9A03 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -156,6 +199,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 244881A122DE3E64001BF872 /* Build configuration list for PBXNativeTarget "StoplightTests" */;
 			buildPhases = (
+				CCA2FA6F805277C1F4E05AAE /* [CP] Check Pods Manifest.lock */,
 				2448818622DE3E64001BF872 /* Sources */,
 				2448818722DE3E64001BF872 /* Frameworks */,
 				2448818822DE3E64001BF872 /* Resources */,
@@ -174,6 +218,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 244881A422DE3E64001BF872 /* Build configuration list for PBXNativeTarget "StoplightUITests" */;
 			buildPhases = (
+				712C3BC9E956942033139704 /* [CP] Check Pods Manifest.lock */,
 				2448819122DE3E64001BF872 /* Sources */,
 				2448819222DE3E64001BF872 /* Frameworks */,
 				2448819322DE3E64001BF872 /* Resources */,
@@ -256,6 +301,92 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		712C3BC9E956942033139704 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StoplightUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A173F40151FE6E41ADA5EC06 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Stoplight-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCA2FA6F805277C1F4E05AAE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StoplightTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAF7A067F9A20745F2CE9A03 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stoplight/Pods-Stoplight-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stoplight/Pods-Stoplight-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stoplight/Pods-Stoplight-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2448816E22DE3E64001BF872 /* Sources */ = {
@@ -433,6 +564,7 @@
 		};
 		2448819F22DE3E64001BF872 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E73920B81AF7502AC91B586 /* Pods-Stoplight.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +582,7 @@
 		};
 		244881A022DE3E64001BF872 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 234E754C9FC2B55DAEC64298 /* Pods-Stoplight.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -467,6 +600,7 @@
 		};
 		244881A222DE3E64001BF872 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4E31C989648A2743929109F /* Pods-StoplightTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -486,6 +620,7 @@
 		};
 		244881A322DE3E64001BF872 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7BDF2D6C231F2953035071D /* Pods-StoplightTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -505,6 +640,7 @@
 		};
 		244881A522DE3E64001BF872 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FFDF166D25AFEE8C65BF820 /* Pods-StoplightUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 893L9MG4VR;
@@ -523,6 +659,7 @@
 		};
 		244881A622DE3E64001BF872 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5C2C6156C57B752C3E9DA80 /* Pods-StoplightUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 893L9MG4VR;
