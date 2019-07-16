@@ -8,6 +8,8 @@ target 'Stoplight' do
   # Pods for Stoplight
   pod 'Parse'
 
+  pod 'NewsAPISwift'
+
   target 'StoplightTests' do
     inherit! :search_paths
     # Pods for testing
