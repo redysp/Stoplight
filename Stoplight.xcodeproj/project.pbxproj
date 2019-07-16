@@ -3,12 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		242C422E22DE712600E506EE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242C422D22DE712600E506EE /* LoginViewController.m */; };
 		2448817722DE3E64001BF872 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448817622DE3E64001BF872 /* AppDelegate.m */; };
-		2448817A22DE3E64001BF872 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448817922DE3E64001BF872 /* ViewController.m */; };
 		2448817D22DE3E64001BF872 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2448817B22DE3E64001BF872 /* Main.storyboard */; };
 		2448817F22DE3E64001BF872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448817E22DE3E64001BF872 /* Assets.xcassets */; };
 		2448818222DE3E64001BF872 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2448818022DE3E64001BF872 /* LaunchScreen.storyboard */; };
@@ -16,6 +16,13 @@
 		2448818F22DE3E64001BF872 /* StoplightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448818E22DE3E64001BF872 /* StoplightTests.m */; };
 		2448819A22DE3E64001BF872 /* StoplightUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448819922DE3E64001BF872 /* StoplightUITests.m */; };
 		373D107763C3D0757F4C10EC /* Pods_StoplightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */; };
+		70886B5222DE707C009F3DB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B5122DE707C009F3DB8 /* LoginViewController.m */; };
+		70886B5522DE709E009F3DB8 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B5422DE709E009F3DB8 /* FeedViewController.m */; };
+		70886B5822DE70C8009F3DB8 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B5722DE70C8009F3DB8 /* SignupViewController.m */; };
+		70886B5B22DE7102009F3DB8 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B5A22DE7102009F3DB8 /* SetupViewController.m */; };
+		70886B5E22DE7550009F3DB8 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B5D22DE7550009F3DB8 /* Article.m */; };
+		70886B6422DE7855009F3DB8 /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6322DE7855009F3DB8 /* ArticleCell.m */; };
+		70886B6722DE7D56009F3DB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6622DE7D56009F3DB8 /* User.m */; };
 		B21A5D4C790187AE56B6CBC5 /* Pods_StoplightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */; };
 		C2BD654EAD96C4B6D5644B49 /* Pods_Stoplight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */; };
 /* End PBXBuildFile section */
@@ -40,11 +47,11 @@
 /* Begin PBXFileReference section */
 		0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stoplight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		234E754C9FC2B55DAEC64298 /* Pods-Stoplight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stoplight.release.xcconfig"; path = "Target Support Files/Pods-Stoplight/Pods-Stoplight.release.xcconfig"; sourceTree = "<group>"; };
+		242C422C22DE712600E506EE /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		242C422D22DE712600E506EE /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		2448817222DE3E64001BF872 /* Stoplight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stoplight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448817522DE3E64001BF872 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2448817622DE3E64001BF872 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2448817822DE3E64001BF872 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2448817922DE3E64001BF872 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2448817C22DE3E64001BF872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2448817E22DE3E64001BF872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2448818122DE3E64001BF872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,6 +65,20 @@
 		2448819B22DE3E64001BF872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoplightUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FFDF166D25AFEE8C65BF820 /* Pods-StoplightUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightUITests.debug.xcconfig"; path = "Target Support Files/Pods-StoplightUITests/Pods-StoplightUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		70886B5022DE707C009F3DB8 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		70886B5122DE707C009F3DB8 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		70886B5322DE709E009F3DB8 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		70886B5422DE709E009F3DB8 /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		70886B5622DE70C8009F3DB8 /* SignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		70886B5722DE70C8009F3DB8 /* SignupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		70886B5922DE7102009F3DB8 /* SetupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
+		70886B5A22DE7102009F3DB8 /* SetupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
+		70886B5C22DE7550009F3DB8 /* Article.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
+		70886B5D22DE7550009F3DB8 /* Article.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
+		70886B6222DE7855009F3DB8 /* ArticleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleCell.h; sourceTree = "<group>"; };
+		70886B6322DE7855009F3DB8 /* ArticleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
+		70886B6522DE7D56009F3DB8 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		70886B6622DE7D56009F3DB8 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoplightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E73920B81AF7502AC91B586 /* Pods-Stoplight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stoplight.debug.xcconfig"; path = "Target Support Files/Pods-Stoplight/Pods-Stoplight.debug.xcconfig"; sourceTree = "<group>"; };
 		A5C2C6156C57B752C3E9DA80 /* Pods-StoplightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightUITests.release.xcconfig"; path = "Target Support Files/Pods-StoplightUITests/Pods-StoplightUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +114,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		242C422F22DE717000E506EE /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2448817822DE3E64001BF872 /* ViewController.h */,
+				2448817922DE3E64001BF872 /* ViewController.m */,
+				242C422C22DE712600E506EE /* LoginViewController.h */,
+				242C422D22DE712600E506EE /* LoginViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		2448816922DE3E64001BF872 = {
 			isa = PBXGroup;
 			children = (
@@ -118,11 +150,24 @@
 		2448817422DE3E64001BF872 /* Stoplight */ = {
 			isa = PBXGroup;
 			children = (
+				242C422F22DE717000E506EE /* View Controllers */,
 				2448817522DE3E64001BF872 /* AppDelegate.h */,
 				2448817622DE3E64001BF872 /* AppDelegate.m */,
-				2448817822DE3E64001BF872 /* ViewController.h */,
-				2448817922DE3E64001BF872 /* ViewController.m */,
 				2448817B22DE3E64001BF872 /* Main.storyboard */,
+				70886B5C22DE7550009F3DB8 /* Article.h */,
+				70886B5D22DE7550009F3DB8 /* Article.m */,
+				70886B6222DE7855009F3DB8 /* ArticleCell.h */,
+				70886B6322DE7855009F3DB8 /* ArticleCell.m */,
+				70886B5322DE709E009F3DB8 /* FeedViewController.h */,
+				70886B5422DE709E009F3DB8 /* FeedViewController.m */,
+				70886B5022DE707C009F3DB8 /* LoginViewController.h */,
+				70886B5122DE707C009F3DB8 /* LoginViewController.m */,
+				70886B5922DE7102009F3DB8 /* SetupViewController.h */,
+				70886B5A22DE7102009F3DB8 /* SetupViewController.m */,
+				70886B5622DE70C8009F3DB8 /* SignupViewController.h */,
+				70886B5722DE70C8009F3DB8 /* SignupViewController.m */,
+				70886B6522DE7D56009F3DB8 /* User.h */,
+				70886B6622DE7D56009F3DB8 /* User.m */,
 				2448817E22DE3E64001BF872 /* Assets.xcassets */,
 				2448818022DE3E64001BF872 /* LaunchScreen.storyboard */,
 				2448818322DE3E64001BF872 /* Info.plist */,
@@ -169,7 +214,6 @@
 				6FFDF166D25AFEE8C65BF820 /* Pods-StoplightUITests.debug.xcconfig */,
 				A5C2C6156C57B752C3E9DA80 /* Pods-StoplightUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -393,9 +437,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				242C422E22DE712600E506EE /* LoginViewController.m in Sources */,
 				2448817A22DE3E64001BF872 /* ViewController.m in Sources */,
 				2448818522DE3E64001BF872 /* main.m in Sources */,
+				70886B6722DE7D56009F3DB8 /* User.m in Sources */,
+				70886B5E22DE7550009F3DB8 /* Article.m in Sources */,
+				70886B5522DE709E009F3DB8 /* FeedViewController.m in Sources */,
+				70886B6422DE7855009F3DB8 /* ArticleCell.m in Sources */,
 				2448817722DE3E64001BF872 /* AppDelegate.m in Sources */,
+				70886B5B22DE7102009F3DB8 /* SetupViewController.m in Sources */,
+				70886B5822DE70C8009F3DB8 /* SignupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
