@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2448817722DE3E64001BF872 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448817622DE3E64001BF872 /* AppDelegate.m */; };
+		2448817A22DE3E64001BF872 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448817922DE3E64001BF872 /* ViewController.m */; };
+		2448817D22DE3E64001BF872 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2448817B22DE3E64001BF872 /* Main.storyboard */; };
+		2448817F22DE3E64001BF872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448817E22DE3E64001BF872 /* Assets.xcassets */; };
+		2448818222DE3E64001BF872 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2448818022DE3E64001BF872 /* LaunchScreen.storyboard */; };
+		2448818522DE3E64001BF872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448818422DE3E64001BF872 /* main.m */; };
+		2448818F22DE3E64001BF872 /* StoplightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448818E22DE3E64001BF872 /* StoplightTests.m */; };
+		2448819A22DE3E64001BF872 /* StoplightUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2448819922DE3E64001BF872 /* StoplightUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2448818B22DE3E64001BF872 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2448816A22DE3E64001BF872 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2448817122DE3E64001BF872;
+			remoteInfo = Stoplight;
+		};
+		2448819622DE3E64001BF872 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2448816A22DE3E64001BF872 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2448817122DE3E64001BF872;
+			remoteInfo = Stoplight;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2448817222DE3E64001BF872 /* Stoplight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stoplight.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2448817522DE3E64001BF872 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2448817622DE3E64001BF872 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2448817822DE3E64001BF872 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2448817922DE3E64001BF872 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2448817C22DE3E64001BF872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2448817E22DE3E64001BF872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2448818122DE3E64001BF872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2448818322DE3E64001BF872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2448818422DE3E64001BF872 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2448818A22DE3E64001BF872 /* StoplightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoplightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2448818E22DE3E64001BF872 /* StoplightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoplightTests.m; sourceTree = "<group>"; };
+		2448819022DE3E64001BF872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2448819522DE3E64001BF872 /* StoplightUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoplightUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2448819922DE3E64001BF872 /* StoplightUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoplightUITests.m; sourceTree = "<group>"; };
+		2448819B22DE3E64001BF872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2448816F22DE3E64001BF872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2448818722DE3E64001BF872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2448819222DE3E64001BF872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2448816922DE3E64001BF872 = {
+			isa = PBXGroup;
+			children = (
+				2448817422DE3E64001BF872 /* Stoplight */,
+				2448818D22DE3E64001BF872 /* StoplightTests */,
+				2448819822DE3E64001BF872 /* StoplightUITests */,
+				2448817322DE3E64001BF872 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2448817322DE3E64001BF872 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2448817222DE3E64001BF872 /* Stoplight.app */,
+				2448818A22DE3E64001BF872 /* StoplightTests.xctest */,
+				2448819522DE3E64001BF872 /* StoplightUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2448817422DE3E64001BF872 /* Stoplight */ = {
+			isa = PBXGroup;
+			children = (
+				2448817522DE3E64001BF872 /* AppDelegate.h */,
+				2448817622DE3E64001BF872 /* AppDelegate.m */,
+				2448817822DE3E64001BF872 /* ViewController.h */,
+				2448817922DE3E64001BF872 /* ViewController.m */,
+				2448817B22DE3E64001BF872 /* Main.storyboard */,
+				2448817E22DE3E64001BF872 /* Assets.xcassets */,
+				2448818022DE3E64001BF872 /* LaunchScreen.storyboard */,
+				2448818322DE3E64001BF872 /* Info.plist */,
+				2448818422DE3E64001BF872 /* main.m */,
+			);
+			path = Stoplight;
+			sourceTree = "<group>";
+		};
+		2448818D22DE3E64001BF872 /* StoplightTests */ = {
+			isa = PBXGroup;
+			children = (
+				2448818E22DE3E64001BF872 /* StoplightTests.m */,
+				2448819022DE3E64001BF872 /* Info.plist */,
+			);
+			path = StoplightTests;
+			sourceTree = "<group>";
+		};
+		2448819822DE3E64001BF872 /* StoplightUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2448819922DE3E64001BF872 /* StoplightUITests.m */,
+				2448819B22DE3E64001BF872 /* Info.plist */,
+			);
+			path = StoplightUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2448817122DE3E64001BF872 /* Stoplight */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2448819E22DE3E64001BF872 /* Build configuration list for PBXNativeTarget "Stoplight" */;
+			buildPhases = (
+				2448816E22DE3E64001BF872 /* Sources */,
+				2448816F22DE3E64001BF872 /* Frameworks */,
+				2448817022DE3E64001BF872 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Stoplight;
+			productName = Stoplight;
+			productReference = 2448817222DE3E64001BF872 /* Stoplight.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2448818922DE3E64001BF872 /* StoplightTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 244881A122DE3E64001BF872 /* Build configuration list for PBXNativeTarget "StoplightTests" */;
+			buildPhases = (
+				2448818622DE3E64001BF872 /* Sources */,
+				2448818722DE3E64001BF872 /* Frameworks */,
+				2448818822DE3E64001BF872 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2448818C22DE3E64001BF872 /* PBXTargetDependency */,
+			);
+			name = StoplightTests;
+			productName = StoplightTests;
+			productReference = 2448818A22DE3E64001BF872 /* StoplightTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2448819422DE3E64001BF872 /* StoplightUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 244881A422DE3E64001BF872 /* Build configuration list for PBXNativeTarget "StoplightUITests" */;
+			buildPhases = (
+				2448819122DE3E64001BF872 /* Sources */,
+				2448819222DE3E64001BF872 /* Frameworks */,
+				2448819322DE3E64001BF872 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2448819722DE3E64001BF872 /* PBXTargetDependency */,
+			);
+			name = StoplightUITests;
+			productName = StoplightUITests;
+			productReference = 2448819522DE3E64001BF872 /* StoplightUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2448816A22DE3E64001BF872 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = powercarlos25;
+				TargetAttributes = {
+					2448817122DE3E64001BF872 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					2448818922DE3E64001BF872 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 2448817122DE3E64001BF872;
+					};
+					2448819422DE3E64001BF872 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 2448817122DE3E64001BF872;
+					};
+				};
+			};
+			buildConfigurationList = 2448816D22DE3E64001BF872 /* Build configuration list for PBXProject "Stoplight" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2448816922DE3E64001BF872;
+			productRefGroup = 2448817322DE3E64001BF872 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2448817122DE3E64001BF872 /* Stoplight */,
+				2448818922DE3E64001BF872 /* StoplightTests */,
+				2448819422DE3E64001BF872 /* StoplightUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2448817022DE3E64001BF872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2448818222DE3E64001BF872 /* LaunchScreen.storyboard in Resources */,
+				2448817F22DE3E64001BF872 /* Assets.xcassets in Resources */,
+				2448817D22DE3E64001BF872 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2448818822DE3E64001BF872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2448819322DE3E64001BF872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2448816E22DE3E64001BF872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2448817A22DE3E64001BF872 /* ViewController.m in Sources */,
+				2448818522DE3E64001BF872 /* main.m in Sources */,
+				2448817722DE3E64001BF872 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2448818622DE3E64001BF872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2448818F22DE3E64001BF872 /* StoplightTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2448819122DE3E64001BF872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2448819A22DE3E64001BF872 /* StoplightUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2448818C22DE3E64001BF872 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2448817122DE3E64001BF872 /* Stoplight */;
+			targetProxy = 2448818B22DE3E64001BF872 /* PBXContainerItemProxy */;
+		};
+		2448819722DE3E64001BF872 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2448817122DE3E64001BF872 /* Stoplight */;
+			targetProxy = 2448819622DE3E64001BF872 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2448817B22DE3E64001BF872 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2448817C22DE3E64001BF872 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2448818022DE3E64001BF872 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2448818122DE3E64001BF872 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2448819C22DE3E64001BF872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2448819D22DE3E64001BF872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2448819F22DE3E64001BF872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 893L9MG4VR;
+				INFOPLIST_FILE = Stoplight/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.powercarlos25.Stoplight;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		244881A022DE3E64001BF872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 893L9MG4VR;
+				INFOPLIST_FILE = Stoplight/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.powercarlos25.Stoplight;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		244881A222DE3E64001BF872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 893L9MG4VR;
+				INFOPLIST_FILE = StoplightTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.powercarlos25.StoplightTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stoplight.app/Stoplight";
+			};
+			name = Debug;
+		};
+		244881A322DE3E64001BF872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 893L9MG4VR;
+				INFOPLIST_FILE = StoplightTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.powercarlos25.StoplightTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stoplight.app/Stoplight";
+			};
+			name = Release;
+		};
+		244881A522DE3E64001BF872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 893L9MG4VR;
+				INFOPLIST_FILE = StoplightUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.powercarlos25.StoplightUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Stoplight;
+			};
+			name = Debug;
+		};
+		244881A622DE3E64001BF872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 893L9MG4VR;
+				INFOPLIST_FILE = StoplightUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.powercarlos25.StoplightUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Stoplight;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2448816D22DE3E64001BF872 /* Build configuration list for PBXProject "Stoplight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2448819C22DE3E64001BF872 /* Debug */,
+				2448819D22DE3E64001BF872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2448819E22DE3E64001BF872 /* Build configuration list for PBXNativeTarget "Stoplight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2448819F22DE3E64001BF872 /* Debug */,
+				244881A022DE3E64001BF872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		244881A122DE3E64001BF872 /* Build configuration list for PBXNativeTarget "StoplightTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				244881A222DE3E64001BF872 /* Debug */,
+				244881A322DE3E64001BF872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		244881A422DE3E64001BF872 /* Build configuration list for PBXNativeTarget "StoplightUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				244881A522DE3E64001BF872 /* Debug */,
+				244881A622DE3E64001BF872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2448816A22DE3E64001BF872 /* Project object */;
+}
