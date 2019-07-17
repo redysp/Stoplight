@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[APIManager shared] getAllArticles];
+    //[[APIManager shared] getAllArticles];
 }
 
 
