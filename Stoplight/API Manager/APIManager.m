@@ -28,8 +28,9 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
 }
 
 /**
- Returns the json data in dictionary form after a request.
+ Returns the JSON data in dictionary form after a request.
  Dictionary has NOT been processed in any way, it's just the full result of the request.
+ (Processing happens in completion block.)
  **/
 
 -(void)makeRequestWithCompletion:(NSURLSession *)session
@@ -44,60 +45,12 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
     [task resume];
 }
 
-
 /**
- Input: completion block.
- Objective: This function creates a GET request, calls another function which calls the completion block.
- GET request should return the dictionary of API data. Whoever calls this function should process data.
- (End result should be a dictionary ex "general": [Array of general articles]
+ Input: what category to query for, and a completion block.
+ Objective: Create GET request and send it to session to implement.
+ The function that does the session calls the completion block.
  Output: void.
  **/
--(void)getAllArticles:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion{
-    //general, business, sports, science, tech articles
-    NSString *urlWithCountry = [topHeadlinesURLString stringByAppendingString:countryString];
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    //General category
-    NSString *urlWithCategory = [urlWithCountry stringByAppendingString:@"category=general&"];
-    NSString *requestString = [urlWithCategory stringByAppendingString:consumerKey];
-    NSURL *url = [[NSURL alloc]initWithString:requestString]; //should be full URL
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
-    [self makeRequestWithCompletion:session request:request completionHandler:completion];
-    
-    
-     //Business category
-     urlWithCategory = [urlWithCountry stringByAppendingString:@"category=business&"];
-     requestString = [urlWithCategory stringByAppendingString:consumerKey];
-     url = [[NSURL alloc]initWithString:requestString];
-     request = [[NSMutableURLRequest alloc]initWithURL:url];
-     [self makeRequestWithCompletion:session request:request completionHandler:completion];
-    
-     /**
-     //Technology category
-     urlWithCategory = [urlWithCountry stringByAppendingString:@"category=technology&"];
-     requestString = [urlWithCategory stringByAppendingString:consumerKey];
-     url = [[NSURL alloc]initWithString:requestString];
-     request = [[NSMutableURLRequest alloc]initWithURL:url];
-     [self makeRequestWithCompletion:session request:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-     NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"];
-     NSArray *techArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-     [results setObject:techArticles forKey:@"technology"];
-     }];
-     
-     //Science category
-     urlWithCategory = [urlWithCountry stringByAppendingString:@"category=science&"];
-     requestString = [urlWithCategory stringByAppendingString:consumerKey];
-     url = [[NSURL alloc]initWithString:requestString];
-     request = [[NSMutableURLRequest alloc]initWithURL:url];
-     [self makeRequestWithCompletion:session request:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-     NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"];
-     NSArray *scienceArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-     [results setObject:scienceArticles forKey:@"science"];
-     }];
-     
-**/
-    
-}
 
 -(void)getCategoryArticles:(NSString *)categoryString completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
     //general, business, sports, science, tech articles

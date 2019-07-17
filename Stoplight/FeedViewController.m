@@ -22,19 +22,9 @@
     [super viewDidLoad];
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     [self fetchAllArticles];
-    // Do any additional setup after loading the view.
 }
 
 -(void)fetchAllArticles {
-    /**
-    [[APIManager shared] getAllArticles:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-        [self.articlesDictionary setValue:generalArticles forKey:@"general"];
-    }];
-    **/
-    
     [[APIManager shared] getCategoryArticles:@"category=general&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         //Completion block.
         NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
