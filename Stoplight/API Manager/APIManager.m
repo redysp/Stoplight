@@ -47,12 +47,12 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
 
 /**
  Input: completion block.
- Objective: This function creates a GET request and then calls the completion block.
+ Objective: This function creates a GET request, calls another function which calls the completion block.
  GET request should return the dictionary of API data. Whoever calls this function should process data.
  (End result should be a dictionary ex "general": [Array of general articles]
  Output: void.
  **/
--(void)getAllArticles {
+-(void)getAllArticles:(void(^)(NSArray *tweets, NSError *error))completion{
     //general, business, sports, science, tech articles
     NSString *urlWithCountry = [topHeadlinesURLString stringByAppendingString:countryString];
     NSMutableDictionary *results = [[NSMutableDictionary alloc] init];
