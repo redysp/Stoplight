@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
++ (NSMutableArray *)articlesWithArray:(NSArray *)dictionaries;
 
 @end
 

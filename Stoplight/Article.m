@@ -39,12 +39,13 @@
     return self;
 }
 
-+ (NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries {
-    NSMutableArray *tweets = [NSMutableArray array];
++ (NSMutableArray *)articlesWithArray:(NSArray *)dictionaries {
+    NSMutableArray *articles = [NSMutableArray array];
     for (NSDictionary *dictionary in dictionaries) {
-        
+        Article *article = [[Article alloc] initWithDictionary:dictionary];
+        [articles addObject:article];
     }
-    return tweets;
+    return articles;
 }
 
 @end

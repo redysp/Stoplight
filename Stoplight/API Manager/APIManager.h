@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface APIManager : NSObject
 
 + (instancetype)shared;
--(void)getAllArticles;
+
+-(NSDictionary *)getAllArticles;
 
 @end
 
