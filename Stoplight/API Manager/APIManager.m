@@ -14,10 +14,10 @@
 static NSString * const everythingURLString = @"https://newsapi.org/v2/everything?";
 static NSString * const topHeadlinesURLString = @"https://newsapi.org/v2/top-headlines?";
 static NSString * const countryString = @"country=us&";
-static NSString * const generalString = @"category=general&";
-static NSString * const businessString = @"category=business&";
-static NSString * const technologyString = @"category=technology&";
-static NSString * const scienceString = @"category=science&";
+//static NSString * const generalString = @"category=general&";
+//static NSString * const businessString = @"category=business&";
+//static NSString * const technologyString = @"category=technology&";
+//static NSString * const scienceString = @"category=science&";
 static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0";
 
 @implementation APIManager
@@ -61,7 +61,7 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
     NSURLSession *session = [NSURLSession sharedSession];
     
     //General category
-    NSString *urlWithCategory = [urlWithCountry stringByAppendingString:generalString];
+    NSString *urlWithCategory = [urlWithCountry stringByAppendingString:@"category=general&"];
     NSString *requestString = [urlWithCategory stringByAppendingString:consumerKey];
     NSURL *url = [[NSURL alloc]initWithString:requestString]; //should be full URL
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
@@ -70,10 +70,41 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
         NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
         NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
         [results setObject:generalArticles forKey:@"general"];
-        for (Article *article in generalArticles) {
-            NSLog(@"%@", article.title);
-        }
     }];
+    
+    //Business category
+    urlWithCategory = [urlWithCountry stringByAppendingString:@"category=business&"];
+    requestString = [urlWithCategory stringByAppendingString:consumerKey];
+    url = [[NSURL alloc]initWithString:requestString];
+    request = [[NSMutableURLRequest alloc]initWithURL:url];
+    [self makeRequestWithCompletion:session request:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"];
+        NSArray *businessArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+        [results setObject:businessArticles forKey:@"business"];
+    }];
+    
+    //Technology category
+    urlWithCategory = [urlWithCountry stringByAppendingString:@"category=technology&"];
+    requestString = [urlWithCategory stringByAppendingString:consumerKey];
+    url = [[NSURL alloc]initWithString:requestString];
+    request = [[NSMutableURLRequest alloc]initWithURL:url];
+    [self makeRequestWithCompletion:session request:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"];
+        NSArray *techArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+        [results setObject:techArticles forKey:@"technology"];
+    }];
+    
+    //Science category
+    urlWithCategory = [urlWithCountry stringByAppendingString:@"category=science&"];
+    requestString = [urlWithCategory stringByAppendingString:consumerKey];
+    url = [[NSURL alloc]initWithString:requestString];
+    request = [[NSMutableURLRequest alloc]initWithURL:url];
+    [self makeRequestWithCompletion:session request:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"];
+        NSArray *scienceArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+        [results setObject:scienceArticles forKey:@"science"];
+    }];
+    
     
     NSLog(@"%@", results);
     return results;
