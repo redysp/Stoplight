@@ -55,7 +55,6 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
 -(void)getAllArticles:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion{
     //general, business, sports, science, tech articles
     NSString *urlWithCountry = [topHeadlinesURLString stringByAppendingString:countryString];
-    NSMutableDictionary *results = [[NSMutableDictionary alloc] init];
     NSURLSession *session = [NSURLSession sharedSession];
     
     //General category
@@ -65,18 +64,15 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
     [self makeRequestWithCompletion:session request:request completionHandler:completion];
     
-    /**
+    
      //Business category
      urlWithCategory = [urlWithCountry stringByAppendingString:@"category=business&"];
      requestString = [urlWithCategory stringByAppendingString:consumerKey];
      url = [[NSURL alloc]initWithString:requestString];
      request = [[NSMutableURLRequest alloc]initWithURL:url];
-     [self makeRequestWithCompletion:session request:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-     NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"];
-     NSArray *businessArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-     [results setObject:businessArticles forKey:@"business"];
-     }];
-     
+     [self makeRequestWithCompletion:session request:request completionHandler:completion];
+    
+     /**
      //Technology category
      urlWithCategory = [urlWithCountry stringByAppendingString:@"category=technology&"];
      requestString = [urlWithCategory stringByAppendingString:consumerKey];
@@ -99,10 +95,20 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
      [results setObject:scienceArticles forKey:@"science"];
      }];
      
-     **/
-    //return results;
+**/
     
 }
 
+-(void)getCategoryArticles:(NSString *)categoryString completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
+    //general, business, sports, science, tech articles
+    NSString *urlWithCountry = [topHeadlinesURLString stringByAppendingString:countryString];
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *urlWithCategory = [urlWithCountry stringByAppendingString:categoryString];
+    NSString *requestString = [urlWithCategory stringByAppendingString:consumerKey];
+    NSURL *url = [[NSURL alloc]initWithString:requestString]; //should be full URL
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+    [self makeRequestWithCompletion:session request:request completionHandler:completion];
+}
 
 @end
