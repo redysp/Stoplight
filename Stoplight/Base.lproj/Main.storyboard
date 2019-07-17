@@ -66,8 +66,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="passwordField" destination="vUb-ex-W06" id="fP1-HI-RSa"/>
-                        <outlet property="usernameField" destination="njf-gy-Zui" id="JAG-CT-MAn"/>
                         <segue destination="5mm-VQ-FLh" kind="presentation" identifier="signUpSegue" id="8Ii-zx-3Lq"/>
                         <segue destination="rWy-be-rNl" kind="presentation" id="bSw-HB-6Fq"/>
                     </connections>

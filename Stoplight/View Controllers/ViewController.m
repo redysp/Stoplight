@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "APIManager.h"
+
+//#import <NewsAPIClient/NewsAPIClient.h>
 
 @interface ViewController ()
 
@@ -16,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [[APIManager shared] getAllArticles];
 }
 
 
