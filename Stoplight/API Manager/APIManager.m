@@ -35,15 +35,19 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
  Returns the json data in dictionary form after a request.
  Dictionary has NOT been processed in any way, it's just the full result of the request.
  **/
--(NSDictionary *) makeRequest:(NSURLSession *)session request:(NSMutableURLRequest *)request {
-    __block NSDictionary *result;
+
+-(void)makeRequestWithCompletion:(NSURLSession *)session
+           request:(NSMutableURLRequest *)request
+ completionHandler:(void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        result = json;
+        if (!completion) {
+            return;
+        }
+        completion(data, response, error);
     }];
     [task resume];
-    return result;
 }
+
 
 /**
  Returns a dictionary of arrays.
@@ -59,22 +63,19 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
     //General category
     NSString *urlWithCategory = [urlWithCountry stringByAppendingString:generalString];
     NSString *requestString = [urlWithCategory stringByAppendingString:consumerKey];
-    NSURL *url = [[NSURL alloc]initWithString:requestString];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
-    NSArray *generalArticles = [self makeRequest:session request:request][@"articles"]; //array of dictionaries, not Articles
-    generalArticles = [Article articlesWithArray:generalArticles];
-    [results setObject:generalArticles forKey:@"general"];
+    NSURL *url = [[NSURL alloc]initWithString:requestString]; //should be full URL
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+    [self makeRequestWithCompletion:session request:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        //Completion block.
+        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+        [results setObject:generalArticles forKey:@"general"];
+        for (Article *article in generalArticles) {
+            NSLog(@"%@", article.title);
+        }
+    }];
     
-    for (Article *article in generalArticles) {
-        NSLog(@"%@", article.title);
-    }
-    
-    //Business category
-    urlWithCategory = [urlWithCountry stringByAppendingString:businessString];
-    requestString = [urlWithCategory stringByAppendingString:consumerKey];
-    url = [[NSURL alloc] initWithString:requestString];
-    request = [[NSMutableURLRequest alloc]initWithURL:url];
-    
+    NSLog(@"%@", results);
     return results;
 }
 
