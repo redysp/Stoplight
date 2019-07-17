@@ -12,7 +12,7 @@
 
 @interface FeedViewController ()
 
-@property @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
+@property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
 
 @end
 
@@ -22,15 +22,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
--(void)fetchAllArticles {
-    [[APIManager shared] getAllArticles:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-        [results setObject:generalArticles forKey:@"general"];
-    ];
-}
+//
+//-(void)fetchAllArticles {
+//    [[APIManager shared] getAllArticles:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        //Completion block.
+//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+//        [results setObject:generalArticles forKey:@"general"];
+//    ];
+//}
 
 
 /*

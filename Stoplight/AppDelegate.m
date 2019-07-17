@@ -19,8 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
-        configuration.applicationId = @"codepathInstagram";
-        configuration.server = @"http://codepathfbinstagram.herokuapp.com/parse";
+        configuration.applicationId = @"stoplightv1";
+        configuration.server = @"https://stoplightv1.herokuapp.com/parse";
     }];
     
     [Parse initializeWithConfiguration:config];

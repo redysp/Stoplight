@@ -2,11 +2,10 @@
 //  Article.h
 //  Stoplight
 //
-<<<<<<< HEAD
 //  Created by emily13hsiao on 7/16/19.
-=======
+
 //  Created by arleneigwe on 7/16/19.
->>>>>>> origin/login
+
 //  Copyright © 2019 powercarlos25. All rights reserved.
 //
 
