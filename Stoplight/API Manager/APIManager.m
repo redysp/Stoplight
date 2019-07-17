@@ -14,10 +14,6 @@
 static NSString * const everythingURLString = @"https://newsapi.org/v2/everything?";
 static NSString * const topHeadlinesURLString = @"https://newsapi.org/v2/top-headlines?";
 static NSString * const countryString = @"country=us&";
-//static NSString * const generalString = @"category=general&";
-//static NSString * const businessString = @"category=business&";
-//static NSString * const technologyString = @"category=technology&";
-//static NSString * const scienceString = @"category=science&";
 static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0";
 
 @implementation APIManager
@@ -50,11 +46,13 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
 
 
 /**
- Returns a dictionary of arrays.
- Key: category name
- Value: array of Articles
+ Input: completion block.
+ Objective: This function creates a GET request and then calls the completion block.
+ GET request should return the dictionary of API data. Whoever calls this function should process data.
+ (End result should be a dictionary ex "general": [Array of general articles]
+ Output: void.
  **/
--(NSDictionary *)getAllArticles {
+-(void)getAllArticles {
     //general, business, sports, science, tech articles
     NSString *urlWithCountry = [topHeadlinesURLString stringByAppendingString:countryString];
     NSMutableDictionary *results = [[NSMutableDictionary alloc] init];
@@ -72,6 +70,7 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
         [results setObject:generalArticles forKey:@"general"];
     }];
     
+    /**
     //Business category
     urlWithCategory = [urlWithCountry stringByAppendingString:@"category=business&"];
     requestString = [urlWithCategory stringByAppendingString:consumerKey];
@@ -105,9 +104,9 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
         [results setObject:scienceArticles forKey:@"science"];
     }];
     
-    
-    NSLog(@"%@", results);
-    return results;
+    **/
+    NSLog(@"Hi %@", results);
+    //return results;
 }
 
 @end
