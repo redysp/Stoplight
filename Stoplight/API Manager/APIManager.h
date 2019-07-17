@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 
--(NSDictionary *)getAllArticles;
+-(void)getAllArticles:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion;
 
 @end
 
