@@ -7,8 +7,12 @@
 //
 
 #import "FeedViewController.h"
+#import "APIManager.h"
+#import "Article.h"
 
 @interface FeedViewController ()
+
+@property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
 
 @end
 
@@ -16,8 +20,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.articlesDictionary = [[NSMutableDictionary alloc]init];
+    [self fetchAllArticles];
 }
+
+-(void)fetchAllArticles {
+    [[APIManager shared] getCategoryArticles:@"category=general&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        //Completion block.
+        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+        [self.articlesDictionary setValue:generalArticles forKey:@"general"];
+    }];
+    
+    [[APIManager shared] getCategoryArticles:@"category=business&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        //Completion block.
+        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+        [self.articlesDictionary setValue:generalArticles forKey:@"business"];
+    }];
+    
+    [[APIManager shared] getCategoryArticles:@"category=technology&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        //Completion block.
+        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+        [self.articlesDictionary setValue:generalArticles forKey:@"technology"];
+    }];
+    
+    [[APIManager shared] getCategoryArticles:@"category=science&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        //Completion block.
+        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+        [self.articlesDictionary setValue:generalArticles forKey:@"science"];
+    }];
+    NSLog(@"Hi");
+}
+
 
 /*
 #pragma mark - Navigation

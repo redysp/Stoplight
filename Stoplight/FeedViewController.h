@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FeedViewController : UIViewController
-@property NSArray *article_collections;
+
 @end
 
 NS_ASSUME_NONNULL_END
