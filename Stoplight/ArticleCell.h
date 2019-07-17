@@ -12,8 +12,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ArticleCell : UICollectionViewCell
-@property (strong, nonatomic) NSArray *articles;
+@property (strong, nonatomic) Article *article;
 @property (strong, nonatomic) NSString *topic;
+
 @end
 
 NS_ASSUME_NONNULL_END
