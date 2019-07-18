@@ -42,7 +42,7 @@
     NSString *category = self.categoriesList[indexPath.row];
     NSArray *categoryArticles = self.articlesDictionary[category];
     
-    cell.articlesArray = categoryArticles;
+    cell.articles = categoryArticles;
     cell.categoryNameLabel.text = category;
     
     return cell;

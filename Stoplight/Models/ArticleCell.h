@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *topic;
 @property (weak, nonatomic) IBOutlet UIImageView *articleImageView;
 @property (strong, nonatomic) UIImage *articleImage;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
