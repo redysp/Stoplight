@@ -19,6 +19,7 @@
 		70886B5522DE709E009F3DB8 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		70886B6422DE7855009F3DB8 /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6322DE7855009F3DB8 /* ArticleCell.m */; };
 		70886B6722DE7D56009F3DB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6622DE7D56009F3DB8 /* User.m */; };
+		7093A8D622E0F0E60020F977 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7093A8D522E0F0E60020F977 /* CategoryCell.m */; };
 		B21A5D4C790187AE56B6CBC5 /* Pods_StoplightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */; };
 		C2BD654EAD96C4B6D5644B49 /* Pods_Stoplight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */; };
 		FCD1850F22DF9F4C00315845 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -69,6 +70,8 @@
 		70886B6322DE7855009F3DB8 /* ArticleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
 		70886B6522DE7D56009F3DB8 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		70886B6622DE7D56009F3DB8 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		7093A8D422E0F0E60020F977 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
+		7093A8D522E0F0E60020F977 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoplightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E73920B81AF7502AC91B586 /* Pods-Stoplight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stoplight.debug.xcconfig"; path = "Target Support Files/Pods-Stoplight/Pods-Stoplight.debug.xcconfig"; sourceTree = "<group>"; };
 		A5C2C6156C57B752C3E9DA80 /* Pods-StoplightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightUITests.release.xcconfig"; path = "Target Support Files/Pods-StoplightUITests/Pods-StoplightUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,7 +144,7 @@
 		2448817422DE3E64001BF872 /* Stoplight */ = {
 			isa = PBXGroup;
 			children = (
-				244EB52822DFF15F00A34141 /* Modals */,
+				244EB52822DFF15F00A34141 /* Models */,
 				FCD1851622DFDDF000315845 /* View Controllers */,
 				FCD4690D22DE435C0036AA23 /* API Manager */,
 				2448817522DE3E64001BF872 /* AppDelegate.h */,
@@ -173,17 +176,19 @@
 			path = StoplightUITests;
 			sourceTree = "<group>";
 		};
-		244EB52822DFF15F00A34141 /* Modals */ = {
+		244EB52822DFF15F00A34141 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				FCD4691122DE6F130036AA23 /* Article.h */,
 				FCD4691222DE6F130036AA23 /* Article.m */,
 				70886B6222DE7855009F3DB8 /* ArticleCell.h */,
 				70886B6322DE7855009F3DB8 /* ArticleCell.m */,
+				7093A8D422E0F0E60020F977 /* CategoryCell.h */,
+				7093A8D522E0F0E60020F977 /* CategoryCell.m */,
 				70886B6522DE7D56009F3DB8 /* User.h */,
 				70886B6622DE7D56009F3DB8 /* User.m */,
 			);
-			path = Modals;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		520C38EE5D0260FC57F8382E /* Frameworks */ = {
@@ -458,6 +463,7 @@
 				FCD4691322DE6F130036AA23 /* Article.m in Sources */,
 				FCD4691022DE59A60036AA23 /* APIManager.m in Sources */,
 				2448818522DE3E64001BF872 /* main.m in Sources */,
+				7093A8D622E0F0E60020F977 /* CategoryCell.m in Sources */,
 				FCD1852422DFDDF000315845 /* SetupViewController.m in Sources */,
 				70886B6722DE7D56009F3DB8 /* User.m in Sources */,
 				70886B5522DE709E009F3DB8 /* (null) in Sources */,
