@@ -51,6 +51,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log In"/>
                                 <connections>
+                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e5M-sh-pkl"/>
                                     <segue destination="rWy-be-rNl" kind="presentation" identifier="successLoginSegue" id="A7U-2L-1pN"/>
                                 </connections>
                             </button>
@@ -66,6 +67,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
+                                    <action selector="signupButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z5a-sZ-fK3"/>
                                     <segue destination="5mm-VQ-FLh" kind="presentation" identifier="signUpSegue" id="kuG-M1-zyN"/>
                                 </connections>
                             </button>
@@ -73,6 +75,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordField" destination="vUb-ex-W06" id="dar-7C-a5T"/>
+                        <outlet property="usernameField" destination="njf-gy-Zui" id="Thq-vM-mwF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,7 +87,7 @@
         <!--Feed View Controller-->
         <scene sceneID="rey-rZ-5hG">
             <objects>
-                <viewController id="6fX-7B-GGG" userLabel="Feed View Controller" customClass="FeedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" id="6fX-7B-GGG" userLabel="Feed View Controller" customClass="FeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Kv-UH-cC7" userLabel="Feed View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
