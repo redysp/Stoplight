@@ -8,8 +8,14 @@
 
 #import "SignupViewController.h"
 #import "User.h"
+#import "Parse/Parse.h"
 
 @interface SignupViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *signUpUsernameField;
+@property (weak, nonatomic) IBOutlet UITextField *signUpPasswordField;
+@property (weak, nonatomic) IBOutlet UITextField *signUpEmailField;
+
 
 @end
 
@@ -18,11 +24,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    User *user;
-    user.username = self.usernameField.text;
-    user.password = self.passwordField.text;
-    user.email = self.emailField.text;
+}
+
+- (IBAction)backToLoginButton:(id)sender {
+    [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+}
+
+- (IBAction)signUpButton:(id)sender {
+    // initialize a user object
+    PFUser *newUser = [PFUser user];
     
+    // set user properties
+    newUser.username = self.signUpUsernameField.text;
+    newUser.email = self.signUpEmailField.text;
+    newUser.password = self.signUpPasswordField.text;
+    
+    // call sign up function on the object
+    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"User registered successfully");
+            // manually segue to logged in view
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+        }
+    }];
 }
 
 /*

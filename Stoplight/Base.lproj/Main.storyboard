@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6fX-7B-GGG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -50,6 +50,9 @@
                                 <rect key="frame" x="165" y="556" width="85" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log In"/>
+                                <connections>
+                                    <segue destination="rWy-be-rNl" kind="presentation" identifier="successLoginSegue" id="A7U-2L-1pN"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="njf-gy-Zui">
                                 <rect key="frame" x="119" y="440" width="177" height="30"/>
@@ -58,14 +61,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avb-Bm-gpz">
+                                <rect key="frame" x="180" y="646" width="54" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <segue destination="5mm-VQ-FLh" kind="presentation" identifier="signUpSegue" id="kuG-M1-zyN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <segue destination="5mm-VQ-FLh" kind="presentation" identifier="signUpSegue" id="8Ii-zx-3Lq"/>
-                        <segue destination="rWy-be-rNl" kind="presentation" id="bSw-HB-6Fq"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -180,26 +187,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUN-Oh-lhj">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUN-Oh-lhj" customClass="loginSegue">
                                 <rect key="frame" x="119" y="632" width="177" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Already have an account?"/>
+                                <connections>
+                                    <action selector="backToLoginButton:" destination="5mm-VQ-FLh" eventType="touchUpInside" id="djZ-MY-Vhx"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="loginSegue" id="qGh-PW-PNL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M99-VU-mX0">
                                 <rect key="frame" x="119" y="701" width="177" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpButton:" destination="5mm-VQ-FLh" eventType="touchUpInside" id="wPC-Eb-IeU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="gNe-Ti-73G"/>
                     </view>
                     <connections>
-                        <outlet property="emailField" destination="KAW-fA-U7U" id="KOk-E5-NNy"/>
-                        <outlet property="haveAccountButton" destination="FUN-Oh-lhj" id="ZtO-LV-rsJ"/>
-                        <outlet property="passwordField" destination="L4T-09-yC2" id="RxU-f5-1av"/>
-                        <outlet property="signUpButton" destination="M99-VU-mX0" id="0G0-5D-Unb"/>
-                        <outlet property="usernameField" destination="cN7-1b-wnT" id="mlj-dw-eb5"/>
+                        <outlet property="signUpEmailField" destination="KAW-fA-U7U" id="Jkn-KX-QQs"/>
+                        <outlet property="signUpPasswordField" destination="L4T-09-yC2" id="DAc-fw-mCj"/>
+                        <outlet property="signUpUsernameField" destination="cN7-1b-wnT" id="zHB-Sk-1vx"/>
                         <segue destination="W6j-yy-6VR" kind="presentation" id="Vdr-aH-344"/>
                     </connections>
                 </viewController>
