@@ -48,7 +48,10 @@
     cell.article = article;
     
     //sets the image for the article's image view
-    [cell.articleImageView setImageWithURL: article.imageLink];
+    if (article.imageLink) {
+        [cell.articleImageView setImageWithURL: article.imageLink];
+    }
+    
     
     //return instance of custom cell and its reuse identifier w/ elements at proper index
     return cell;

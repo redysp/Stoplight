@@ -24,13 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
-    [self fetchAllArticles];
+    
+    self.categoryTableView.delegate = self;
+    self.categoryTableView.dataSource = self;
     
     self.categoriesList = [NSMutableArray arrayWithObjects:@"general", @"business", @"tech", @"science", nil];
     
-    //Set delegate and datasource for category tableview.
-    self.categoryTableView.delegate = self;
-    self.categoryTableView.dataSource = self;
+    [self fetchAllArticles];
 }
 
 
@@ -61,6 +61,7 @@
         NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
         NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
         [self.articlesDictionary setValue:generalArticles forKey:@"general"];
+        [self.categoryTableView reloadData];
     }];
     
     [[APIManager shared] getCategoryArticles:@"category=business&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -68,6 +69,7 @@
         NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
         NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
         [self.articlesDictionary setValue:generalArticles forKey:@"business"];
+        [self.categoryTableView reloadData];
     }];
     
     [[APIManager shared] getCategoryArticles:@"category=technology&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -75,6 +77,7 @@
         NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
         NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
         [self.articlesDictionary setValue:generalArticles forKey:@"technology"];
+        [self.categoryTableView reloadData];
     }];
     
     [[APIManager shared] getCategoryArticles:@"category=science&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -82,6 +85,7 @@
         NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
         NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
         [self.articlesDictionary setValue:generalArticles forKey:@"science"];
+        [self.categoryTableView reloadData];
     }];
     NSLog(@"Hi");
 }
