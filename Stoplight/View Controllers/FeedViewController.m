@@ -9,10 +9,13 @@
 #import "FeedViewController.h"
 #import "APIManager.h"
 #import "Article.h"
+#import "CategoryCell.h"
 
 @interface FeedViewController ()
 
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
+@property (strong, nonatomic) UITableView *categoryTableView;
+@property (strong, nonatomic) NSMutableArray *categoriesList; //in future, probably won't be the same
 
 @end
 
@@ -22,7 +25,35 @@
     [super viewDidLoad];
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     [self fetchAllArticles];
+    
+    self.categoriesList = [NSMutableArray arrayWithObjects:@"general", @"business", @"tech", @"science", nil];
+    
+    //Set delegate and datasource for category tableview.
+    self.categoryTableView.delegate = self;
+    self.categoryTableView.dataSource = self;
 }
+
+
+#pragma mark - TableView management
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    CategoryCell *cell = [self.categoryTableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
+    NSString *category = self.categoriesList[indexPath.row];
+    NSArray *categoryArticles = self.articlesDictionary[category];
+    
+    cell.articlesArray = categoryArticles;
+    cell.categoryNameLabel.text = category;
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"Number of sections: , %i", [self.articlesDictionary count]);
+    return [self.articlesDictionary count];
+}
+
+#pragma mark - Data Fetching
 
 -(void)fetchAllArticles {
     [[APIManager shared] getCategoryArticles:@"category=general&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -65,5 +96,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end

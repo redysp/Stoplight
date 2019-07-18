@@ -10,9 +10,15 @@
 
 @implementation CategoryCell
 
+/**
+ Public properties:
+ @property (weak, nonatomic) IBOutlet UICollectionView *categoryCollectionView;
+ @property (strong, nonatomic) IBOutlet UILabel *categoryNameLabel;
+ @property (weak, nonatomic) NSArray *articlesArray;
+ **/
+
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

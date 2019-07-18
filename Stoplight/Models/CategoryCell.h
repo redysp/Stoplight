@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CategoryCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UICollectionView *categoryCollectionView;
+@property (strong, nonatomic) IBOutlet UILabel *categoryNameLabel;
+@property (weak, nonatomic) NSArray *articlesArray;
 
 @end
 
