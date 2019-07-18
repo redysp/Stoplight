@@ -10,9 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CategoryCell : UITableViewCell <UICollectionViewDataSource, UICollectionViewDelegate>
 
+@interface CategoryCell : UITableViewCell <UICollectionViewDataSource, UICollectionViewDelegate>
+  
 @property (weak, nonatomic) IBOutlet UICollectionView *categoryCollectionView;
+@property (strong, nonatomic) IBOutlet UILabel *categoryNameLabel;
 @property (strong, nonatomic) NSArray *articles;
 @end
 
