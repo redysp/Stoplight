@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoplight/Models/CategoryCell.m"
-            timestampString = "585184496.6343091"
+            timestampString = "585185070.846307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoplight/Models/CategoryCell.m"
-            timestampString = "585184496.634369"
+            timestampString = "585185070.846374"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoplight/Models/CategoryCell.m"
-            timestampString = "585184496.634413"
+            timestampString = "585185070.846418"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -58,23 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoplight/View Controllers/FeedViewController.m"
-            timestampString = "585184496.6344579"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-fetchAllArticles"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stoplight/View Controllers/FeedViewController.m"
-            timestampString = "585184496.634757"
+            timestampString = "585185070.846464"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
@@ -90,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoplight/View Controllers/FeedViewController.m"
-            timestampString = "585184496.6349649"
+            timestampString = "585185070.846989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-numberOfSectionsInTableView:"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "-fetchAllArticles"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
