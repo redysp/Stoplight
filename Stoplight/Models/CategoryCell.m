@@ -15,6 +15,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.categoryCollectionView.delegate = self;
+    self.categoryCollectionView.dataSource = self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -23,15 +25,8 @@
     // Configure the view for the selected state
 }
 
-//***next two functions are very important for data sources***
-
 //table view asks its dataSource for num rows and cell for row at
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-    
-    //return number of items returned from the API
     return self.articles.count;
 }
 

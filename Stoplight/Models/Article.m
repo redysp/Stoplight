@@ -30,16 +30,9 @@
     self.author = dictionary[@"author"];
     self.link = [NSURL URLWithString:dictionary[@"url"]];
     
-    NSLog(@"%@", dictionary);
-
     if ([dictionary[@"urlToImage"] isKindOfClass:[NSString class]]) {
-        NSLog(@"Hi");
         self.imageLink = [NSURL URLWithString:dictionary[@"urlToImage"]];
-    } else {
-        NSLog(@"Problems");
-        //self.imageLink = [NSURL URLWithString:dictionary[@"urlToImage"]];
     }
-    
     self.provider = dictionary[@"source"][@"name"];
     self.summary = dictionary[@"description"];
     self.text = dictionary[@"content"];

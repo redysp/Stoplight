@@ -137,6 +137,7 @@
                                                 </collectionView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.29871593070000002" blue="0.80106883429999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="categoryCollectionView" destination="zm7-zF-LZr" id="V4Q-1n-xAu"/>
                                         </connections>
@@ -167,6 +168,9 @@
                         <viewLayoutGuide key="safeArea" id="ift-xP-udJ"/>
                     </view>
                     <navigationItem key="navigationItem" id="mzK-wV-aul"/>
+                    <connections>
+                        <outlet property="categoryTableView" destination="6ki-gI-rfi" id="1JD-Y6-AeC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uny-bx-A1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -312,4 +316,7 @@
             <point key="canvasLocation" x="1257.9710144927537" y="133.92857142857142"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="qGh-PW-PNL"/>
+    </inferredMetricsTieBreakers>
 </document>

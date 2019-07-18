@@ -11,10 +11,10 @@
 #import "Article.h"
 #import "CategoryCell.h"
 
-@interface FeedViewController ()
+@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
-@property (strong, nonatomic) UITableView *categoryTableView;
+@property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
 @property (strong, nonatomic) NSMutableArray *categoriesList; //in future, probably won't be the same
 
 @end
@@ -36,8 +36,8 @@
 
 #pragma mark - TableView management
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     CategoryCell *cell = [self.categoryTableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
     NSString *category = self.categoriesList[indexPath.row];
     NSArray *categoryArticles = self.articlesDictionary[category];
@@ -46,49 +46,71 @@
     cell.categoryNameLabel.text = category;
     
     return cell;
+    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"Number of sections: , %i", [self.articlesDictionary count]);
+    NSLog(@"Number of sections: , %lu", (unsigned long)[self.articlesDictionary count]);
     return [self.articlesDictionary count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 500;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+
+
 #pragma mark - Data Fetching
 
+
 -(void)fetchAllArticles {
+    
     [[APIManager shared] getCategoryArticles:@"category=general&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         //Completion block.
         NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
         NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
         [self.articlesDictionary setValue:generalArticles forKey:@"general"];
-        [self.categoryTableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.categoryTableView reloadData];
+        });
     }];
     
-    [[APIManager shared] getCategoryArticles:@"category=business&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-        [self.articlesDictionary setValue:generalArticles forKey:@"business"];
-        [self.categoryTableView reloadData];
-    }];
-    
-    [[APIManager shared] getCategoryArticles:@"category=technology&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-        [self.articlesDictionary setValue:generalArticles forKey:@"technology"];
-        [self.categoryTableView reloadData];
-    }];
-    
-    [[APIManager shared] getCategoryArticles:@"category=science&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-        [self.articlesDictionary setValue:generalArticles forKey:@"science"];
-        [self.categoryTableView reloadData];
-    }];
-    NSLog(@"Hi");
+//    [[APIManager shared] getCategoryArticles:@"category=business&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        //Completion block.
+//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+//        [self.articlesDictionary setValue:generalArticles forKey:@"business"];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.categoryTableView reloadData];
+//        });
+//    }];
+//
+//    [[APIManager shared] getCategoryArticles:@"category=technology&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        //Completion block.
+//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+//        [self.articlesDictionary setValue:generalArticles forKey:@"technology"];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.categoryTableView reloadData];
+//        });
+//    }];
+//
+//    [[APIManager shared] getCategoryArticles:@"category=science&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        //Completion block.
+//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+//        [self.articlesDictionary setValue:generalArticles forKey:@"science"];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.categoryTableView reloadData];
+//        });
+//    }];
 }
+
+
 
 
 /*
