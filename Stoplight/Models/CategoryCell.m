@@ -37,17 +37,25 @@
     //get ArticleCell
     ArticleCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCell" forIndexPath:indexPath];
     
-    //Put in the article
-    Article *article = self.articles[indexPath.item];
-    cell.article = article;
-    
-    //sets the image for the article's image view
-    if (article.imageLink) {
-        [cell.articleImageView setImageWithURL: article.imageLink];
+
+    @try {
+        Article *article = self.articles[indexPath.row];
+        cell.article = article;
+        
+        //sets the image for the article's image view
+        if (article.imageLink) {
+            [cell.articleImageView setImageWithURL: article.imageLink];
+        }
+        
+        //Returns an ArticleCell
+        return cell;
+    } @catch (NSException *exception) {
+        
+        return cell;
     }
+    //Put in the article
     
-    //Returns an ArticleCell
-    return cell;
+   
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

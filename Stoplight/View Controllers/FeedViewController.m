@@ -44,6 +44,7 @@
     
     cell.articles = categoryArticles;
     cell.categoryNameLabel.text = category; //why is this line not working?
+    [cell.categoryCollectionView reloadData];
     
 //    cell.categoryCollectionView.dataSource = cell;
 //    cell.categoryCollectionView.delegate = cell;
@@ -78,19 +79,24 @@
         //Completion block.
         NSLog(@"Got data");
         
+        if (error) {
+            NSLog(@"Error");
+            return;
+        }
+        
         NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
         NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
         [self.articlesDictionary setValue:generalArticles forKey:categoryName];
         dispatch_async(dispatch_get_main_queue(), ^{
-            //[self.categoryTableView reloadData];
+            [self.categoryTableView reloadData];
             
             //need to create indexpath for that one, not sure how to do this
-            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.categoriesList indexOfObjectIdenticalTo:categoryName] inSection:0];
-            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
-            NSLog(@"Got data");
-            [self.categoryTableView beginUpdates];
-            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-            [self.categoryTableView endUpdates];
+//            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.categoriesList indexOfObjectIdenticalTo:categoryName] inSection:0];
+//            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
+//            NSLog(@"Got data");
+//            [self.categoryTableView beginUpdates];
+//            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+//            [self.categoryTableView endUpdates];
         });
     }];
 }
