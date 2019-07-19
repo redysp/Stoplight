@@ -15,17 +15,6 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     
-    /**
-     @property (nonatomic, strong) NSString *title;
-     @property (nonatomic, strong) NSString *author;
-     @property (nonatomic, strong) NSURL *link;
-     @property (nonatomic, strong) NSURL *imageLink;
-     @property (nonatomic, strong) NSString *provider;
-     @property (nonatomic, strong) NSString *summary;
-     @property (nonatomic, strong) NSString *text;
-     @property (nonatomic, strong) NSDate *publishedAt;
-     **/
-    
     self.title = dictionary[@"title"];
     self.author = dictionary[@"author"];
     self.link = [NSURL URLWithString:dictionary[@"url"]];

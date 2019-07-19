@@ -46,7 +46,9 @@
     if (article.imageLink) {
         [cell.articleImageView setImageWithURL: article.imageLink];
     }
-    
+    if (article.title){
+        cell.titleLabel.text = article.title;
+    }
     
     //return instance of custom cell and its reuse identifier w/ elements at proper index
     return cell;
