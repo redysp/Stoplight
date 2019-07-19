@@ -41,7 +41,7 @@
 }
 
 - (IBAction)signupButton:(id)sender {
-    //[self performSegueWithIdentifier:@"signUpSegue" sender:nil];
+    [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
 }
 
 

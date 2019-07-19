@@ -77,6 +77,7 @@
                         <outlet property="passwordField" destination="vUb-ex-W06" id="dar-7C-a5T"/>
                         <outlet property="usernameField" destination="njf-gy-Zui" id="Thq-vM-mwF"/>
                         <segue destination="rWy-be-rNl" kind="presentation" identifier="successLoginSegue" id="Bs8-4h-2Fh"/>
+                        <segue destination="5mm-VQ-FLh" kind="presentation" identifier="signUpSegue" id="pa2-u2-h4O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
