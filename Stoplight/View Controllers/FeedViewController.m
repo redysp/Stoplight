@@ -69,45 +69,49 @@
 
 -(void)fetchAllArticles {
     
+    
+    
+    
     [[APIManager shared] getCategoryArticles:@"category=general&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         //Completion block.
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-        [self.articlesDictionary setValue:generalArticles forKey:@"general"];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.categoryTableView reloadData];
-        });
+        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of dictionaries
+        NSLog(@"%@", articlesDictionary);
+//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+//        [self.articlesDictionary setValue:generalArticles forKey:@"general"];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.categoryTableView reloadData];
+//        });
     }];
     
-    [[APIManager shared] getCategoryArticles:@"category=business&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-        [self.articlesDictionary setValue:generalArticles forKey:@"business"];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.categoryTableView reloadData];
-        });
-    }];
-
-    [[APIManager shared] getCategoryArticles:@"category=technology&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-        [self.articlesDictionary setValue:generalArticles forKey:@"technology"];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.categoryTableView reloadData];
-        });
-    }];
-
-    [[APIManager shared] getCategoryArticles:@"category=science&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-        [self.articlesDictionary setValue:generalArticles forKey:@"science"];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.categoryTableView reloadData];
-        });
-    }];
+//    [[APIManager shared] getCategoryArticles:@"category=business&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        //Completion block.
+//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+//        [self.articlesDictionary setValue:generalArticles forKey:@"business"];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.categoryTableView reloadData];
+//        });
+//    }];
+//
+//    [[APIManager shared] getCategoryArticles:@"category=technology&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        //Completion block.
+//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+//        [self.articlesDictionary setValue:generalArticles forKey:@"technology"];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.categoryTableView reloadData];
+//        });
+//    }];
+//
+//    [[APIManager shared] getCategoryArticles:@"category=science&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        //Completion block.
+//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
+//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+//        [self.articlesDictionary setValue:generalArticles forKey:@"science"];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.categoryTableView reloadData];
+//        });
+//    }];
 }
 
 

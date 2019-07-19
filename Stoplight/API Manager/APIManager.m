@@ -11,10 +11,8 @@
 #import "APIManager.h"
 #import "Article.h"
 
-static NSString * const everythingURLString = @"https://newsapi.org/v2/everything?";
-static NSString * const topHeadlinesURLString = @"https://newsapi.org/v2/top-headlines?";
-static NSString * const countryString = @"country=us&";
-static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0";
+static NSString * const URLString = @"https://api.cognitive.microsoft.com/bing/v7.0/news?category=politics&mkt=en-us";
+static NSString * const consumerKey = @"e909edf807a249468c765b6c379992ba";
 
 @implementation APIManager
 
@@ -52,15 +50,17 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
  Output: void.
  **/
 
+
+
 -(void)getCategoryArticles:(NSString *)categoryString completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
     //general, business, sports, science, tech articles
-    NSString *urlWithCountry = [topHeadlinesURLString stringByAppendingString:countryString];
+    //NSString *urlWithCountry = [topHeadlinesURLString stringByAppendingString:countryString];
     NSURLSession *session = [NSURLSession sharedSession];
+    NSURL *url = [[NSURL alloc]initWithString:URLString]; //should be full URL
     
-    NSString *urlWithCategory = [urlWithCountry stringByAppendingString:categoryString];
-    NSString *requestString = [urlWithCategory stringByAppendingString:consumerKey];
-    NSURL *url = [[NSURL alloc]initWithString:requestString]; //should be full URL
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+    [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
     [self makeRequestWithCompletion:session request:request completionHandler:completion];
 }
 
