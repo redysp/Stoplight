@@ -35,13 +35,13 @@
         } else {
             NSLog(@"User logged in successfully");
             // display view controller that needs to shown after successful login
-            [self performSegueWithIdentifier:@"successLoginSegue" sender:nil];
+           [self performSegueWithIdentifier:@"successLoginSegue" sender:nil];
         }
     }];
 }
 
 - (IBAction)signupButton:(id)sender {
-    [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
+    //[self performSegueWithIdentifier:@"signUpSegue" sender:nil];
 }
 
 
