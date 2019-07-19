@@ -29,7 +29,10 @@
     self.title = dictionary[@"title"];
     self.author = dictionary[@"author"];
     self.link = [NSURL URLWithString:dictionary[@"url"]];
-    //self.imageLink = [NSURL URLWithString:dictionary[@"urlToImage"]];
+    
+    if ([dictionary[@"urlToImage"] isKindOfClass:[NSString class]]) {
+        self.imageLink = [NSURL URLWithString:dictionary[@"urlToImage"]];
+    }
     self.provider = dictionary[@"source"][@"name"];
     self.summary = dictionary[@"description"];
     self.text = dictionary[@"content"];

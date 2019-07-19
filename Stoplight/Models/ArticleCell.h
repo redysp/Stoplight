@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ArticleCell : UICollectionViewCell
 @property (strong, nonatomic) Article *article;
 @property (strong, nonatomic) NSString *topic;
+@property (weak, nonatomic) IBOutlet UIImageView *articleImageView;
+@property (strong, nonatomic) UIImage *articleImage;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
