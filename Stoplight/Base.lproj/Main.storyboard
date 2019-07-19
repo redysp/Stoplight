@@ -51,7 +51,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log In"/>
                                 <connections>
-                                    <segue destination="rWy-be-rNl" kind="presentation" identifier="successLoginSegue" id="A7U-2L-1pN"/>
+                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e5M-sh-pkl"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="njf-gy-Zui">
@@ -66,13 +66,19 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <segue destination="5mm-VQ-FLh" kind="presentation" identifier="signUpSegue" id="kuG-M1-zyN"/>
+                                    <action selector="signupButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z5a-sZ-fK3"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordField" destination="vUb-ex-W06" id="dar-7C-a5T"/>
+                        <outlet property="usernameField" destination="njf-gy-Zui" id="Thq-vM-mwF"/>
+                        <segue destination="rWy-be-rNl" kind="presentation" identifier="successLoginSegue" id="Bs8-4h-2Fh"/>
+                        <segue destination="5mm-VQ-FLh" kind="presentation" identifier="signUpSegue" id="pa2-u2-h4O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,7 +87,7 @@
         <!--Feed View Controller-->
         <scene sceneID="rey-rZ-5hG">
             <objects>
-                <viewController id="6fX-7B-GGG" userLabel="Feed View Controller" customClass="FeedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" id="6fX-7B-GGG" userLabel="Feed View Controller" customClass="FeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Kv-UH-cC7" userLabel="Feed View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -240,7 +246,7 @@
                         <outlet property="signUpEmailField" destination="KAW-fA-U7U" id="Jkn-KX-QQs"/>
                         <outlet property="signUpPasswordField" destination="L4T-09-yC2" id="DAc-fw-mCj"/>
                         <outlet property="signUpUsernameField" destination="cN7-1b-wnT" id="zHB-Sk-1vx"/>
-                        <segue destination="W6j-yy-6VR" kind="presentation" id="Vdr-aH-344"/>
+                        <segue destination="W6j-yy-6VR" kind="presentation" identifier="succesfulSignUpSegue" id="Vdr-aH-344"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yTg-MB-gl0" userLabel="First Responder" sceneMemberID="firstResponder"/>
