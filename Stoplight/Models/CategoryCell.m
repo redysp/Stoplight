@@ -26,11 +26,6 @@
 }
 
 //table view asks its dataSource for num rows and cell for row at
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.articles.count;
-}
-
-//table view asks its dataSource for num rows and cell for row at
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     
     // custom table view cell defined and reuse identifier set
@@ -54,6 +49,7 @@
     return cell;
 }
 
+//collection view asks its dataSource for num items in each section
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 3;
 }
