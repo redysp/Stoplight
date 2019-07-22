@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CategoryCell : UITableViewCell <UICollectionViewDataSource, UICollectionViewDelegate>
   
 @property (weak, nonatomic) IBOutlet UICollectionView *categoryCollectionView;
-@property (strong, nonatomic) IBOutlet UILabel *categoryNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *categoryNameLabel; //UNCONNECTED LABEL :( need to fix this
 @property (strong, nonatomic) NSArray *articles;
 @end
 

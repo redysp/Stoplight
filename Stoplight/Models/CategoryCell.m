@@ -17,29 +17,42 @@
     [super awakeFromNib];
     self.categoryCollectionView.delegate = self;
     self.categoryCollectionView.dataSource = self;
+    [self.categoryCollectionView reloadData];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
+#pragma mark - Collection View Methods
 //table view asks its dataSource for num rows and cell for row at
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.articles.count;
+}
+
+//This is creating an ARTICLE CELL
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     
-    // custom table view cell defined and reuse identifier set
+    //get ArticleCell
     ArticleCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCell" forIndexPath:indexPath];
     
-    //individual article object instantiated and initialized
-    Article *article = self.articles[indexPath.item];
-    
-    //elements of cell
-    cell.article = article;
-    
-    //sets the image for the article's image view
-    if (article.imageLink) {
-        [cell.articleImageView setImageWithURL: article.imageLink];
+
+    @try {
+        Article *article = self.articles[indexPath.row];
+        cell.article = article;
+        
+        //sets the image for the article's image view
+        if (article.imageLink) {
+            [cell.articleImageView setImageWithURL: article.imageLink];
+        }
+        
+        //Returns an ArticleCell
+        return cell;
+    } @catch (NSException *exception) {
+        
+        return cell;
     }
     if (article.title){
         cell.titleLabel.text = article.title;
