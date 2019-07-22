@@ -28,10 +28,6 @@
 #pragma mark - Collection View Methods
 //table view asks its dataSource for num rows and cell for row at
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.articles.count;
-}
-
 //This is creating an ARTICLE CELL
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     
