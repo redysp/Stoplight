@@ -48,14 +48,16 @@
             [cell.articleImageView setImageWithURL: article.imageLink];
         }
         
+        //sets headline text
+        if (article.title){
+            cell.titleLabel.text = article.title;
+        }
+        
         //Returns an ArticleCell
         return cell;
     } @catch (NSException *exception) {
         
         return cell;
-    }
-    if (article.title){
-        cell.titleLabel.text = article.title;
     }
     
     //return instance of custom cell and its reuse identifier w/ elements at proper index
