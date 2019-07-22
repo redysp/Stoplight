@@ -43,23 +43,15 @@
     NSArray *categoryArticles = self.articlesDictionary[category];
     
     cell.articles = categoryArticles;
-    cell.categoryNameLabel.text = category; //why is this line not working?
+    cell.categoryNameLabel.text = [category capitalizedString];
     [cell.categoryCollectionView reloadData];
-    
-//    cell.categoryCollectionView.dataSource = cell;
-//    cell.categoryCollectionView.delegate = cell;
-    
-    //returns CATEGORY CELL
+  
     return cell;
     
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.categoriesList.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 500;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -107,60 +99,6 @@
     for (NSString *category in self.categoriesList) {
         [self fetchCategoryArticles:category];
     }
-//    [[APIManager shared] getCategoryArticles:@"category=general&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        //Completion block.
-//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-//        [self.articlesDictionary setValue:generalArticles forKey:@"general"];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.categoryTableView reloadData];
-//        });
-//    }];
-//
-//    [[APIManager shared] getCategoryArticles:@"category=business&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        //Completion block.
-//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-//        [self.articlesDictionary setValue:generalArticles forKey:@"business"];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.categoryTableView reloadData];
-//        });
-//    }];
-//
-//    [[APIManager shared] getCategoryArticles:@"category=technology&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        //Completion block.
-//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-//        [self.articlesDictionary setValue:generalArticles forKey:@"technology"];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.categoryTableView reloadData];
-//        });
-//    }];
-//
-//    [[APIManager shared] getCategoryArticles:@"category=science&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        //Completion block.
-//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-//        [self.articlesDictionary setValue:generalArticles forKey:@"science"];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.categoryTableView reloadData];
-//        });
-//    }];
 }
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
 
 @end

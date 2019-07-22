@@ -27,6 +27,7 @@
 
 #pragma mark - Collection View Methods
 //table view asks its dataSource for num rows and cell for row at
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.articles.count;
 }
@@ -53,11 +54,15 @@
         
         return cell;
     }
-    //Put in the article
+    if (article.title){
+        cell.titleLabel.text = article.title;
+    }
     
-   
+    //return instance of custom cell and its reuse identifier w/ elements at proper index
+    return cell;
 }
 
+//collection view asks its dataSource for num items in each section
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 3;
 }
