@@ -32,9 +32,6 @@
     NSArray *categoriesList = [[NSArray alloc] initWithObjects:@"politics", @"business", @"us", @"world", nil];
     [defaults setObject:categoriesList forKey:@"categoriesArray"];
     [defaults synchronize];
-    
-    
-    
 }
 
 /*
