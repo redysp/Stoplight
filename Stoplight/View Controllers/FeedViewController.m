@@ -10,13 +10,22 @@
 #import "APIManager.h"
 #import "Article.h"
 #import "CategoryCell.h"
+#import "Utility.h"
 
 @interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
+//keys --> category; vals--> art list
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
-@property (strong, nonatomic) NSMutableArray *categoriesList; //in future, probably won't be the same
 
+//Dictionary containing articles we want organized by source
+@property (strong,nonatomic) NSMutableDictionary *displayDict;
+
+//in future, probably won't be the same
+@property (strong, nonatomic) NSArray *categoriesList;
+
+//dictionary --> (key) pol aff. to (val) list of sources
+@property (strong,nonatomic) NSDictionary *sortedSourcesDict;
 @end
 
 @implementation FeedViewController
@@ -28,7 +37,8 @@
     self.categoryTableView.delegate = self;
     self.categoryTableView.dataSource = self;
     
-    self.categoriesList = [NSMutableArray arrayWithObjects:@"general", @"business", @"tech", @"science", nil];
+    //retrieve strings to query from API
+    self.categoriesList = [Utility retrieveCategoriesList];
     
     [self fetchAllArticles];
 }
@@ -40,7 +50,7 @@
 {
     CategoryCell *cell = [self.categoryTableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
     NSString *category = self.categoriesList[indexPath.row];
-    NSArray *categoryArticles = self.articlesDictionary[category];
+    NSArray *categoryArticles = self.displayDict[category];
     
     cell.articles = categoryArticles;
     cell.categoryNameLabel.text = [category capitalizedString];
@@ -76,9 +86,12 @@
             return;
         }
         
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
+        //array of dictionaries
+        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"];
+        //array of Articles
+        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary];
         [self.articlesDictionary setValue:generalArticles forKey:categoryName];
+        [self filterArticles:categoryName];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.categoryTableView reloadData];
             
@@ -101,4 +114,32 @@
     }
 }
 
+#pragma mark - Article Filter Logic
+
+-(void) filterArticles:(NSString *)categoryName{
+    bool haveLeft = NO;
+    bool haveCenter = NO;
+    bool haveRight = NO;
+    
+    for (Article *article in self.articlesDictionary[categoryName]){
+        
+        //if provider leans a certain way add article to display dictionary
+        if([self.sortedSourcesDict[@"left"] containsString:article.provider] && !haveLeft){
+            [self.displayDict[categoryName] addObject:article];
+            haveLeft = YES;
+        }
+        if([self.sortedSourcesDict[@"center"] containsString:article.provider] && !haveCenter){
+            [self.displayDict[categoryName] addObject:article];
+            haveCenter = YES;
+        }
+        if([self.sortedSourcesDict[@"right"] containsString:article.provider] && !haveRight){
+            [self.displayDict[categoryName] addObject:article];
+            haveRight = YES;
+        }
+    }
+    if (!haveLeft || !haveCenter || !haveRight){
+        //call api again
+        NSLog(@"We need to call the articles again");
+    }
+}
 @end
