@@ -79,7 +79,6 @@
     NSString *queryString = [NSString stringWithFormat:@"category=%@&", categoryName];
     [[APIManager shared] getCategoryArticles:queryString completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         //Completion block.
-        NSLog(@"Got data");
         
         if (error) {
             NSLog(@"Error");
