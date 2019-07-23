@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
-@property (strong, nonatomic) NSMutableArray *categoriesList; //in future, probably won't be the same
+@property (strong, nonatomic) NSMutableArray *categoriesList;
 
 @end
 
@@ -28,9 +28,9 @@
     self.categoryTableView.delegate = self;
     self.categoryTableView.dataSource = self;
     
-    self.categoriesList = [NSMutableArray arrayWithObjects:@"general", @"business", @"tech", @"science", nil];
+    self.categoriesList = [NSMutableArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];
     
-    [self fetchAllArticles];
+    [self fetchArticlesByCategory];
 }
 
 
@@ -67,51 +67,20 @@
 #pragma mark - Data Fetching
 
 
--(void)fetchAllArticles {
+-(void)fetchArticlesByCategory {
     
+    /* Here, you would call a function that will get the utility so it passes in the array of categories that the user has selected.
+       For now, we have a static array called categoriesList */
     
-    
-    
-    [[APIManager shared] getCategoryArticles:@"category=general&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of dictionaries
-        NSLog(@"%@", articlesDictionary);
-//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-//        [self.articlesDictionary setValue:generalArticles forKey:@"general"];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.categoryTableView reloadData];
-//        });
-    }];
-    
-//    [[APIManager shared] getCategoryArticles:@"category=business&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        //Completion block.
-//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-//        [self.articlesDictionary setValue:generalArticles forKey:@"business"];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.categoryTableView reloadData];
-//        });
-//    }];
-//
-//    [[APIManager shared] getCategoryArticles:@"category=technology&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        //Completion block.
-//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-//        [self.articlesDictionary setValue:generalArticles forKey:@"technology"];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.categoryTableView reloadData];
-//        });
-//    }];
-//
-//    [[APIManager shared] getCategoryArticles:@"category=science&" completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        //Completion block.
-//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-//        [self.articlesDictionary setValue:generalArticles forKey:@"science"];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.categoryTableView reloadData];
-//        });
-//    }];
+    // Loop through this array, and make API calls for each of the selected categories
+    for (NSString *category in self.categoriesList) {
+        //[self fetchCategoryArticles:category];
+        [[APIManager shared] getCategoryArticles:category completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            //Completion block.
+            NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of dictionaries
+            NSLog(@"%@ New Call: ", articlesDictionary);
+        }];
+    }
 }
 
 

@@ -11,8 +11,12 @@
 #import "APIManager.h"
 #import "Article.h"
 
-static NSString * const URLString = @"https://api.cognitive.microsoft.com/bing/v7.0/news?category=politics&mkt=en-us";
+static NSString * const URLString = @"https://api.cognitive.microsoft.com/bing/v7.0/news?category=";
+static NSString * const joinString = @"&";
+static NSString * const country = @"mkt=en-us";
 static NSString * const consumerKey = @"e909edf807a249468c765b6c379992ba";
+
+static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.0/news?category=world&mkt=en-us";
 
 @implementation APIManager
 
@@ -53,12 +57,19 @@ static NSString * const consumerKey = @"e909edf807a249468c765b6c379992ba";
 
 
 -(void)getCategoryArticles:(NSString *)categoryString completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
-    //general, business, sports, science, tech articles
-    //NSString *urlWithCountry = [topHeadlinesURLString stringByAppendingString:countryString];
+    
+    NSLog(@"%@", categoryString);
+    
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURL *url = [[NSURL alloc]initWithString:URLString]; //should be full URL
     
+    // Concatenate URL
+    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@", categoryString, joinString, country];
+    NSString *completeURL = [URLString stringByAppendingString:restOfURL];
+
+    // Convert string to URL
+    NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
     
+    // Finish request, add API key
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
     [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
     [self makeRequestWithCompletion:session request:request completionHandler:completion];
