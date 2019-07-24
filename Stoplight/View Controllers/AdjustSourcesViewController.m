@@ -8,7 +8,8 @@
 
 #import "AdjustSourcesViewController.h"
 
-@interface AdjustSourcesViewController ()
+@interface AdjustSourcesViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *sourcesTableView;
 
 @end
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.sourcesTableView.dataSource = self;
+    self.sourcesTableView.delegate = self;
 }
 
 - (IBAction)didTapBack:(id)sender {
@@ -30,15 +33,28 @@
     
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // do usual stuff here including getting the cell
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    // determine the data from the IndexPath.row
+    
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    return cell;
 }
-*/
 
+- (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [self tableView:self.sourcesTableView cellForRowAtIndexPath:indexPath];
+    //other stuff
+    
+    
+    return cell;
+}
+
+- (NSArray *)getNewsSources{
+    return @[@"ABC",@"MSNBC"];
+}
+//dequereusable cell
+//cell for row at index path
 @end
