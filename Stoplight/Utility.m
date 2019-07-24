@@ -16,11 +16,14 @@
  @property (strong, nonatomic) NSDictionary *siteDictionary;
 **/
 
--(void) initialize {
++ (instancetype)shared {
+    static Utility *sharedManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        self.allSourcesList = [[NSArray alloc] initWithObjects:@"cnn", @"cnbc", @"economist", @"bloomberg", @"fox", @"washingtonexaminer", @"wsj", @"nbc", @"reuters", @"apnews", @"time", @"npr", nil];
+        sharedManager = [[self alloc] init];
+        sharedManager.allSourcesList = [[NSArray alloc] initWithObjects:@"cnn", @"cnbc", @"economist", @"bloomberg", @"fox", @"washingtonexaminer", @"wsj", @"nbc", @"reuters", @"apnews", @"time", @"npr", nil];
     });
+    return sharedManager;
 }
 
 + (NSString *)getSiteURL:(NSString *)site category:(CategoryState)category {
@@ -213,4 +216,9 @@
     NSArray *dict = [defaults arrayForKey:@"categoriesArray"];
     return dict;
 }
+
+- (NSArray *)getAllPossibleSources{
+    return self.allSourcesList;
+}
+
 @end

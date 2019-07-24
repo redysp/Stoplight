@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSArray *allSourcesList;
 @property (strong, nonatomic) NSDictionary *siteDictionary;
 
+- (NSArray *)getAllPossibleSources;
++ (instancetype)shared;
 + (NSDictionary *)retrieveSourceDict;
 + (NSArray *)retrieveCategoriesList;
 + (NSString *)getSiteURL:(NSString *)site category:(CategoryState)category;

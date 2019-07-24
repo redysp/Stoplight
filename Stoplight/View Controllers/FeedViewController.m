@@ -21,7 +21,6 @@
 //Dictionary containing articles we want organized by source
 @property (strong,nonatomic) NSMutableDictionary *displayDict;
 
-//in future, probably won't be the same
 @property (strong, nonatomic) NSArray *categoriesList;
 
 //dictionary --> (key) pol aff. to (val) list of sources
@@ -76,17 +75,8 @@
 
 #pragma mark - Data Fetching
 
-/**
-Calls function that pairs category and site for API call.
-**/
--(void) fetchAllArticles {
-    
-}
-
 //-(void)fetchCategoryArticles: (NSString *)categoryName{
-//    //@"category=general&"
-//
-//    NSString *queryString = [NSString stringWithFormat:@"category=%@&", categoryName];
+//    NSString *queryString = ;
 //    [[APIManager shared] getCategoryArticles:queryString completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 //        //Completion block.
 //
@@ -104,7 +94,7 @@ Calls function that pairs category and site for API call.
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            [self.categoryTableView reloadData];
 //
-            //need to create indexpath for that one, not sure how to do this
+//            need to create indexpath for that one, not sure how to do this
 //            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.categoriesList indexOfObjectIdenticalTo:categoryName] inSection:0];
 //            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
 //            NSLog(@"Got data");
@@ -115,13 +105,14 @@ Calls function that pairs category and site for API call.
 //    }];
 //}
 
-
-//-(void)fetchAllArticles {
-//
-//    for (NSString *category in self.categoriesList) {
-//        [self fetchCategoryArticles:category];
-//    }
-//}
+/**
+ Calls function that pairs category and site for API call.
+ **/
+-(void)fetchAllArticles {
+    for (NSString *category in self.categoriesList) {
+        [self fetchCategoryArticles:category];
+    }
+}
 
 #pragma mark - Article Filter Logic
 
