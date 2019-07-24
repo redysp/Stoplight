@@ -17,6 +17,7 @@
 //keys --> category; vals--> art list
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
+@property (strong, nonatomic) NSMutableArray *categoriesList;
 
 //Dictionary containing articles we want organized by source
 @property (strong,nonatomic) NSMutableDictionary *displayDict;
@@ -39,10 +40,10 @@
     self.categoryTableView.delegate = self;
     self.categoryTableView.dataSource = self;
     
-    //retrieve strings to query from API
-    self.categoriesList = [Utility retrieveCategoriesList];
+    self.categoriesList = [NSMutableArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];
+
     
-    [self fetchAllArticles];
+    [self fetchArticlesByCategory];
 }
 
 
@@ -75,6 +76,19 @@
 
 #pragma mark - Data Fetching
 
+-(void)fetchArticlesByCategory {
+    
+    /* Here, you would call a function that will get the utility so it passes in the array of categories that the user has selected.
+       For now, we have a static array called categoriesList */
+    
+    // Loop through this array, and make API calls for each of the selected categories
+    for (NSString *sources in self.sourcesList) {
+        //[self fetchCategoryArticles:category];
+        [[APIManager shared] getCategoryArticles:sources completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            //Completion block.
+            NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of dictionaries
+            NSLog(@"%@ New Call: ", articlesDictionary);
+        }];
 //-(void)fetchCategoryArticles: (NSString *)categoryName{
 //    NSString *queryString = ;
 //    [[APIManager shared] getCategoryArticles:queryString completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {

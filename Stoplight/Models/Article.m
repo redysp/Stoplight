@@ -15,21 +15,20 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     
+    self.title = dictionary[@"name"];
+    //self.author = dictionary[@"author"];
     self.title = dictionary[@"title"];
-    self.author = dictionary[@"author"];
     self.link = [NSURL URLWithString:dictionary[@"url"]];
     
-    if ([dictionary[@"urlToImage"] isKindOfClass:[NSString class]]) {
-        self.imageLink = [NSURL URLWithString:dictionary[@"urlToImage"]];
-    }
-    self.provider = dictionary[@"source"][@"name"];
-    self.summary = dictionary[@"description"];
-    self.text = dictionary[@"content"];
+    self.imageLink = [NSURL URLWithString:dictionary[@"image"][@"thumbnail"][@"contentUrl"]];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-    self.publishedAt = [dateFormatter dateFromString:dictionary[@"publishedAt"]];
+    self.provider = dictionary[@"provider"][@"name"];
+    //self.summary = dictionary[@"description"];
+    //self.text = dictionary[@"content"];
     
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+    //self.publishedAt = [dateFormatter dateFromString:dictionary[@"publishedAt"]];
     return self;
 }
 
