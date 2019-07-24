@@ -17,6 +17,7 @@
     
     self.title = dictionary[@"name"];
     //self.author = dictionary[@"author"];
+    self.title = dictionary[@"title"];
     self.link = [NSURL URLWithString:dictionary[@"url"]];
     
     self.imageLink = [NSURL URLWithString:dictionary[@"image"][@"thumbnail"][@"contentUrl"]];
