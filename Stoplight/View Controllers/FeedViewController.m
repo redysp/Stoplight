@@ -32,6 +32,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [Utility init];
+    
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     
     self.categoryTableView.delegate = self;
@@ -73,27 +76,34 @@
 
 #pragma mark - Data Fetching
 
--(void)fetchCategoryArticles: (NSString *)categoryName{
-    //@"category=general&"
+/**
+Calls function that pairs category and site for API call.
+**/
+-(void) fetchAllArticles {
     
-    NSString *queryString = [NSString stringWithFormat:@"category=%@&", categoryName];
-    [[APIManager shared] getCategoryArticles:queryString completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        
-        if (error) {
-            NSLog(@"Error");
-            return;
-        }
-        
-        //array of dictionaries
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"];
-        //array of Articles
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary];
-        [self.articlesDictionary setValue:generalArticles forKey:categoryName];
-        [self filterArticles:categoryName];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.categoryTableView reloadData];
-            
+}
+
+//-(void)fetchCategoryArticles: (NSString *)categoryName{
+//    //@"category=general&"
+//
+//    NSString *queryString = [NSString stringWithFormat:@"category=%@&", categoryName];
+//    [[APIManager shared] getCategoryArticles:queryString completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        //Completion block.
+//
+//        if (error) {
+//            NSLog(@"Error");
+//            return;
+//        }
+//
+//        //array of dictionaries
+//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"];
+//        //array of Articles
+//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary];
+//        [self.articlesDictionary setValue:generalArticles forKey:categoryName];
+//        [self filterArticles:categoryName];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.categoryTableView reloadData];
+//
             //need to create indexpath for that one, not sure how to do this
 //            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.categoriesList indexOfObjectIdenticalTo:categoryName] inSection:0];
 //            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
@@ -101,44 +111,44 @@
 //            [self.categoryTableView beginUpdates];
 //            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
 //            [self.categoryTableView endUpdates];
-        });
-    }];
-}
+//        });
+//    }];
+//}
 
 
--(void)fetchAllArticles {
-    
-    for (NSString *category in self.categoriesList) {
-        [self fetchCategoryArticles:category];
-    }
-}
+//-(void)fetchAllArticles {
+//
+//    for (NSString *category in self.categoriesList) {
+//        [self fetchCategoryArticles:category];
+//    }
+//}
 
 #pragma mark - Article Filter Logic
 
--(void) filterArticles:(NSString *)categoryName{
-    bool haveLeft = NO;
-    bool haveCenter = NO;
-    bool haveRight = NO;
-    
-    for (Article *article in self.articlesDictionary[categoryName]){
-        
-        //if provider leans a certain way add article to display dictionary
-        if([self.sortedSourcesDict[@"left"] containsString:article.provider] && !haveLeft){
-            [self.displayDict[categoryName] addObject:article];
-            haveLeft = YES;
-        }
-        if([self.sortedSourcesDict[@"center"] containsString:article.provider] && !haveCenter){
-            [self.displayDict[categoryName] addObject:article];
-            haveCenter = YES;
-        }
-        if([self.sortedSourcesDict[@"right"] containsString:article.provider] && !haveRight){
-            [self.displayDict[categoryName] addObject:article];
-            haveRight = YES;
-        }
-    }
-    if (!haveLeft || !haveCenter || !haveRight){
-        //call api again
-        NSLog(@"We need to call the articles again");
-    }
-}
+//-(void) filterArticles:(NSString *)categoryName{
+//    bool haveLeft = NO;
+//    bool haveCenter = NO;
+//    bool haveRight = NO;
+//
+//    for (Article *article in self.articlesDictionary[categoryName]){
+//
+//        //if provider leans a certain way add article to display dictionary
+//        if([self.sortedSourcesDict[@"left"] containsString:article.provider] && !haveLeft){
+//            [self.displayDict[categoryName] addObject:article];
+//            haveLeft = YES;
+//        }
+//        if([self.sortedSourcesDict[@"center"] containsString:article.provider] && !haveCenter){
+//            [self.displayDict[categoryName] addObject:article];
+//            haveCenter = YES;
+//        }
+//        if([self.sortedSourcesDict[@"right"] containsString:article.provider] && !haveRight){
+//            [self.displayDict[categoryName] addObject:article];
+//            haveRight = YES;
+//        }
+//    }
+//    if (!haveLeft || !haveCenter || !haveRight){
+//        //call api again
+//        NSLog(@"We need to call the articles again");
+//    }
+//}
 @end
