@@ -20,4 +20,9 @@
     NSArray *dict = [defaults arrayForKey:@"categoriesArray"];
     return dict;
 }
+
++ (instancetype)shared{
+    = [[NSArray alloc] initWithObjects:@"cnn", @"cnbc", @"economist", @"bloomberg.com", @"foxbusiness.com", @"washingtonexaminer.com", @"wjs.com", @"vox.com", @"nbcnewscom", @"reuters.com", @"apnews.com", @"nypost.com", @"time.com", @"npr.org", nil];
+}
+
 @end

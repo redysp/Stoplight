@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Utility : NSObject
 + (NSDictionary *)retrieveSourceDict;
 + (NSArray *)retrieveCategoriesList;
+@property NSArray<NSString *> *allSourcesList;
 @end
 
 NS_ASSUME_NONNULL_END
