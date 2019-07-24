@@ -75,7 +75,7 @@
     // Loop through this array, and make API calls for each of the selected categories
     for (NSString *category in self.categoriesList) {
         //[self fetchCategoryArticles:category];
-        [[APIManager shared] getCategoryArticles:category completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [[APIManager shared] getCategoryArticles: completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             //Completion block.
             NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of dictionaries
             NSLog(@"%@ New Call: ", articlesDictionary);
