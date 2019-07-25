@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)shared;
 + (NSDictionary *)retrieveSourceDict;
 + (NSArray *)retrieveCategoriesList;
-+ (NSString *)getSiteURL:(NSString *)site category:(CategoryState)category;
++ (NSString *)getSiteURL:(NSString *)site category:(NSString *)category;
 + (NSMutableArray *) decideSourcesList;
 //TODO: RETRIEVE USER SETTINGS FOR EACH POLITICAL SLANT SOURCES.
 
