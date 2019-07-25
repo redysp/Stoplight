@@ -17,7 +17,7 @@ static NSString * const siteString = @"+site:";
 static NSString * const country = @"mkt=en-us";
 static NSString * const consumerKey = @"e909edf807a249468c765b6c379992ba";
 
-static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=+site:cnn.com/business&mkt=en-us";
+static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=+site:npr.org&mkt=en-us";
 
 @implementation APIManager
 
@@ -64,6 +64,7 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     // Concatenate URL
     NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@%@", siteString, source, joinString, country];
     NSString *completeURL = [URLString stringByAppendingString:restOfURL];
+    NSLog(@"%@", completeURL);
     
     // Convert string to URL
     NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL

@@ -82,10 +82,11 @@
         for (NSString *newsDomain in list){
             [[APIManager shared] getCategoryArticles:newsDomain completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 //Completion block.
+                NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of dictionaries
+                NSLog(@"%@", articlesDictionary);
                 if (error) {
                     NSLog(@"Error");
                     return;
-                    
                 }
             }];
         }
