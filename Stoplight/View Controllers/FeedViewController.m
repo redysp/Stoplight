@@ -11,6 +11,7 @@
 #import "Article.h"
 #import "CategoryCell.h"
 #import "Utility.h"
+#import "APIManager.h"
 
 @interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -22,8 +23,6 @@
 //Dictionary containing articles we want organized by source
 @property (strong,nonatomic) NSMutableDictionary *displayDict;
 
-@property (strong, nonatomic) NSArray *categoriesList;
-
 //dictionary --> (key) pol aff. to (val) list of sources
 @property (strong,nonatomic) NSDictionary *sortedSourcesDict;
 @end
@@ -33,12 +32,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [Utility init];
+//    [Utility init];
     
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     
     self.categoryTableView.delegate = self;
     self.categoryTableView.dataSource = self;
+    
     
     self.categoriesList = [NSMutableArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];
 
@@ -77,22 +77,39 @@
 #pragma mark - Data Fetching
 
 -(void)fetchArticlesByCategory {
+    NSMutableArray *sourcesList = [Utility decideSourcesList];
+    for (NSMutableArray *list in sourcesList) {
+        for (NSString *newsDomain in list){
+            [[APIManager shared] getCategoryArticles:newsDomain completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                //Completion block.
+                if (error) {
+                    NSLog(@"Error");
+                    return;
+                    
+                }
+            }];
+        }
+    }
+}
     
     /* Here, you would call a function that will get the utility so it passes in the array of categories that the user has selected.
        For now, we have a static array called categoriesList */
+  
     
     // Loop through this array, and make API calls for each of the selected categories
-    for (NSString *sources in self.sourcesList) {
-        //[self fetchCategoryArticles:category];
-        [[APIManager shared] getCategoryArticles:sources completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            //Completion block.
-            NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of dictionaries
-            NSLog(@"%@ New Call: ", articlesDictionary);
-        }];
+//    for (NSString *sources in self.sourcesList) {
+//        //[self fetchCategoryArticles:category];
+//        [[APIManager shared] getCategoryArticles:sources completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//            //Completion block.
+//            NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of dictionaries
+//            NSLog(@"%@ New Call: ", articlesDictionary);
+//        }];
+    
+        
 //-(void)fetchCategoryArticles: (NSString *)categoryName{
 //    NSString *queryString = ;
 //    [[APIManager shared] getCategoryArticles:queryString completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        //Completion block.
+        //Completion block.
 //
 //        if (error) {
 //            NSLog(@"Error");
@@ -122,11 +139,6 @@
 /**
  Calls function that pairs category and site for API call.
  **/
--(void)fetchAllArticles {
-    for (NSString *category in self.categoriesList) {
-        [self fetchCategoryArticles:category];
-    }
-}
 
 #pragma mark - Article Filter Logic
 

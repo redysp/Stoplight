@@ -23,6 +23,7 @@
     self.imageLink = [NSURL URLWithString:dictionary[@"image"][@"thumbnail"][@"contentUrl"]];
     
     self.provider = dictionary[@"provider"][@"name"];
+    //self.affiliation = 
     //self.summary = dictionary[@"description"];
     //self.text = dictionary[@"content"];
     

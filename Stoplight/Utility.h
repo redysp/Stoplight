@@ -14,13 +14,20 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Utility : NSObject
 
 @property (strong, nonatomic) NSArray *allSourcesList;
+@property (strong, nonatomic) NSArray *allLeftSources;
+@property (strong, nonatomic) NSArray *allCenterSources;
+@property (strong, nonatomic) NSArray *allRightSources;
 @property (strong, nonatomic) NSDictionary *siteDictionary;
+@property (strong, nonatomic) NSArray *categoriesList;
 
 - (NSArray *)getAllPossibleSources;
 + (instancetype)shared;
 + (NSDictionary *)retrieveSourceDict;
 + (NSArray *)retrieveCategoriesList;
 + (NSString *)getSiteURL:(NSString *)site category:(CategoryState)category;
++ (NSMutableArray *) decideSourcesList;
+//TODO: RETRIEVE USER SETTINGS FOR EACH POLITICAL SLANT SOURCES.
+
 
 @end
 

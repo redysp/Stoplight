@@ -8,6 +8,7 @@
 
 #import "Utility.h"
 #import "Models/Category.h"
+#import "FeedViewController.h"
 
 @implementation Utility
 
@@ -16,14 +17,58 @@
  @property (strong, nonatomic) NSDictionary *siteDictionary;
 **/
 
+//Utility categoriesList = [NSMutableArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];
 + (instancetype)shared {
     static Utility *sharedManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedManager = [[self alloc] init];
         sharedManager.allSourcesList = [[NSArray alloc] initWithObjects:@"cnn", @"cnbc", @"economist", @"bloomberg", @"fox", @"washingtonexaminer", @"wsj", @"nbc", @"reuters", @"apnews", @"time", @"npr", nil];
+        sharedManager.allLeftSources = [[NSArray alloc] initWithObjects:@"cnn", @"cnbc", @"nbc", @"time", nil];
+        sharedManager.allCenterSources = [[NSArray alloc] initWithObjects:@"economist", @"bloomberg", @"reuters", @"apnews", @"npr", nil];
+        sharedManager.allRightSources = [[NSArray alloc] initWithObjects:@"fox", @"wsj", @"washingtonexaminer", nil];
+        
+        //Not sure if the placement of this is correct
+        //sharedManager.categoriesList = [[NSArray alloc] initWithObjects:@"politics", @"business", @"us", @"world", nil];
     });
     return sharedManager;
+}
+
+/**
+Returns array of arrays.
+Outer array is by category.
+Inner array is of site domains.
+**/
+
+// Try and make this more efficient if time permits
+
+
++ (NSMutableArray *) decideSourcesList {
+    NSMutableArray *sourcesList = [NSMutableArray new];
+    Utility *manager = [Utility shared];
+    
+    unsigned long int sizeOfCategoryArray = [manager.categoriesList count];
+    NSLog(@"%lu", sizeOfCategoryArray);
+    NSLog(@"%@", manager.categoriesList[0]);
+    
+    //Nested for loop, first by category then by source.
+    for (int i = 0; i <= sizeOfCategoryArray; i++) {
+        NSMutableArray *innerSourcesList = [NSMutableArray new];
+        //Left
+        [innerSourcesList addObject:[Utility getSiteURL:manager.allLeftSources[0] category:manager.categoriesList[i]]];
+        [innerSourcesList addObject:[Utility getSiteURL:manager.allLeftSources[1] category:cat]];
+        
+        //Center
+        [innerSourcesList addObject:[Utility getSiteURL:manager.allCenterSources[0] category:cat]];
+        [innerSourcesList addObject:[Utility getSiteURL:manager.allCenterSources[1] category:cat]];
+        
+        //Right
+        [innerSourcesList addObject:[Utility getSiteURL:manager.allRightSources[0] category:cat]];
+        [innerSourcesList addObject:[Utility getSiteURL:manager.allRightSources[1] category:cat]];
+        
+        [sourcesList addObject:innerSourcesList];
+    }
+    return sourcesList;
 }
 
 + (NSString *)getSiteURL:(NSString *)site category:(CategoryState)category {
