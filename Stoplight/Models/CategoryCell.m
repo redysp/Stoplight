@@ -28,10 +28,6 @@
 #pragma mark - Collection View Methods
 //table view asks its dataSource for num rows and cell for row at
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.articles.count;
-}
-
 //This is creating an ARTICLE CELL
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     
@@ -44,9 +40,9 @@
         cell.article = article;
         
         //sets the image for the article's image view
-        if (article.imageLink) {
-            [cell.articleImageView setImageWithURL: article.imageLink];
-        }
+//        if (article.imageLink) {
+//            [cell.articleImageView setImageWithURL: article.imageLink];
+//        }
         
         //sets headline text
         if (article.title){

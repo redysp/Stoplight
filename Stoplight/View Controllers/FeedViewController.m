@@ -10,27 +10,44 @@
 #import "APIManager.h"
 #import "Article.h"
 #import "CategoryCell.h"
+#import "Utility.h"
+#import "APIManager.h"
 
 @interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
+//keys --> category; vals--> art list
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
-@property (strong, nonatomic) NSMutableArray *categoriesList; //in future, probably won't be the same
+@property (strong, nonatomic) NSMutableArray *categoriesList;
 
+//Dictionary containing articles we want organized by source
+@property (strong,nonatomic) NSMutableDictionary *displayDict;
+
+//dictionary --> (key) pol aff. to (val) list of sources
+@property (strong,nonatomic) NSDictionary *sortedSourcesDict;
 @end
 
 @implementation FeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    [Utility init];
+    
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     
     self.categoryTableView.delegate = self;
     self.categoryTableView.dataSource = self;
     
-    self.categoriesList = [NSMutableArray arrayWithObjects:@"general", @"business", @"tech", @"science", nil];
+    // We will be getting this from the Utility file (which is set by the user in settings)
+    self.categoriesList = [NSMutableArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];
     
-    [self fetchAllArticles];
+    //Initialize the arrays in dictionaries to be empty
+    for (NSString *category in self.categoriesList) {
+        self.articlesDictionary[category] = [NSMutableArray new];
+    }
+    
+    [self fetchArticlesByCategory];
 }
 
 
@@ -63,42 +80,60 @@
 
 #pragma mark - Data Fetching
 
--(void)fetchCategoryArticles: (NSString *)categoryName{
-    //@"category=general&"
+-(void)fetchArticlesByCategory {
+    NSDictionary *sourcesDictionary = [Utility retrieveSourceDict];
     
-    NSString *queryString = [NSString stringWithFormat:@"category=%@&", categoryName];
-    [[APIManager shared] getCategoryArticles:queryString completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-        NSLog(@"Got data");
-        
-        if (error) {
-            NSLog(@"Error");
-            return;
+    for (NSString *category in self.categoriesList) {
+        NSDictionary *sideDictionary = sourcesDictionary[category]; //Dictionary with keys left, middle, and right
+        for (NSString *side in sideDictionary){
+            NSArray *sourcesArray = sideDictionary[side];
+            for (NSString *source in sourcesArray){
+                [[APIManager shared] getCategoryArticles:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    //Completion block.
+                    if (error) {
+                        NSLog(@"Error");
+                        return;
+                    }
+                    
+                    NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
+                    NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]]; //array of Articles
+                    //NSArray *filteredArticles = [self filterArticles:category articles:articles]; //filter so only articles we want stay
+                
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.articlesDictionary[category] addObjectsFromArray:articles];
+                        [self.categoryTableView reloadData];
+                    });
+                }];
+            }
         }
+    }
+}
         
-        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"]; //array of dictionaries
-        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary]; //array of Articles
-        [self.articlesDictionary setValue:generalArticles forKey:categoryName];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.categoryTableView reloadData];
-            
-            //need to create indexpath for that one, not sure how to do this
+// FOR REFERENCE.
+//            need to create indexpath for that one, not sure how to do this
 //            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.categoriesList indexOfObjectIdenticalTo:categoryName] inSection:0];
 //            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
 //            NSLog(@"Got data");
 //            [self.categoryTableView beginUpdates];
 //            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
 //            [self.categoryTableView endUpdates];
-        });
-    }];
-}
 
+#pragma mark - Article Filter Logic
 
--(void)fetchAllArticles {
-    
-    for (NSString *category in self.categoriesList) {
-        [self fetchCategoryArticles:category];
+- (NSArray *) filterArticles:(NSString *)categoryName articles:(NSArray *)articles{
+    NSMutableArray *keepArticles = [NSMutableArray new];
+    for (Article *article in articles) {
+        if (keepArticles.count == 2) {
+            break;
+        }
+        if ([[article.category lowercaseString] isEqualToString:categoryName]) {
+            [keepArticles addObject:article];
+        }
     }
+    //TODO: DEAL WITH THIS. Maybe re-call the API but skip over the ones we already got? Not sure how to do that.
+    if (keepArticles.count < 2) {
+        NSLog(@"Not enough articles...");
+    }
+    return keepArticles;
 }
-
 @end

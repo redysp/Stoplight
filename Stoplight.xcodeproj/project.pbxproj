@@ -25,14 +25,18 @@
 		2461EBFF22E1357C00077272 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 2448817522DE3E64001BF872 /* AppDelegate.h */; };
 		2461EC0022E1375F00077272 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851A22DFDDF000315845 /* LoginViewController.m */; };
 		2461EC0122E1376800077272 /* LoginViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851F22DFDDF000315845 /* LoginViewController.h */; };
+		24E33CCF22E8D7DA001C5C40 /* Utility.h in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3E22E674060047F361 /* Utility.h */; };
 		373D107763C3D0757F4C10EC /* Pods_StoplightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */; };
 		70886B5522DE709E009F3DB8 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		70886B6422DE7855009F3DB8 /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6322DE7855009F3DB8 /* ArticleCell.m */; };
 		70886B6722DE7D56009F3DB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6622DE7D56009F3DB8 /* User.m */; };
 		7093A8D622E0F0E60020F977 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7093A8D522E0F0E60020F977 /* CategoryCell.m */; };
 		7093A8E522E2409D0020F977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7093A8E422E2409D0020F977 /* SettingsViewController.m */; };
+		70EA3C4022E674060047F361 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3F22E674060047F361 /* Utility.m */; };
 		B21A5D4C790187AE56B6CBC5 /* Pods_StoplightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */; };
 		C2BD654EAD96C4B6D5644B49 /* Pods_Stoplight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */; };
+		FC11E89A22E67DB8007380B7 /* AdjustSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC11E89922E67DB8007380B7 /* AdjustSourcesViewController.m */; };
+		FC11E89D22E67DE5007380B7 /* AdjustCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */; };
 		FCD1850F22DF9F4C00315845 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FCD1852322DFDDF000315845 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851722DFDDF000315845 /* FeedViewController.m */; };
 		FCD1852422DFDDF000315845 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851822DFDDF000315845 /* SetupViewController.m */; };
@@ -85,11 +89,17 @@
 		7093A8D522E0F0E60020F977 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		7093A8E322E2409D0020F977 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		7093A8E422E2409D0020F977 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		70EA3C3E22E674060047F361 /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		70EA3C3F22E674060047F361 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoplightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E73920B81AF7502AC91B586 /* Pods-Stoplight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stoplight.debug.xcconfig"; path = "Target Support Files/Pods-Stoplight/Pods-Stoplight.debug.xcconfig"; sourceTree = "<group>"; };
 		A5C2C6156C57B752C3E9DA80 /* Pods-StoplightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightUITests.release.xcconfig"; path = "Target Support Files/Pods-StoplightUITests/Pods-StoplightUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D4E31C989648A2743929109F /* Pods-StoplightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightTests.debug.xcconfig"; path = "Target Support Files/Pods-StoplightTests/Pods-StoplightTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E7BDF2D6C231F2953035071D /* Pods-StoplightTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoplightTests.release.xcconfig"; path = "Target Support Files/Pods-StoplightTests/Pods-StoplightTests.release.xcconfig"; sourceTree = "<group>"; };
+		FC11E89822E67DB8007380B7 /* AdjustSourcesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustSourcesViewController.h; sourceTree = "<group>"; };
+		FC11E89922E67DB8007380B7 /* AdjustSourcesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustSourcesViewController.m; sourceTree = "<group>"; };
+		FC11E89B22E67DE5007380B7 /* AdjustCategoriesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustCategoriesViewController.h; sourceTree = "<group>"; };
+		FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustCategoriesViewController.m; sourceTree = "<group>"; };
 		FCD1851722DFDDF000315845 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		FCD1851822DFDDF000315845 /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		FCD1851A22DFDDF000315845 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -162,6 +172,8 @@
 				FCD4690D22DE435C0036AA23 /* API Manager */,
 				2448817522DE3E64001BF872 /* AppDelegate.h */,
 				2448817622DE3E64001BF872 /* AppDelegate.m */,
+				70EA3C3E22E674060047F361 /* Utility.h */,
+				70EA3C3F22E674060047F361 /* Utility.m */,
 				2448817B22DE3E64001BF872 /* Main.storyboard */,
 				2448818022DE3E64001BF872 /* LaunchScreen.storyboard */,
 				2448817E22DE3E64001BF872 /* Assets.xcassets */,
@@ -230,6 +242,8 @@
 		FCD1851622DFDDF000315845 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FC11E89822E67DB8007380B7 /* AdjustSourcesViewController.h */,
+				FC11E89922E67DB8007380B7 /* AdjustSourcesViewController.m */,
 				FCD1852222DFDDF000315845 /* SignupViewController.h */,
 				FCD1851B22DFDDF000315845 /* SignupViewController.m */,
 				FCD1851F22DFDDF000315845 /* LoginViewController.h */,
@@ -240,6 +254,8 @@
 				7093A8E422E2409D0020F977 /* SettingsViewController.m */,
 				FCD1851D22DFDDF000315845 /* SetupViewController.h */,
 				FCD1851822DFDDF000315845 /* SetupViewController.m */,
+				FC11E89B22E67DE5007380B7 /* AdjustCategoriesViewController.h */,
+				FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -473,15 +489,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24E33CCF22E8D7DA001C5C40 /* Utility.h in Sources */,
 				2461EC0122E1376800077272 /* LoginViewController.h in Sources */,
 				2461EC0022E1375F00077272 /* LoginViewController.m in Sources */,
+				70EA3C4022E674060047F361 /* Utility.m in Sources */,
 				2461EBFE22E1357C00077272 /* APIManager.h in Sources */,
+				FC11E89D22E67DE5007380B7 /* AdjustCategoriesViewController.m in Sources */,
 				7093A8E522E2409D0020F977 /* SettingsViewController.m in Sources */,
 				2461EBFF22E1357C00077272 /* AppDelegate.h in Sources */,
 				2461EBFB22E1357600077272 /* SignupViewController.h in Sources */,
 				2461EBFC22E1357600077272 /* FeedViewController.h in Sources */,
 				2461EBFD22E1357600077272 /* SetupViewController.h in Sources */,
 				2461EBF822E1356D00077272 /* ArticleCell.h in Sources */,
+				FC11E89A22E67DB8007380B7 /* AdjustSourcesViewController.m in Sources */,
 				2461EBF922E1356D00077272 /* CategoryCell.h in Sources */,
 				2461EBFA22E1356D00077272 /* User.h in Sources */,
 				244EB52922DFF1AA00A34141 /* Article.h in Sources */,
@@ -671,6 +691,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 893L9MG4VR;
 				INFOPLIST_FILE = Stoplight/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -689,6 +710,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 893L9MG4VR;
 				INFOPLIST_FILE = Stoplight/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
