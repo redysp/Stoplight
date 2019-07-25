@@ -37,7 +37,6 @@
 		C2BD654EAD96C4B6D5644B49 /* Pods_Stoplight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */; };
 		FC11E89A22E67DB8007380B7 /* AdjustSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC11E89922E67DB8007380B7 /* AdjustSourcesViewController.m */; };
 		FC11E89D22E67DE5007380B7 /* AdjustCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */; };
-		FC5FAED122EA128E007D3138 /* NSObject+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5FAED022EA128E007D3138 /* NSObject+Category.m */; };
 		FCD1850F22DF9F4C00315845 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FCD1852322DFDDF000315845 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851722DFDDF000315845 /* FeedViewController.m */; };
 		FCD1852422DFDDF000315845 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851822DFDDF000315845 /* SetupViewController.m */; };
@@ -101,8 +100,6 @@
 		FC11E89922E67DB8007380B7 /* AdjustSourcesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustSourcesViewController.m; sourceTree = "<group>"; };
 		FC11E89B22E67DE5007380B7 /* AdjustCategoriesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustCategoriesViewController.h; sourceTree = "<group>"; };
 		FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustCategoriesViewController.m; sourceTree = "<group>"; };
-		FC5FAECF22EA128E007D3138 /* NSObject+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Category.h"; sourceTree = "<group>"; };
-		FC5FAED022EA128E007D3138 /* NSObject+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Category.m"; sourceTree = "<group>"; };
 		FCD1851722DFDDF000315845 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		FCD1851822DFDDF000315845 /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		FCD1851A22DFDDF000315845 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -215,8 +212,6 @@
 				7093A8D522E0F0E60020F977 /* CategoryCell.m */,
 				70886B6522DE7D56009F3DB8 /* User.h */,
 				70886B6622DE7D56009F3DB8 /* User.m */,
-				FC5FAECF22EA128E007D3138 /* NSObject+Category.h */,
-				FC5FAED022EA128E007D3138 /* NSObject+Category.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -513,7 +508,6 @@
 				FCD1850F22DF9F4C00315845 /* (null) in Sources */,
 				FCD4691322DE6F130036AA23 /* Article.m in Sources */,
 				FCD4691022DE59A60036AA23 /* APIManager.m in Sources */,
-				FC5FAED122EA128E007D3138 /* NSObject+Category.m in Sources */,
 				2448818522DE3E64001BF872 /* main.m in Sources */,
 				7093A8D622E0F0E60020F977 /* CategoryCell.m in Sources */,
 				FCD1852422DFDDF000315845 /* SetupViewController.m in Sources */,

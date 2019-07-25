@@ -98,9 +98,7 @@
                     NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
                     NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]]; //array of Articles
                     //NSArray *filteredArticles = [self filterArticles:category articles:articles]; //filter so only articles we want stay
-                    NSLog(@"ARTICLES: ");
-                    NSLog(@"%@", articles);
-                    
+                
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.articlesDictionary[category] addObjectsFromArray:articles];
                         [self.categoryTableView reloadData];
@@ -109,42 +107,9 @@
             }
         }
     }
-    //[self.categoryTableView reloadData];
 }
-    
-    /* Here, you would call a function that will get the utility so it passes in the array of categories that the user has selected.
-       For now, we have a static array called categoriesList */
-  
-    
-    // Loop through this array, and make API calls for each of the selected categories
-//    for (NSString *sources in self.sourcesList) {
-//        //[self fetchCategoryArticles:category];
-//        [[APIManager shared] getCategoryArticles:sources completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//            //Completion block.
-//            NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of dictionaries
-//            NSLog(@"%@ New Call: ", articlesDictionary);
-//        }];
-    
         
-//-(void)fetchCategoryArticles: (NSString *)categoryName{
-//    NSString *queryString = ;
-//    [[APIManager shared] getCategoryArticles:queryString completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //Completion block.
-//
-//        if (error) {
-//            NSLog(@"Error");
-//            return;
-//        }
-//
-//        //array of dictionaries
-//        NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"articles"];
-//        //array of Articles
-//        NSArray *generalArticles = [Article articlesWithArray:articlesDictionary];
-//        [self.articlesDictionary setValue:generalArticles forKey:categoryName];
-//        [self filterArticles:categoryName];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.categoryTableView reloadData];
-//
+// FOR REFERENCE.
 //            need to create indexpath for that one, not sure how to do this
 //            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.categoriesList indexOfObjectIdenticalTo:categoryName] inSection:0];
 //            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
@@ -152,54 +117,23 @@
 //            [self.categoryTableView beginUpdates];
 //            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
 //            [self.categoryTableView endUpdates];
-//        });
-//    }];
-//}
-
-/**
- Calls function that pairs category and site for API call.
- **/
 
 #pragma mark - Article Filter Logic
 
-//-(void) filterArticles:(NSString *)categoryName{
-//    bool haveLeft = NO;
-//    bool haveCenter = NO;
-//    bool haveRight = NO;
-//
-//    for (Article *article in self.articlesDictionary[categoryName]){
-//
-//        //if provider leans a certain way add article to display dictionary
-//        if([self.sortedSourcesDict[@"left"] containsString:article.provider] && !haveLeft){
-//            [self.displayDict[categoryName] addObject:article];
-//            haveLeft = YES;
-//        }
-//        if([self.sortedSourcesDict[@"center"] containsString:article.provider] && !haveCenter){
-//            [self.displayDict[categoryName] addObject:article];
-//            haveCenter = YES;
-//        }
-//        if([self.sortedSourcesDict[@"right"] containsString:article.provider] && !haveRight){
-//            [self.displayDict[categoryName] addObject:article];
-//            haveRight = YES;
-//        }
-//    }
-//    if (!haveLeft || !haveCenter || !haveRight){
-//        //call api again
-//        NSLog(@"We need to call the articles again");
-//    }
-//}
-
-//- (NSArray *) filterArticles:(NSString *)categoryName articles:(NSArray *)articles{
-//
-//    // Search for category in article
-//    // Make sure that the article is with it's correct category
-//    // Add 2 articles (from same source) to array
-//
-//
-//    // Hardcoded 2 articles, we can set a practical number later
-//    for (int i = 0; i < 2; i++){
-//
-//
-//    }
-//}
+- (NSArray *) filterArticles:(NSString *)categoryName articles:(NSArray *)articles{
+    NSMutableArray *keepArticles = [NSMutableArray new];
+    for (Article *article in articles) {
+        if (keepArticles.count == 2) {
+            break;
+        }
+        if ([[article.category lowercaseString] isEqualToString:categoryName]) {
+            [keepArticles addObject:article];
+        }
+    }
+    //TODO: DEAL WITH THIS. Maybe re-call the API but skip over the ones we already got? Not sure how to do that.
+    if (keepArticles.count < 2) {
+        NSLog(@"Not enough articles...");
+    }
+    return keepArticles;
+}
 @end
