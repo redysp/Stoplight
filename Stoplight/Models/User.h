@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 //on set-up both should be set to NSUserDefaults
 @property (strong, nonatomic) NSMutableArray *preferred_topics;
 @property (strong, nonatomic) NSMutableArray *preferred_sources;
+@property (strong, nonatomic) NSMutableArray *isCheckedS;
+@property (strong, nonatomic) NSMutableArray *isCheckedT;
 @end
 
 NS_ASSUME_NONNULL_END

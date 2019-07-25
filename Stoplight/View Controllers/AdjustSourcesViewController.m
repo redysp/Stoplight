@@ -9,6 +9,7 @@
 #import "AdjustSourcesViewController.h"
 #import "Utility.h"
 #import "User.h"
+#import "SourceCell.h"
 
 @interface AdjustSourcesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *sourcesTableView;
@@ -40,43 +41,48 @@
 }
 
 //request a cell and do this for each one reqs'd
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (SourceCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // do usual stuff here including getting the cell
     
     //get an empty cell
-    UITableViewCell *cell = [self.sourcesTableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
+    SourceCell *cell = [self.sourcesTableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
     
-    //all line below needs to be moved as it wont work rn
     //needs to be a cell user as clicked will get to later
     NSArray *sources = [self getNewsSources];
+    bool *isChecked = self.user.isCheckedS[indexPath.row];
+    cell.checkStatus = isChecked;
     NSString *source = sources[indexPath.row];
-    // determine the data from the IndexPath.row
+    cell.sourceCellLabel.text = source; //capitalizedString];
     
+    //all line below needs to be moved as it wont work rn
     //allows user to select and deselect
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark)
+    if (isChecked)
     {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        //add code for including another source to user sources list
-        [self.tempUserChoices addObject:source];
+        //marks cell as checked
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else
     {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        //add code for removing another source from user sources list
-        [self.tempUserChoices removeObject:sources];
+        //marks cell as unchecked
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[self getNewsSources] count];
 }
 
 //
 
 - (NSArray *)getNewsSources{
     //hard coded here for now; DONT ACTUALLLY LEAVE LIKE THIS
-    return [[NSArray alloc] initWithObjects:@"cnn", @"cnbc", @"economist", @"bloomberg", @"fox", @"washingtonexaminer", @"wsj", @"nbc", @"reuters", @"apnews", @"time", @"npr", nil];
+    return [[NSArray alloc] initWithObjects:@"CNN", @"CNBC", @"Economist", @"Bloomberg", @"Fox", @"Washington Examiner", @"WSJ", @"NBC", @"Reuters", @"AP News", @"Time", @"NPR", nil];
     
     //return [[Utility shared] getAllPossibleSources];
 }
 //dequereusable cell
 //cell for row at index path
+
 @end
