@@ -39,6 +39,38 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
+    //NSLog(@"This is the original list of objects: %@", self.tempUserChoices);
+    if (cellSelected.isSelected) {
+        NSLog(@"I got to point one");
+        //if already checked, set to unchecked and remove source
+        self.user.checkedSources[indexPath.row] = @(NO);
+        
+        //changes cell accessory to None
+        cellSelected.accessoryType = UITableViewCellAccessoryNone;
+        
+        //adds source to user sources list
+        [self.tempUserChoices removeObject:cellSelected.source_name];
+    } else {
+        NSLog(@"I got to point two");
+        //if not already checked, set to checked and add source
+        self.user.checkedSources[indexPath.row] = @(YES);
+        
+        //changes cell acessory to checkmark
+        cellSelected.accessoryType = UITableViewCellAccessoryCheckmark;
+        
+        //removes source from user sources list
+        [self.tempUserChoices addObject:cellSelected.source_name];
+    }
+    NSLog(@"This is the updated list of objects: %@", self.tempUserChoices);
+    //updates isSelected to reflect changes made
+    cellSelected.isSelected = self.user.checkedSources[indexPath.row];
+    
+    
+}
+
 //request a cell and do this for each one reqs'd
 - (SourceCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // do usual stuff here including getting the cell
