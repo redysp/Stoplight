@@ -40,9 +40,9 @@
         cell.article = article;
         
         //sets the image for the article's image view
-        if (article.imageLink) {
-            [cell.articleImageView setImageWithURL: article.imageLink];
-        }
+//        if (article.imageLink) {
+//            [cell.articleImageView setImageWithURL: article.imageLink];
+//        }
         
         //sets headline text
         if (article.title){

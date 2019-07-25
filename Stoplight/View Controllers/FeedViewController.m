@@ -39,9 +39,13 @@
     self.categoryTableView.delegate = self;
     self.categoryTableView.dataSource = self;
     
-    
+    // We will be getting this from the Utility file (which is set by the user in settings)
     self.categoriesList = [NSMutableArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];
-
+    
+    //Initialize the arrays in dictionaries to be empty
+    for (NSString *category in self.categoriesList) {
+        self.articlesDictionary[category] = [NSMutableArray new];
+    }
     
     [self fetchArticlesByCategory];
 }
@@ -53,7 +57,7 @@
 {
     CategoryCell *cell = [self.categoryTableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
     NSString *category = self.categoriesList[indexPath.row];
-    NSArray *categoryArticles = self.displayDict[category];
+    NSArray *categoryArticles = self.articlesDictionary[category];
     
     cell.articles = categoryArticles;
     cell.categoryNameLabel.text = [category capitalizedString];
@@ -77,20 +81,35 @@
 #pragma mark - Data Fetching
 
 -(void)fetchArticlesByCategory {
-    NSMutableArray *sourcesList = [Utility decideSourcesList];
-    for (NSMutableArray *list in sourcesList) {
-        for (NSString *newsDomain in list){
-            [[APIManager shared] getCategoryArticles:newsDomain completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                //Completion block.
-                NSArray *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of dictionaries
-                NSLog(@"%@", articlesDictionary);
-                if (error) {
-                    NSLog(@"Error");
-                    return;
-                }
-            }];
+    NSDictionary *sourcesDictionary = [Utility retrieveSourceDict];
+    
+    for (NSString *category in self.categoriesList) {
+        NSDictionary *sideDictionary = sourcesDictionary[category]; //Dictionary with keys left, middle, and right
+        for (NSString *side in sideDictionary){
+            NSArray *sourcesArray = sideDictionary[side];
+            for (NSString *source in sourcesArray){
+                [[APIManager shared] getCategoryArticles:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    //Completion block.
+                    if (error) {
+                        NSLog(@"Error");
+                        return;
+                    }
+                    
+                    NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
+                    NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]]; //array of Articles
+                    //NSArray *filteredArticles = [self filterArticles:category articles:articles]; //filter so only articles we want stay
+                    NSLog(@"ARTICLES: ");
+                    NSLog(@"%@", articles);
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.articlesDictionary[category] addObjectsFromArray:articles];
+                        [self.categoryTableView reloadData];
+                    });
+                }];
+            }
         }
     }
+    //[self.categoryTableView reloadData];
 }
     
     /* Here, you would call a function that will get the utility so it passes in the array of categories that the user has selected.
@@ -167,6 +186,20 @@
 //    if (!haveLeft || !haveCenter || !haveRight){
 //        //call api again
 //        NSLog(@"We need to call the articles again");
+//    }
+//}
+
+//- (NSArray *) filterArticles:(NSString *)categoryName articles:(NSArray *)articles{
+//
+//    // Search for category in article
+//    // Make sure that the article is with it's correct category
+//    // Add 2 articles (from same source) to array
+//
+//
+//    // Hardcoded 2 articles, we can set a practical number later
+//    for (int i = 0; i < 2; i++){
+//
+//
 //    }
 //}
 @end

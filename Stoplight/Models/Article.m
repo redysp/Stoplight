@@ -17,12 +17,12 @@
     
     self.title = dictionary[@"name"];
     //self.author = dictionary[@"author"];
-    self.title = dictionary[@"title"];
     self.link = [NSURL URLWithString:dictionary[@"url"]];
     
-    self.imageLink = [NSURL URLWithString:dictionary[@"image"][@"thumbnail"][@"contentUrl"]];
+    self.imageLink = [NSURL URLWithString:dictionary[@"url"]];
     
-    self.provider = dictionary[@"provider"][@"name"];
+    self.category = dictionary[@"category"];
+    self.provider = [dictionary valueForKeyPath:@"provider.name"][0];
     //self.affiliation = 
     //self.summary = dictionary[@"description"];
     //self.text = dictionary[@"content"];
