@@ -14,7 +14,6 @@
 @interface AdjustSourcesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *sourcesTableView;
 @property (strong, nonatomic) User *user;
-@property (weak, nonatomic) NSMutableArray *tempUserChoices;
 @end
 
 @implementation AdjustSourcesViewController
@@ -49,14 +48,18 @@
     
     //needs to be a cell user as clicked will get to later
     NSArray *sources = [self getNewsSources];
-    bool *isChecked = self.user.isCheckedS[indexPath.row];
-    cell.checkStatus = isChecked;
     NSString *source = sources[indexPath.row];
-    cell.sourceCellLabel.text = source; //capitalizedString];
     
-    //all line below needs to be moved as it wont work rn
+    //something is wrong with the line below
+    cell.isSelected = self.user.checkedSources[indexPath.row];
+    
+    cell.position = (NSInteger)indexPath.row;
+    
+    cell.source_name = source;
+    cell.sourceCellLabel.text = source;
+    
     //allows user to select and deselect
-    if (isChecked)
+    if (cell.isSelected)
     {
         //marks cell as checked
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -82,7 +85,5 @@
     
     //return [[Utility shared] getAllPossibleSources];
 }
-//dequereusable cell
-//cell for row at index path
 
 @end

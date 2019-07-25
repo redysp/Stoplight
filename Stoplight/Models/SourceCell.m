@@ -8,6 +8,8 @@
 
 #import "SourceCell.h"
 #import "User.h"
+#import "AdjustSourcesViewController.h"
+
 @implementation SourceCell
 
 - (void)awakeFromNib {
@@ -22,18 +24,28 @@
 }
 
 - (IBAction)isTapped:(id)sender {
-    bool isChecked = self.checkStatus;
-    if(isChecked){
-        self.user.isCheckedS[indexPath.row] = @(0);
+    NSLog(@"I tapped that!");
+    if (self.isSelected) {
+        
+        //if already checked, set to unchecked and remove source
+        self.user.checkedSources[self.position] = @(NO);
+        
+        //changes cell accessory to None
+        self.accessoryType = UITableViewCellAccessoryNone;
         
         //adds source to user sources list
-        [self.tempUserChoices removeObject:source];
-    }
-    else{
-        self.user.isCheckedS[indexPath.row] = @(1);
+        [self.sourceViewCon.tempUserChoices removeObject:self.source_name];
+    } else {
+        //if not already checked, set to checked and add source
+        self.user.checkedSources[self.position] = @(YES);
+        
+        //changes cell acessory to checkmark
+        self.accessoryType = UITableViewCellAccessoryCheckmark;
         
         //removes source from user sources list
-        [self.tempUserChoices addObject:sources];
+        [self.sourceViewCon.tempUserChoices addObject:self.source_name];
     }
+    //updates isSelected to reflect changes made
+    self.isSelected = self.user.checkedSources[self.position];
 }
 @end

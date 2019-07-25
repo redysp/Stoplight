@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "AdjustSourcesViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SourceCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *sourceCellLabel;
-@property (nonatomic) bool *checkStatus;
+@property (assign, nonatomic) BOOL isSelected;
+@property (nonatomic) NSInteger position;
+@property (strong, nonatomic) NSString *source_name;
 @property (strong, nonatomic) User *user;
+@property (strong, nonatomic) AdjustSourcesViewController *sourceViewCon;
+
 - (IBAction)isTapped:(id)sender;
 @end
 

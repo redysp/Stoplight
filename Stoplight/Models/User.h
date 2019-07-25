@@ -17,10 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *politics;
 
 //on set-up both should be set to NSUserDefaults
+
+//list of only source names and topics user prefers
 @property (strong, nonatomic) NSMutableArray *preferred_topics;
 @property (strong, nonatomic) NSMutableArray *preferred_sources;
-@property (strong, nonatomic) NSMutableArray *isCheckedS;
-@property (strong, nonatomic) NSMutableArray *isCheckedT;
+
+//array to represent bools for each avail source
+@property (strong, nonatomic) NSMutableArray *checkedSources;
+@property (strong, nonatomic) NSMutableArray *checkedTopics;
 @end
 
 NS_ASSUME_NONNULL_END
