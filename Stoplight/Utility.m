@@ -7,33 +7,42 @@
 //
 
 #import "Utility.h"
+#import "Models/Category.h"
+#import "FeedViewController.h"
 
 @implementation Utility
+
++ (instancetype)shared {
+    static Utility *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[self alloc] init];
+        
+        NSDictionary *politicsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@[@"vox.com", @"nbcnews.com"], @"left",
+                                                                                        @[@"reuters.com", @"apnews.com"], @"center",
+                                                                                        @[@"foxnews.com", @"nypost.com"], @"right", nil];
+        
+        NSDictionary *businessDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@[@"cnbc.com", @"economist.com"], @"left",
+                                                                                        @[@"wsj.com", @"bloomberg.com"], @"center",
+                                                                                        @[@"foxbusiness.com", @"washingtonexaminer.com/business"], @"right", nil];
+        
+        NSDictionary *usDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@[@"cnn.com", @"time.com"], @"left",
+                                                                                  @[@"npr.org", @"usatoday.com"], @"center",
+                                                                                  @[@"foxnews.com", @"spectator.org"], @"right", nil];
+        
+        NSDictionary *worldDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@[@"cnn.com/world", @"theguardian.com"], @"left",
+                                                                                     @[@"reuters.com", @"bbc.com"], @"center",
+                                                                                     @[@"foxnews.com/world", @"dailymail.co.uk"], @"right", nil];
+        
+        
+        
+        sharedManager.siteDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:politicsDictionary, @"politics", businessDictionary, @"business", usDictionary, @"us", worldDictionary, @"world", nil];
+    });
+    return sharedManager;
+}
+
 + (NSDictionary *)retrieveSourceDict{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *dict = [defaults dictionaryForKey:@"sourcesDict"];
-    return dict;
+    return [Utility shared].siteDictionary;
 }
-
-+ (NSArray *)retrieveCategoriesList{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *dict = [defaults arrayForKey:@"categoriesArray"];
-    return dict;
-}
-
-+ (void)persistSourceDict:(NSDictionary *)dict
-{
-    
-}
-
-+ (void)persistCategoriesListDict:(NSDictionary *)dict
-{
-    
-}
-
-/*
-+ (instancetype)shared{
-    = [[NSArray alloc] initWithObjects:@"cnn", @"cnbc", @"economist", @"bloomberg.com", @"foxbusiness.com", @"washingtonexaminer.com", @"wjs.com", @"vox.com", @"nbcnewscom", @"reuters.com", @"apnews.com", @"nypost.com", @"time.com", @"npr.org", nil];
-}*/
 
 @end

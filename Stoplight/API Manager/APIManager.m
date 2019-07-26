@@ -11,10 +11,13 @@
 #import "APIManager.h"
 #import "Article.h"
 
-static NSString * const everythingURLString = @"https://newsapi.org/v2/everything?";
-static NSString * const topHeadlinesURLString = @"https://newsapi.org/v2/top-headlines?";
-static NSString * const countryString = @"country=us&";
-static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0";
+static NSString * const URLString = @"https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=";
+static NSString * const joinString = @"&";
+static NSString * const siteString = @"+site:";
+static NSString * const country = @"mkt=en-us";
+static NSString * const consumerKey = @"e909edf807a249468c765b6c379992ba";
+
+static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=+site:npr.org&mkt=en-us";
 
 @implementation APIManager
 
@@ -52,15 +55,23 @@ static NSString * const consumerKey = @"apiKey=d4a4332cc1e943f98e4ca190cb8db7b0"
  Output: void.
  **/
 
--(void)getCategoryArticles:(NSString *)categoryString completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
-    //general, business, sports, science, tech articles
-    NSString *urlWithCountry = [topHeadlinesURLString stringByAppendingString:countryString];
+
+
+-(void)getCategoryArticles:(NSString *)source completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
+
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSString *urlWithCategory = [urlWithCountry stringByAppendingString:categoryString];
-    NSString *requestString = [urlWithCategory stringByAppendingString:consumerKey];
-    NSURL *url = [[NSURL alloc]initWithString:requestString]; //should be full URL
+    // Concatenate URL
+    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@%@", siteString, source, joinString, country];
+    NSString *completeURL = [URLString stringByAppendingString:restOfURL];
+    //NSLog(@"%@", completeURL);
+    
+    // Convert string to URL
+    NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
+    
+    // Finish request, add API key
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+    [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
     [self makeRequestWithCompletion:session request:request completionHandler:completion];
 }
 

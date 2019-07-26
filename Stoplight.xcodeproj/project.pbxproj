@@ -25,6 +25,7 @@
 		2461EBFF22E1357C00077272 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 2448817522DE3E64001BF872 /* AppDelegate.h */; };
 		2461EC0022E1375F00077272 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851A22DFDDF000315845 /* LoginViewController.m */; };
 		2461EC0122E1376800077272 /* LoginViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851F22DFDDF000315845 /* LoginViewController.h */; };
+		24E33CCF22E8D7DA001C5C40 /* Utility.h in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3E22E674060047F361 /* Utility.h */; };
 		373D107763C3D0757F4C10EC /* Pods_StoplightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */; };
 		706946D822E8E75B0009FB03 /* SourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 706946D722E8E75B0009FB03 /* SourceCell.m */; };
 		70886B5522DE709E009F3DB8 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -494,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				706946D822E8E75B0009FB03 /* SourceCell.m in Sources */,
+				24E33CCF22E8D7DA001C5C40 /* Utility.h in Sources */,
 				2461EC0122E1376800077272 /* LoginViewController.h in Sources */,
 				2461EC0022E1375F00077272 /* LoginViewController.m in Sources */,
 				70EA3C4022E674060047F361 /* Utility.m in Sources */,
@@ -695,6 +697,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 893L9MG4VR;
 				INFOPLIST_FILE = Stoplight/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -713,6 +716,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 893L9MG4VR;
 				INFOPLIST_FILE = Stoplight/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
