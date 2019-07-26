@@ -15,7 +15,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *politics;
-@property (strong, nonatomic) NSArray *preferred_topics;
+
+//on set-up both should be set to NSUserDefaults
+
+//list of only source names and topics user prefers
+@property (strong, nonatomic) NSMutableArray *preferred_topics;
+@property (strong, nonatomic) NSMutableArray *preferred_sources;
+
+//array to represent bools for each avail source
+@property (strong, nonatomic) NSMutableArray *checkedSources;
+@property (strong, nonatomic) NSMutableArray *checkedTopics;
+- (void) setStuff;
 @end
 
 NS_ASSUME_NONNULL_END

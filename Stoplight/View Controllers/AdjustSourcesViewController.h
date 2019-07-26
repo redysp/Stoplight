@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AdjustSourcesViewController : UIViewController
-
+@property (strong, nonatomic) NSMutableArray *tempUserChoices;
 @end
 
 NS_ASSUME_NONNULL_END
