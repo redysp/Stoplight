@@ -62,7 +62,7 @@
 
 //collection view asks its dataSource for num items in each section
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 3;
+    return 6;
 }
 
 

@@ -88,6 +88,7 @@
         for (NSString *side in sideDictionary){
             NSArray *sourcesArray = sideDictionary[side];
             for (NSString *source in sourcesArray){
+                [NSThread sleepForTimeInterval:0.4];
                 [[APIManager shared] getCategoryArticles:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     //Completion block.
                     if (error) {
@@ -99,8 +100,15 @@
                     NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]]; //array of Articles
                     //NSArray *filteredArticles = [self filterArticles:category articles:articles]; //filter so only articles we want stay
                 
+                    if (articles.count == 0) {
+                        NSLog(@"Failed to fetch: %@, %@", source, category);
+                        return;
+                    }
+                    
+                    NSArray *filteredArticles = [self filterArticles:category articles:articles];
+                    
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.articlesDictionary[category] addObjectsFromArray:articles];
+                        [self.articlesDictionary[category] addObjectsFromArray:filteredArticles];
                         [self.categoryTableView reloadData];
                     });
                 }];
@@ -131,8 +139,8 @@
         }
     }
     //TODO: DEAL WITH THIS. Maybe re-call the API but skip over the ones we already got? Not sure how to do that.
-    if (keepArticles.count < 2) {
-        NSLog(@"Not enough articles...");
+    for (int i = 0; keepArticles.count < 2; i++) {
+        [keepArticles addObject:[articles objectAtIndex:i]];
     }
     return keepArticles;
 }
