@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 //array to represent bools for each avail source
 @property (strong, nonatomic) NSMutableArray *checkedSources;
 @property (strong, nonatomic) NSMutableArray *checkedTopics;
+- (void) setStuff;
 @end
 
 NS_ASSUME_NONNULL_END

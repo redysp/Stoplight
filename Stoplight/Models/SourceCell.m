@@ -22,8 +22,4 @@
 
     // Configure the view for the selected state
 }
-
-- (IBAction)isTapped:(id)sender {
-    
-}
 @end

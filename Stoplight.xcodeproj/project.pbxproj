@@ -246,20 +246,20 @@
 		FCD1851622DFDDF000315845 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FC11E89B22E67DE5007380B7 /* AdjustCategoriesViewController.h */,
+				FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */,
 				FC11E89822E67DB8007380B7 /* AdjustSourcesViewController.h */,
 				FC11E89922E67DB8007380B7 /* AdjustSourcesViewController.m */,
-				FCD1852222DFDDF000315845 /* SignupViewController.h */,
-				FCD1851B22DFDDF000315845 /* SignupViewController.m */,
-				FCD1851F22DFDDF000315845 /* LoginViewController.h */,
-				FCD1851A22DFDDF000315845 /* LoginViewController.m */,
 				FCD1851E22DFDDF000315845 /* FeedViewController.h */,
 				FCD1851722DFDDF000315845 /* FeedViewController.m */,
+				FCD1851F22DFDDF000315845 /* LoginViewController.h */,
+				FCD1851A22DFDDF000315845 /* LoginViewController.m */,
 				7093A8E322E2409D0020F977 /* SettingsViewController.h */,
 				7093A8E422E2409D0020F977 /* SettingsViewController.m */,
 				FCD1851D22DFDDF000315845 /* SetupViewController.h */,
 				FCD1851822DFDDF000315845 /* SetupViewController.m */,
-				FC11E89B22E67DE5007380B7 /* AdjustCategoriesViewController.h */,
-				FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */,
+				FCD1852222DFDDF000315845 /* SignupViewController.h */,
+				FCD1851B22DFDDF000315845 /* SignupViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

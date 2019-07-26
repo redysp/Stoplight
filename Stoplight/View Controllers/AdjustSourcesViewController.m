@@ -24,6 +24,8 @@
     self.sourcesTableView.dataSource = self;
     self.sourcesTableView.delegate = self;
     self.user = [User new];
+    [self.user setStuff];
+    
     self.tempUserChoices = self.user.preferred_sources;
 }
 
@@ -42,21 +44,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
-    //NSLog(@"This is the original list of objects: %@", self.tempUserChoices);
+    
+    //if already checked, set to unchecked and remove source
     if (cellSelected.isSelected) {
-        NSLog(@"I got to point one");
-        //if already checked, set to unchecked and remove source
-        self.user.checkedSources[indexPath.row] = @(NO);
+        //change checkedSources value to 0
+        self.user.checkedSources[indexPath.row] = @(0);
         
         //changes cell accessory to None
         cellSelected.accessoryType = UITableViewCellAccessoryNone;
         
         //adds source to user sources list
         [self.tempUserChoices removeObject:cellSelected.source_name];
-    } else {
-        NSLog(@"I got to point two");
-        //if not already checked, set to checked and add source
-        self.user.checkedSources[indexPath.row] = @(YES);
+    }
+    //if not already checked, set to checked and add source
+    else {
+        //change checkedSources value to 1
+        self.user.checkedSources[indexPath.row] = @(1);
         
         //changes cell acessory to checkmark
         cellSelected.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -64,17 +67,12 @@
         //removes source from user sources list
         [self.tempUserChoices addObject:cellSelected.source_name];
     }
-    NSLog(@"This is the updated list of objects: %@", self.tempUserChoices);
     //updates isSelected to reflect changes made
-    cellSelected.isSelected = self.user.checkedSources[indexPath.row];
-    
-    
+    cellSelected.isSelected = [self.user.checkedSources[indexPath.row] boolValue];
 }
 
-//request a cell and do this for each one reqs'd
+//request a cell and run the following code for each one
 - (SourceCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // do usual stuff here including getting the cell
-    
     //get an empty cell
     SourceCell *cell = [self.sourcesTableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
     
@@ -82,10 +80,10 @@
     NSArray *sources = [self getNewsSources];
     NSString *source = sources[indexPath.row];
     
-    //something is wrong with the line below
-    cell.isSelected = self.user.checkedSources[indexPath.row];
     
-    cell.position = (NSInteger)indexPath.row;
+    int sourceIndex = (int)[sources indexOfObject:source];
+    
+    cell.isSelected = [self.user.checkedSources[sourceIndex] boolValue];
     
     cell.source_name = source;
     cell.sourceCellLabel.text = source;
@@ -105,17 +103,14 @@
     return cell;
 }
 
+//retrieve default list of all sources available
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[self getNewsSources] count];
 }
 
-//
-
 - (NSArray *)getNewsSources{
     //hard coded here for now; DONT ACTUALLLY LEAVE LIKE THIS
     return [[NSArray alloc] initWithObjects:@"CNN", @"CNBC", @"Economist", @"Bloomberg", @"Fox", @"Washington Examiner", @"WSJ", @"NBC", @"Reuters", @"AP News", @"Time", @"NPR", nil];
-    
-    //return [[Utility shared] getAllPossibleSources];
 }
 
 @end
