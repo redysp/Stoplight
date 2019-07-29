@@ -27,15 +27,21 @@
 
 //dictionary --> (key) pol aff. to (val) list of sources
 @property (strong,nonatomic) NSDictionary *sortedSourcesDict;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation FeedViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [self.activityIndicatorView startAnimating];
+    
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [Utility init];
-    
+
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     
     self.categoryTableView.delegate = self;
@@ -49,7 +55,26 @@
         self.articlesDictionary[category] = [NSMutableArray new];
     }
     
-    [self fetchArticlesByCategory];
+    //Set up activity indicator
+    //Start fetching articles.
+//    self.activityIndicatorView.hidden = NO;
+//    [self.activityIndicatorView startAnimating];
+    
+    [self.categoryTableView reloadData];
+    
+    __weak __typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        __strong __typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        //Run your loop here
+        [strongSelf fetchArticlesByCategory];
+    });
+    
+    
+
 }
 
 
