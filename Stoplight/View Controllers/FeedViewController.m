@@ -12,6 +12,8 @@
 #import "CategoryCell.h"
 #import "Utility.h"
 #import "APIManager.h"
+#import "WebViewController.h"
+#import "ArticleCell.h"
 
 @interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -97,9 +99,7 @@
                     }
                     
                     NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
-                    NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]]; //array of Articles
-                    //NSArray *filteredArticles = [self filterArticles:category articles:articles]; //filter so only articles we want stay
-                
+                    NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]];
                     if (articles.count == 0) {
                         NSLog(@"Failed to fetch: %@, %@", source, category);
                         return;
@@ -143,5 +143,21 @@
         [keepArticles addObject:[articles objectAtIndex:i]];
     }
     return keepArticles;
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    //Segue into webview.
+    if ([segue.identifier isEqualToString:@"toWeb"]) {
+        
+        ArticleCell *tappedCell = sender;
+        Article *article = tappedCell.article;
+        
+        WebViewController *viewController = [segue destinationViewController];
+        viewController.url = article.link;
+        
+    }
+    
 }
 @end
