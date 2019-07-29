@@ -134,22 +134,21 @@
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.articlesDictionary[category] addObjectsFromArray:filteredArticles];
-                        [self.categoryTableView reloadData];
+                        
+                        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.categoriesList indexOfObjectIdenticalTo:category] inSection:0];
+                        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
+                        NSLog(@"Got data");
+                        [self.categoryTableView beginUpdates];
+                        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+                        [self.categoryTableView endUpdates];
+                        //[self.categoryTableView reloadData];
                     });
                 }];
             }
         }
     }
 }
-        
-// FOR REFERENCE.
-//            need to create indexpath for that one, not sure how to do this
-//            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.categoriesList indexOfObjectIdenticalTo:categoryName] inSection:0];
-//            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
-//            NSLog(@"Got data");
-//            [self.categoryTableView beginUpdates];
-//            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-//            [self.categoryTableView endUpdates];
+
 
 #pragma mark - Article Filter Logic
 
