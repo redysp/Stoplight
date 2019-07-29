@@ -146,6 +146,7 @@
                                                             <connections>
                                                                 <outlet property="articleImageView" destination="kDX-s2-BMn" id="oxM-lR-VF0"/>
                                                                 <outlet property="titleLabel" destination="cXv-RH-3B8" id="f1t-6D-v78"/>
+                                                                <segue destination="Aks-PT-IQW" kind="presentation" identifier="toWeb" id="d3h-Mh-nj3"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -432,6 +433,35 @@
             </objects>
             <point key="canvasLocation" x="3067" y="1627"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="QoV-0N-30j">
+            <objects>
+                <viewController id="Aks-PT-IQW" customClass="WebViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7A5-Qh-SW5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohC-Ro-w0H">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="889"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="AL2-dJ-1bw"/>
+                    </view>
+                    <connections>
+                        <outlet property="webKitView" destination="ohC-Ro-w0H" id="1kn-O5-38L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xfb-iq-6Ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="924.63768115942037" y="2453.5714285714284"/>
+        </scene>
         <!--Adjust Sources View Controller-->
         <scene sceneID="yNV-8o-AJ8">
             <objects>
@@ -566,4 +596,7 @@
             <point key="canvasLocation" x="3821.739130434783" y="2479.6875"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="pa2-u2-h4O"/>
+    </inferredMetricsTieBreakers>
 </document>

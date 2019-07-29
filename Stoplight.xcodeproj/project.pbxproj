@@ -39,6 +39,7 @@
 		FC11E89A22E67DB8007380B7 /* AdjustSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC11E89922E67DB8007380B7 /* AdjustSourcesViewController.m */; };
 		FC11E89D22E67DE5007380B7 /* AdjustCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */; };
 		FC6FA4B122EBBB8400316C1D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6FA4B022EBBB8400316C1D /* WebKit.framework */; };
+		FC6FA4B422EBBBBB00316C1D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4B322EBBBBB00316C1D /* WebViewController.m */; };
 		FCD1850F22DF9F4C00315845 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FCD1852322DFDDF000315845 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851722DFDDF000315845 /* FeedViewController.m */; };
 		FCD1852422DFDDF000315845 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851822DFDDF000315845 /* SetupViewController.m */; };
@@ -105,6 +106,8 @@
 		FC11E89B22E67DE5007380B7 /* AdjustCategoriesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustCategoriesViewController.h; sourceTree = "<group>"; };
 		FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustCategoriesViewController.m; sourceTree = "<group>"; };
 		FC6FA4B022EBBB8400316C1D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FC6FA4B222EBBBBB00316C1D /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		FC6FA4B322EBBBBB00316C1D /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		FCD1851722DFDDF000315845 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		FCD1851822DFDDF000315845 /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		FCD1851A22DFDDF000315845 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -265,6 +268,8 @@
 				FCD1851822DFDDF000315845 /* SetupViewController.m */,
 				FCD1852222DFDDF000315845 /* SignupViewController.h */,
 				FCD1851B22DFDDF000315845 /* SignupViewController.m */,
+				FC6FA4B222EBBBBB00316C1D /* WebViewController.h */,
+				FC6FA4B322EBBBBB00316C1D /* WebViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				706946D822E8E75B0009FB03 /* SourceCell.m in Sources */,
+				FC6FA4B422EBBBBB00316C1D /* WebViewController.m in Sources */,
 				24E33CCF22E8D7DA001C5C40 /* Utility.h in Sources */,
 				2461EC0122E1376800077272 /* LoginViewController.h in Sources */,
 				2461EC0022E1375F00077272 /* LoginViewController.m in Sources */,
