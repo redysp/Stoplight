@@ -519,24 +519,24 @@
                                                 <action selector="didTapBack:" destination="Kgg-rG-c5T" id="hwX-gF-yUe"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="Y67-Uf-tJ0">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Y67-Uf-tJ0">
                                             <connections>
-                                                <action selector="didTapSave:" destination="Kgg-rG-c5T" id="ZYh-z8-rUd"/>
+                                                <action selector="didTapAdd:" destination="Kgg-rG-c5T" id="E26-hp-K3a"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gyd-F9-SmH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gyd-F9-SmH">
                                 <rect key="frame" x="0.0" y="82" width="420" height="786"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="119" id="uJ1-Bv-85O">
-                                        <rect key="frame" x="0.0" y="28" width="420" height="119"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCategoryCell" rowHeight="120" id="uJ1-Bv-85O" customClass="SettingsCategoryCell">
+                                        <rect key="frame" x="0.0" y="28" width="420" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uJ1-Bv-85O" id="sVa-hX-g4L">
-                                            <rect key="frame" x="0.0" y="0.0" width="420" height="118.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="420" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Politics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqC-WE-qSt">
@@ -550,6 +550,7 @@
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
                                         <connections>
+                                            <outlet property="settingsCategoryLabel" destination="ZqC-WE-qSt" id="Ixn-br-i0Q"/>
                                             <outletCollection property="gestureRecognizers" destination="8G4-Ks-QQy" appends="YES" id="XI7-Zf-He4"/>
                                         </connections>
                                     </tableViewCell>
@@ -559,6 +560,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="jGv-cn-3iN"/>
                     </view>
+                    <connections>
+                        <outlet property="categoriesTableView" destination="Gyd-F9-SmH" id="beG-nv-PiU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVA-vZ-3uX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="8G4-Ks-QQy"/>
@@ -566,4 +570,7 @@
             <point key="canvasLocation" x="3821.739130434783" y="2479.6875"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="qGh-PW-PNL"/>
+    </inferredMetricsTieBreakers>
 </document>
