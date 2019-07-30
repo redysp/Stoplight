@@ -36,17 +36,19 @@
     
 
     @try {
+        [cell customizeCardView];
+
         Article *article = self.articles[indexPath.row];
         cell.article = article;
-        
-        //sets the image for the article's image view
-//        if (article.imageLink) {
-//            [cell.articleImageView setImageWithURL: article.imageLink];
-//        }
         
         //sets headline text
         if (article.title){
             cell.titleLabel.text = article.title;
+        }
+        
+        //sets the image for the article's image view
+        if (article.imageLink) {
+            [cell.articleImageView setImageWithURL:article.imageLink];
         }
         
         //Returns an ArticleCell

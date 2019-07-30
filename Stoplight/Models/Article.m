@@ -19,7 +19,8 @@
     //self.author = dictionary[@"author"];
     self.link = [NSURL URLWithString:dictionary[@"url"]];
     
-    self.imageLink = [NSURL URLWithString:dictionary[@"url"]];
+    self.imageLink = [NSURL URLWithString:dictionary[@"provider"][0][@"image"][@"thumbnail"][@"contentUrl"]];
+    NSLog(@"%@AHHHHHH PLS WORK", self.imageLink);
     
     self.category = dictionary[@"category"];
     self.provider = [dictionary valueForKeyPath:@"provider.name"][0];
@@ -41,5 +42,7 @@
     }
     return articles;
 }
+
+
 
 @end

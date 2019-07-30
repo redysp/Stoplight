@@ -12,6 +12,7 @@
 #import "CategoryCell.h"
 #import "Utility.h"
 #import "APIManager.h"
+#import "ArticleCell.h"
 
 @interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -98,6 +99,7 @@
                     NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
                     NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]]; //array of Articles
                     //NSArray *filteredArticles = [self filterArticles:category articles:articles]; //filter so only articles we want stay
+                    NSLog(@"%@", articlesDictionary); 
                 
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.articlesDictionary[category] addObjectsFromArray:articles];
