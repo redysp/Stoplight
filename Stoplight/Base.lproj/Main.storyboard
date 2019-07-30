@@ -122,14 +122,16 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="353"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kDX-s2-BMn">
-                                                                        <rect key="frame" x="75" y="34" width="265" height="130"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kDX-s2-BMn">
+                                                                        <rect key="frame" x="67" y="26" width="280" height="130"/>
                                                                         <color key="backgroundColor" red="1" green="0.16281954639999999" blue="0.047203162159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="130" id="Qdr-Ke-lYK"/>
+                                                                            <constraint firstAttribute="width" constant="280" id="Yr3-xO-7qt"/>
+                                                                        </constraints>
                                                                     </imageView>
-                                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Btx-ZA-NPY">
-                                                                        <rect key="frame" x="75" y="166" width="265" height="130"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Btx-ZA-NPY">
+                                                                        <rect key="frame" x="67" y="158" width="280" height="146"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXv-RH-3B8">
                                                                                 <rect key="frame" x="8" y="0.0" width="257" height="21"/>
@@ -156,6 +158,15 @@
                                                                 </subviews>
                                                             </view>
                                                             <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <constraints>
+                                                                <constraint firstItem="kDX-s2-BMn" firstAttribute="leading" secondItem="gzR-eH-C8l" secondAttribute="leading" constant="67" id="1x5-ME-Eb5"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Btx-ZA-NPY" secondAttribute="bottom" constant="49" id="IRi-IX-Ngk"/>
+                                                                <constraint firstItem="Btx-ZA-NPY" firstAttribute="leading" secondItem="gzR-eH-C8l" secondAttribute="leading" constant="67" id="b5r-yD-aRZ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="kDX-s2-BMn" secondAttribute="trailing" constant="67" id="fm9-Ww-PSn"/>
+                                                                <constraint firstItem="Btx-ZA-NPY" firstAttribute="top" secondItem="kDX-s2-BMn" secondAttribute="bottom" constant="2" id="hxr-5P-TLN"/>
+                                                                <constraint firstItem="kDX-s2-BMn" firstAttribute="top" secondItem="gzR-eH-C8l" secondAttribute="top" constant="26" id="jV6-8Y-Nrv"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Btx-ZA-NPY" secondAttribute="trailing" constant="67" id="lq0-f7-bw0"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="articleImageView" destination="kDX-s2-BMn" id="oxM-lR-VF0"/>
                                                                 <outlet property="cardView" destination="Btx-ZA-NPY" id="62L-6j-kpl"/>
