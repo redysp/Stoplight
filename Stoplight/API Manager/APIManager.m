@@ -15,7 +15,7 @@ static NSString * const URLString = @"https://api.cognitive.microsoft.com/bing/v
 static NSString * const joinString = @"&";
 static NSString * const siteString = @"+site:";
 static NSString * const country = @"mkt=en-us";
-static NSString * const consumerKey = @"e909edf807a249468c765b6c379992ba";
+static NSString * const consumerKey = @"0de3cc86e7664ea4914f0c0e9880a773";
 
 static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=+site:npr.org&mkt=en-us";
 

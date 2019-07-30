@@ -127,7 +127,6 @@ Uses API call that inputs a query, not a specific source.
         for (NSString *slant in sourcesDictionary) {
             NSArray *sourcesArray = sourcesDictionary[slant];
             for (NSString *source in sourcesArray) {
-                [NSThread sleepForTimeInterval:0.3];
                 [[APIManager shared] getTopicArticles:topic source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     //Completion block.
                     
@@ -169,7 +168,6 @@ Uses a different data structure to store sources and a different api call.
         for (NSString *side in sideDictionary){
             NSArray *sourcesArray = sideDictionary[side];
             for (NSString *source in sourcesArray){
-                [NSThread sleepForTimeInterval:0.4];
                 [[APIManager shared] getCategoryArticles:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     //Completion block.
                     if (error) {

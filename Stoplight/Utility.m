@@ -54,9 +54,10 @@
 }
 
 + (NSArray *)fetchTopicsList {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *topicsList = [defaults objectForKey:@"topicsList"];
-    return topicsList;
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSArray *topicsList = [defaults objectForKey:@"topicsList"];
+//    return topicsList;
+    return [NSArray arrayWithObjects:@"global+warming", @"sudan", nil];
 }
 
 /**
@@ -68,8 +69,13 @@ Returns dictionary with this structure
  }
 **/
 + (NSDictionary *)fetchSourceDictionaryForTopics {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *sourcesDictionary = [defaults objectForKey:@"sourcesForTopics"];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *sourcesDictionary = [defaults objectForKey:@"sourcesForTopics"];
+//    return sourcesDictionary;
+    NSArray *leftArray = [NSArray arrayWithObjects:@"cnn.com", @"theguardian.com", nil];
+    NSArray *centerArray = [NSArray arrayWithObjects:@"npr.org", @"reuters.com", nil];
+    NSArray *rightArray = [NSArray arrayWithObjects:@"foxnews.com", @"wsj.com", nil];
+    NSDictionary *sourcesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:leftArray, @"left", centerArray, @"center", rightArray, @"right", nil];
     return sourcesDictionary;
 }
 
