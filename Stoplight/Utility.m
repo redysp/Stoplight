@@ -57,7 +57,7 @@
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //    NSArray *topicsList = [defaults objectForKey:@"topicsList"];
 //    return topicsList;
-    return [NSArray arrayWithObjects:@"global+warming", @"sudan", nil];
+    return [NSArray arrayWithObjects:@"Global+Warming", @"sudan", nil];
 }
 
 /**
@@ -68,7 +68,7 @@ Returns dictionary with this structure
  "right": [foxnews.com, nypost.com"]
  }
 **/
-+ (NSDictionary *)fetchSourceDictionaryForTopics {
++ (NSDictionary *)fetchGeneralSourceDictionary {
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //    NSDictionary *sourcesDictionary = [defaults objectForKey:@"sourcesForTopics"];
 //    return sourcesDictionary;
@@ -77,6 +77,14 @@ Returns dictionary with this structure
     NSArray *rightArray = [NSArray arrayWithObjects:@"foxnews.com", @"wsj.com", nil];
     NSDictionary *sourcesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:leftArray, @"left", centerArray, @"center", rightArray, @"right", nil];
     return sourcesDictionary;
+}
+
+/**
+Takes in human-readable topic (ex "Global Warming") and creates
+query format (ex "Global+Warming)
+**/
++ (NSString *) topicToQuery:(NSString *)topic {
+    return [topic stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 }
 
 

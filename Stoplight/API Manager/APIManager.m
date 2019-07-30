@@ -10,6 +10,7 @@
 
 #import "APIManager.h"
 #import "Article.h"
+#import "Utility.h"
 
 static NSString * const URLString = @"https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=";
 static NSString * const joinString = @"&";
@@ -86,6 +87,24 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
     [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
     [self makeRequestWithCompletion:session request:request completionHandler:completion];
+}
+
+-(void)getSearchArticles:(NSString *)search completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *queryString = [Utility topicToQuery:search];
+    
+    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@", queryString, joinString, country];
+    NSString *completeURL = [URLString stringByAppendingString:restOfURL];
+    NSLog(@"%@", completeURL);
+    
+    NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+    [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
+    [self makeRequestWithCompletion:session request:request completionHandler:completion];
+    
 }
 
 @end

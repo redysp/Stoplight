@@ -121,7 +121,7 @@
 Uses API call that inputs a query, not a specific source.
 **/
 -(void)fetchArticlesByTopic {
-    NSDictionary *sourcesDictionary = [Utility fetchSourceDictionaryForTopics];
+    NSDictionary *sourcesDictionary = [Utility fetchGeneralSourceDictionary];
     
     for (NSString *topic in self.sectionsList) {
         for (NSString *slant in sourcesDictionary) {
@@ -174,19 +174,19 @@ Uses a different data structure to store sources and a different api call.
                         NSLog(@"Error");
                         return;
                     }
-                    
+
                     NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
                     NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]];
                     if (articles.count == 0) {
                         NSLog(@"Failed to fetch: %@, %@", source, category);
                         return;
                     }
-                    
+
                     NSArray *filteredArticles = [self filterArticles:category articles:articles];
-                    
+
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.articlesDictionary[category] addObjectsFromArray:filteredArticles];
-                        
+
                         NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:category] inSection:0];
                         NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
                         NSLog(@"Got data");
