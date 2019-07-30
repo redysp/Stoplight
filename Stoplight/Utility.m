@@ -45,4 +45,33 @@
     return [Utility shared].siteDictionary;
 }
 
++ (NSArray *)fetchCategoriesList {
+    //This is what it should be eventually but just keeping it like this for functionality rn.
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSArray *categoriesList = [defaults objectForKey:@"categoriesList"];
+//    return categoriesList
+    return [NSArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];;
+}
+
++ (NSArray *)fetchTopicsList {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *topicsList = [defaults objectForKey:@"topicsList"];
+    return topicsList;
+}
+
+/**
+Returns dictionary with this structure
+ {
+ "left": [cnn.com, vox.com]
+ "center": [npr.org, cnbc.com"]
+ "right": [foxnews.com, nypost.com"]
+ }
+**/
++ (NSDictionary *)fetchSourceDictionaryForTopics {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *sourcesDictionary = [defaults objectForKey:@"sourcesForTopics"];
+    return sourcesDictionary;
+}
+
+
 @end

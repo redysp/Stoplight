@@ -54,9 +54,6 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
  The function that does the session calls the completion block.
  Output: void.
  **/
-
-
-
 -(void)getCategoryArticles:(NSString *)source completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
 
     NSURLSession *session = [NSURLSession sharedSession];
@@ -70,6 +67,22 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
     
     // Finish request, add API key
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+    [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
+    [self makeRequestWithCompletion:session request:request completionHandler:completion];
+}
+
+
+-(void)getTopicArticles:(NSString *)topic source:(NSString *)source completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@%@%@", topic, joinString, source, joinString, country];
+    NSString *completeURL = [URLString stringByAppendingString:restOfURL];
+    NSLog(@"%@", completeURL);
+    
+    NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
     [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
     [self makeRequestWithCompletion:session request:request completionHandler:completion];

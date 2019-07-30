@@ -309,6 +309,23 @@
             </objects>
             <point key="canvasLocation" x="3068" y="-708"/>
         </scene>
+        <!--Following-->
+        <scene sceneID="IBu-OG-7rO">
+            <objects>
+                <navigationController id="crr-Vy-0fa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Following" id="Zlx-zH-TEn"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jN6-jP-uqT">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6fX-7B-GGG" kind="relationship" relationship="rootViewController" id="ea5-uw-u41"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rT3-ed-IqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="99" y="826"/>
+        </scene>
         <!--Home-->
         <scene sceneID="C8B-hr-hTa">
             <objects>
@@ -337,6 +354,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Yg8-Bg-10s" kind="relationship" relationship="viewControllers" id="rSj-k3-OqM"/>
+                        <segue destination="crr-Vy-0fa" kind="relationship" relationship="viewControllers" id="j3z-QE-9Gv"/>
                         <segue destination="qFg-mT-yRg" kind="relationship" relationship="viewControllers" id="wRT-cg-mcP"/>
                     </connections>
                 </tabBarController>
@@ -611,5 +629,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="pa2-u2-h4O"/>
+        <segue reference="ea5-uw-u41"/>
     </inferredMetricsTieBreakers>
 </document>
