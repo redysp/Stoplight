@@ -19,8 +19,14 @@
     //self.author = dictionary[@"author"];
     self.link = [NSURL URLWithString:dictionary[@"url"]];
     
-    self.imageLink = [NSURL URLWithString:dictionary[@"provider"][0][@"image"][@"thumbnail"][@"contentUrl"]];
-    NSLog(@"%@AHHHHHH PLS WORK", self.imageLink);
+    self.imageLink = [NSURL URLWithString:dictionary[@"image"][@"contentUrl"]];
+    
+    // No image is found, thumbnail is used
+    if (self.imageLink == nil){
+        self.imageLink = [NSURL URLWithString:dictionary[@"provider"][0][@"image"][@"thumbnail"][@"contentUrl"]];
+    }
+    
+    // Set image, depending on the response that the API gives you 
     
     self.category = dictionary[@"category"];
     self.provider = [dictionary valueForKeyPath:@"provider.name"][0];
