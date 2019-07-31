@@ -147,6 +147,9 @@
                                                                                         <integer key="value" value="5"/>
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
+                                                                                <connections>
+                                                                                    <action selector="didTapRead:" destination="gzR-eH-C8l" eventType="touchUpInside" id="1Vk-dv-030"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -175,7 +178,7 @@
                                                                 <outlet property="articleImageView" destination="kDX-s2-BMn" id="oxM-lR-VF0"/>
                                                                 <outlet property="cardView" destination="Btx-ZA-NPY" id="62L-6j-kpl"/>
                                                                 <outlet property="titleLabel" destination="cXv-RH-3B8" id="f1t-6D-v78"/>
-                                                                <segue destination="Aks-PT-IQW" kind="presentation" identifier="toWeb" id="d3h-Mh-nj3"/>
+                                                                <segue destination="Aks-PT-IQW" kind="presentation" identifier="toWeb" id="QIg-9r-YgP"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -743,8 +746,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pa2-u2-h4O"/>
-        <segue reference="ea5-uw-u41"/>
         <segue reference="qGh-PW-PNL"/>
+        <segue reference="ea5-uw-u41"/>
     </inferredMetricsTieBreakers>
 </document>
