@@ -145,6 +145,10 @@ Uses API call that inputs a query, not a specific source.
                         return;
                     }
                     
+                    for (Article *article in articles) {
+                        [article setAffiliation:slant];
+                    }
+                    
                     NSArray *filteredArticles = [self filterArticlesByTopic:topic articles:articles];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -182,6 +186,10 @@ Uses a different data structure to store sources and a different api call.
                     NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]];
                     if (articles.count == 0) {
                         return;
+                    }
+                    
+                    for (Article *article in articles) {
+                        [article setAffiliation:side];
                     }
 
                     NSArray *filteredArticles = [self filterArticles:category articles:articles];

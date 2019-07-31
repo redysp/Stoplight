@@ -7,6 +7,8 @@
 //
 
 #import "ArticleCell.h"
+#import "FeedViewController.h"
+#import "CategoryCell.h"
 
 @implementation ArticleCell
 
@@ -20,6 +22,7 @@
     self.cardView.layer.cornerRadius = 20;
     self.cardView.layer.maskedCorners = kCALayerMinXMaxYCorner | kCALayerMaxXMaxYCorner;
 }
+
 
 
 @end
