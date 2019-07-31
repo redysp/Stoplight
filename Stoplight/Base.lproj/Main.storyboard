@@ -91,12 +91,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="455" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6ki-gI-rfi">
-                                <rect key="frame" x="0.0" y="94" width="414" height="769"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="455" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6ki-gI-rfi">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="769" id="kzq-s1-HZo"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="457" id="KOJ-e7-LMl" customClass="CategoryCell">
                                         <rect key="frame" x="0.0" y="28" width="414" height="457"/>
@@ -209,14 +207,6 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="6ki-gI-rfi" firstAttribute="bottom" secondItem="ift-xP-udJ" secondAttribute="bottom" constant="50" id="3gl-Pq-EEJ"/>
-                            <constraint firstItem="6ki-gI-rfi" firstAttribute="top" secondItem="9Kv-UH-cC7" secondAttribute="top" constant="44" id="4IV-5A-ziW"/>
-                            <constraint firstItem="6ki-gI-rfi" firstAttribute="trailing" secondItem="ift-xP-udJ" secondAttribute="trailing" id="fko-I9-1IF"/>
-                            <constraint firstItem="6ki-gI-rfi" firstAttribute="leading" secondItem="ift-xP-udJ" secondAttribute="leading" id="jYp-9P-4QR"/>
-                            <constraint firstItem="6ki-gI-rfi" firstAttribute="trailing" secondItem="ift-xP-udJ" secondAttribute="trailing" id="jp6-aC-iZA"/>
-                            <constraint firstItem="6ki-gI-rfi" firstAttribute="leading" secondItem="ift-xP-udJ" secondAttribute="leading" id="zqQ-6r-ymi"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ift-xP-udJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Stoplight" id="mzK-wV-aul"/>
@@ -370,6 +360,7 @@
         <scene sceneID="eWT-95-Sb5">
             <objects>
                 <tabBarController id="tGh-5Q-FnN" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="joc-gQ-xKQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
