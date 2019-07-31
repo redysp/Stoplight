@@ -10,7 +10,7 @@
 #import "Utility.h"
 #import "APIManager.h"
 #import "Article.h"
-#import "ArticleCell.h"
+#import "SearchPageCell.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface SearchViewController ()
@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.articles = [[NSMutableArray alloc] init];
     
     //Set datasource and delegate for collection.
     self.collectionView.dataSource = self;
@@ -49,17 +51,21 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    ArticleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCell" forIndexPath:indexPath];
-    Article *article = self.articles[indexPath.row];
+    SearchPageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SearchPageCell" forIndexPath:indexPath];
     
-    cell.article = article;
-    cell.topic = article.category;
-    if (article.imageLink) {
-        [cell.articleImageView setImageWithURL:article.imageLink];
-    }
-    cell.titleLabel.text = article.title;
-    
-    return cell;
+    @try {
+        Article *article = self.articles[indexPath.row];
+        cell.article = article;
+        if (article.title){
+            cell.titleLabel.text = article.title;
+        }
+        if (article.imageLink) {
+            [cell.imageView setImageWithURL:article.imageLink];
+        }
+            return cell;
+        } @catch (NSException *exception){
+            return cell;
+        }
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
