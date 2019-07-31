@@ -11,7 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AdjustSourcesViewController : UIViewController
-@property (strong, nonatomic) NSMutableArray *tempUserChoices;
+@property (strong, nonatomic) NSMutableDictionary *tempUserChoices;
+@property (assign) NSInteger expandedSectionNumber;
+@property (assign) UITableViewHeaderFooterView *expandedSectionHeader;
+@property (strong) NSArray *sectionItems;
+@property (strong) NSArray *sectionNames;
 @end
 
 NS_ASSUME_NONNULL_END

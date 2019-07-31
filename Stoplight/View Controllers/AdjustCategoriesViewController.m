@@ -29,6 +29,13 @@
 }
 
 - (IBAction)didTapBack:(id)sender {
+    /**
+     Save user defauls
+    **/
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.user.preferred_topics forKey:@"selectedCategories"];
+    [defaults synchronize];
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
