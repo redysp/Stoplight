@@ -29,6 +29,7 @@
 		373D107763C3D0757F4C10EC /* Pods_StoplightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */; };
 		706946D822E8E75B0009FB03 /* SourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 706946D722E8E75B0009FB03 /* SourceCell.m */; };
 		7075743D22EF8C9300AA669A /* SettingsCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7075743C22EF8C9300AA669A /* SettingsCategoryCell.m */; };
+		7075744022F25F5A00AA669A /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 7075743F22F25F5A00AA669A /* UIColor+AppColors.m */; };
 		70886B5522DE709E009F3DB8 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		70886B6422DE7855009F3DB8 /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6322DE7855009F3DB8 /* ArticleCell.m */; };
 		70886B6722DE7D56009F3DB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6622DE7D56009F3DB8 /* User.m */; };
@@ -87,6 +88,8 @@
 		706946D722E8E75B0009FB03 /* SourceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SourceCell.m; sourceTree = "<group>"; };
 		7075743B22EF8C9300AA669A /* SettingsCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsCategoryCell.h; sourceTree = "<group>"; };
 		7075743C22EF8C9300AA669A /* SettingsCategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsCategoryCell.m; sourceTree = "<group>"; };
+		7075743E22F25F5A00AA669A /* UIColor+AppColors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColors.h"; sourceTree = "<group>"; };
+		7075743F22F25F5A00AA669A /* UIColor+AppColors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColors.m"; sourceTree = "<group>"; };
 		70886B6222DE7855009F3DB8 /* ArticleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleCell.h; sourceTree = "<group>"; };
 		70886B6322DE7855009F3DB8 /* ArticleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
 		70886B6522DE7D56009F3DB8 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				2448817E22DE3E64001BF872 /* Assets.xcassets */,
 				2448818322DE3E64001BF872 /* Info.plist */,
 				2448818422DE3E64001BF872 /* main.m */,
+				7075743E22F25F5A00AA669A /* UIColor+AppColors.h */,
+				7075743F22F25F5A00AA669A /* UIColor+AppColors.m */,
 			);
 			path = Stoplight;
 			sourceTree = "<group>";
@@ -508,6 +513,7 @@
 				7075743D22EF8C9300AA669A /* SettingsCategoryCell.m in Sources */,
 				FC11E89D22E67DE5007380B7 /* AdjustCategoriesViewController.m in Sources */,
 				7093A8E522E2409D0020F977 /* SettingsViewController.m in Sources */,
+				7075744022F25F5A00AA669A /* UIColor+AppColors.m in Sources */,
 				2461EBFF22E1357C00077272 /* AppDelegate.h in Sources */,
 				2461EBFB22E1357600077272 /* SignupViewController.h in Sources */,
 				2461EBFC22E1357600077272 /* FeedViewController.h in Sources */,

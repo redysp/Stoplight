@@ -10,6 +10,9 @@
 #import "Utility.h"
 #import "User.h"
 #import "SourceCell.h"
+#import "UIColor+AppColors.h"
+
+static int const kHeaderSectionTag = 6900;
 
 @interface AdjustSourcesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *sourcesTableView;
@@ -151,12 +154,16 @@
     return @"";
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section; {
+    return 44.0;
+}
+
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
     // recast your view as a UITableViewHeaderFooterView
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    header.contentView.backgroundColor = [UIColor colorNamed:@"Light Gray"];
+    header.contentView.backgroundColor = [UIColor colorWithHexString:@"#408000"];
     header.textLabel.textColor = [UIColor whiteColor];
-    UIImageView *viewWithTag = [self.view viewWithTag:<#(NSInteger)#>];
+    UIImageView *viewWithTag = [self.view viewWithTag:kHeaderSectionTag + section];
     if (viewWithTag) {
         [viewWithTag removeFromSuperview];
     }
