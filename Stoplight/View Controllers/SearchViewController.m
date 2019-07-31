@@ -102,6 +102,7 @@
         NSArray *sources = sourcesDictionary[slant];
         for (NSString *source in sources) {
             [[APIManager shared] getTopicArticles:searchBarText source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                NSLog(@"%@", source);
                 if (error) {
                     return;
                 }

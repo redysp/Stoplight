@@ -178,7 +178,6 @@ Uses a different data structure to store sources and a different api call.
                     NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
                     NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]];
                     if (articles.count == 0) {
-                        NSLog(@"Failed to fetch: %@, %@", source, category);
                         return;
                     }
 
@@ -189,7 +188,6 @@ Uses a different data structure to store sources and a different api call.
 
                         NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:category] inSection:0];
                         NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
-                        NSLog(@"Got data");
                         [self.categoryTableView beginUpdates];
                         [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
                         [self.categoryTableView endUpdates];

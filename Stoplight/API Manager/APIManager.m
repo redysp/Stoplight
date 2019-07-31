@@ -62,7 +62,6 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     // Concatenate URL
     NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@%@", siteString, source, joinString, country];
     NSString *completeURL = [URLString stringByAppendingString:restOfURL];
-    //NSLog(@"%@", completeURL);
     
     // Convert string to URL
     NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
@@ -78,7 +77,7 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@%@%@", topic, joinString, source, joinString, country];
+    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@%@%@", topic, siteString, source, joinString, country];
     NSString *completeURL = [URLString stringByAppendingString:restOfURL];
     NSLog(@"%@", completeURL);
     
@@ -89,22 +88,21 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     [self makeRequestWithCompletion:session request:request completionHandler:completion];
 }
 
--(void)getSearchArticles:(NSString *)search completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    NSString *queryString = [Utility topicToQuery:search];
-    
-    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@", queryString, joinString, country];
-    NSString *completeURL = [URLString stringByAppendingString:restOfURL];
-    NSLog(@"%@", completeURL);
-    
-    NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
-    [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
-    [self makeRequestWithCompletion:session request:request completionHandler:completion];
-    
-}
+//-(void)getSearchArticles:(NSString *)search completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
+//
+//    NSURLSession *session = [NSURLSession sharedSession];
+//
+//    NSString *queryString = [Utility topicToQuery:search];
+//
+//    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@", queryString, joinString, country];
+//    NSString *completeURL = [URLString stringByAppendingString:restOfURL];
+//
+//    NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
+//
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+//    [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
+//    [self makeRequestWithCompletion:session request:request completionHandler:completion];
+//
+//}
 
 @end
