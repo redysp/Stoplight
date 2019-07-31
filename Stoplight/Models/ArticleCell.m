@@ -10,4 +10,16 @@
 
 @implementation ArticleCell
 
+- (void)customizeCardView{
+    
+    // Customization for image view
+    self.articleImageView.layer.cornerRadius = 20;
+    self.articleImageView.layer.maskedCorners = kCALayerMinXMinYCorner | kCALayerMaxXMinYCorner;
+    
+    // Customization for rest of card view
+    self.cardView.layer.cornerRadius = 20;
+    self.cardView.layer.maskedCorners = kCALayerMinXMaxYCorner | kCALayerMaxXMaxYCorner;
+}
+
+
 @end

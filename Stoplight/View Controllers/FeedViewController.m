@@ -39,11 +39,12 @@
 @implementation FeedViewController
 
 -(void)viewWillAppear:(BOOL)animated {
-    
+
     [self.activityIndicatorView startAnimating];
     
     [super viewWillAppear:animated];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -104,7 +105,9 @@
     return 1;
 }
 
-
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 300;
+//}
 
 
 #pragma mark - Data Fetching
@@ -182,7 +185,6 @@ Uses a different data structure to store sources and a different api call.
                     }
 
                     NSArray *filteredArticles = [self filterArticles:category articles:articles];
-
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.articlesDictionary[category] addObjectsFromArray:filteredArticles];
 

@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *articleImageView;
 @property (strong, nonatomic) UIImage *articleImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIView *cardView;
+
+
+- (void)customizeCardView; 
 
 @end
 
