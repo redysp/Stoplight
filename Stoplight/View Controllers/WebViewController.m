@@ -17,8 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"%@", self.url);
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webKitView loadRequest:request];
 }

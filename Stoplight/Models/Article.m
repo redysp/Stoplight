@@ -23,15 +23,12 @@
     
     self.category = dictionary[@"category"];
     self.provider = [dictionary valueForKeyPath:@"provider.name"][0];
-    //self.affiliation = 
-    //self.summary = dictionary[@"description"];
-    //self.text = dictionary[@"content"];
-    
 //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 //    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
     //self.publishedAt = [dateFormatter dateFromString:dictionary[@"publishedAt"]];
     return self;
 }
+
 
 + (NSMutableArray *)articlesWithArray:(NSArray *)dictionaries {
     NSMutableArray *articles = [NSMutableArray array];

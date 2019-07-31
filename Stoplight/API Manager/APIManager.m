@@ -10,12 +10,13 @@
 
 #import "APIManager.h"
 #import "Article.h"
+#import "Utility.h"
 
 static NSString * const URLString = @"https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=";
 static NSString * const joinString = @"&";
 static NSString * const siteString = @"+site:";
 static NSString * const country = @"mkt=en-us";
-static NSString * const consumerKey = @"e909edf807a249468c765b6c379992ba";
+static NSString * const consumerKey = @"0de3cc86e7664ea4914f0c0e9880a773";
 
 static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=+site:npr.org&mkt=en-us";
 
@@ -54,9 +55,6 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
  The function that does the session calls the completion block.
  Output: void.
  **/
-
-
-
 -(void)getCategoryArticles:(NSString *)source completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
 
     NSURLSession *session = [NSURLSession sharedSession];
@@ -64,7 +62,6 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     // Concatenate URL
     NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@%@", siteString, source, joinString, country];
     NSString *completeURL = [URLString stringByAppendingString:restOfURL];
-    //NSLog(@"%@", completeURL);
     
     // Convert string to URL
     NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
@@ -74,5 +71,38 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
     [self makeRequestWithCompletion:session request:request completionHandler:completion];
 }
+
+
+-(void)getTopicArticles:(NSString *)topic source:(NSString *)source completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@%@%@", topic, siteString, source, joinString, country];
+    NSString *completeURL = [URLString stringByAppendingString:restOfURL];
+    NSLog(@"%@", completeURL);
+    
+    NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+    [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
+    [self makeRequestWithCompletion:session request:request completionHandler:completion];
+}
+
+//-(void)getSearchArticles:(NSString *)search completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
+//
+//    NSURLSession *session = [NSURLSession sharedSession];
+//
+//    NSString *queryString = [Utility topicToQuery:search];
+//
+//    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@", queryString, joinString, country];
+//    NSString *completeURL = [URLString stringByAppendingString:restOfURL];
+//
+//    NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
+//
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+//    [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
+//    [self makeRequestWithCompletion:session request:request completionHandler:completion];
+//
+//}
 
 @end

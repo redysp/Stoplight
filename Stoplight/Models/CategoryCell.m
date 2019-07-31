@@ -30,34 +30,19 @@
 
 //This is creating an ARTICLE CELL
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    
-    //get ArticleCell
     ArticleCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCell" forIndexPath:indexPath];
     
-
     @try {
         Article *article = self.articles[indexPath.row];
         cell.article = article;
-        
-        //sets the image for the article's image view
-//        if (article.imageLink) {
-//            [cell.articleImageView setImageWithURL: article.imageLink];
-//        }
-        
-        //sets headline text
         if (article.title){
             cell.titleLabel.text = article.title;
         }
-        
-        //Returns an ArticleCell
         return cell;
     } @catch (NSException *exception) {
         
         return cell;
     }
-    
-    //return instance of custom cell and its reuse identifier w/ elements at proper index
-    return cell;
 }
 
 //collection view asks its dataSource for num items in each section
