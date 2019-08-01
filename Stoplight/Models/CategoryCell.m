@@ -32,10 +32,13 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     ArticleCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCell" forIndexPath:indexPath];
     
+    [cell.readButton addTarget:cell action:@selector(readButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
     @try {
 
         Article *article = self.articles[indexPath.row];
         cell.article = article;
+        cell.vc = self.vc;
         
         //sets headline text
         if (article.title){
