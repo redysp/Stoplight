@@ -92,6 +92,7 @@
     cell.articles = categoryArticles;
     cell.categoryNameLabel.text = [section capitalizedString];
     [cell.categoryCollectionView reloadData];
+    cell.vc = self;
   
     return cell;
     

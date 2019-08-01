@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UICollectionView *categoryCollectionView;
 @property (strong, nonatomic) IBOutlet UILabel *categoryNameLabel;
 @property (strong, nonatomic) NSArray *articles;
+@property (strong, nonatomic) FeedViewController *vc;
+
 @end
 
 NS_ASSUME_NONNULL_END

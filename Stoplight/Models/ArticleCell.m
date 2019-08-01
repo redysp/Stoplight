@@ -11,7 +11,7 @@
 #import "CategoryCell.h"
 #import "Article.h"
 
-@implementation ArticleCellbi
+@implementation ArticleCell
 
 - (void)customizeCardView{
     
@@ -29,6 +29,11 @@
     }
     
 }
+
+-(void) readButtonPressed:(UIButton *)sender {
+    [self.vc performSegueWithIdentifier:@"toWeb" sender:self];
+}
+
 
 
 
