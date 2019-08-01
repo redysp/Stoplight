@@ -33,7 +33,9 @@
 //dictionary --> (key) pol aff. to (val) list of sources
 @property (strong,nonatomic) NSDictionary *sortedSourcesDict;
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView; //DO WE NEED THIS??
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+
 @end
 
 @implementation FeedViewController
@@ -78,10 +80,19 @@
         }
         [strongSelf fetchArticles];
     });
+    
+    //Initialize refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.categoryTableView insertSubview:self.refreshControl atIndex:0];
 }
 
 
 #pragma mark - TableView management
+
+-(void) beginRefresh:(UIRefreshControl *)refreshControl {
+    [self fetchArticles];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -158,6 +169,7 @@ Uses API call that inputs a query, not a specific source.
                         NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
                         NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
                         [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+                        [self.refreshControl endRefreshing];
                     });
                 }];
             }
@@ -202,6 +214,7 @@ Uses a different data structure to store sources and a different api call.
                         [self.categoryTableView beginUpdates];
                         [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
                         [self.categoryTableView endUpdates];
+                        [self.refreshControl endRefreshing];
                     });
                 }];
             }
