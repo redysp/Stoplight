@@ -18,7 +18,6 @@
     self.categoryCollectionView.delegate = self;
     self.categoryCollectionView.dataSource = self;
     [self.categoryCollectionView reloadData];
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
