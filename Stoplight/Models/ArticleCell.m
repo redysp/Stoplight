@@ -9,8 +9,9 @@
 #import "ArticleCell.h"
 #import "FeedViewController.h"
 #import "CategoryCell.h"
+#import "Article.h"
 
-@implementation ArticleCell
+@implementation ArticleCellbi
 
 - (void)customizeCardView{
     
@@ -21,6 +22,12 @@
     // Customization for rest of card view
     self.cardView.layer.cornerRadius = 20;
     self.cardView.layer.maskedCorners = kCALayerMinXMaxYCorner | kCALayerMaxXMaxYCorner;
+    
+    // Changes the color of the button depending on the affiliation
+    if ([self.article.affiliation isEqualToString:@"left"]){
+        [self.readButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    
 }
 
 

@@ -33,7 +33,6 @@
     ArticleCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCell" forIndexPath:indexPath];
     
     @try {
-        [cell customizeCardView];
 
         Article *article = self.articles[indexPath.row];
         cell.article = article;
@@ -49,6 +48,7 @@
         }
         
         //Returns an ArticleCell
+         [cell customizeCardView];
         return cell;
     } @catch (NSException *exception) {
         
