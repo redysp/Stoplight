@@ -33,25 +33,18 @@
 //dictionary --> (key) pol aff. to (val) list of sources
 @property (strong,nonatomic) NSDictionary *sortedSourcesDict;
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView; //DO WE NEED THIS??
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
 @implementation FeedViewController
 
--(void)viewWillAppear:(BOOL)animated {
-
-    [self.activityIndicatorView startAnimating];
-    
-    [super viewWillAppear:animated];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     
+    //Set delegate and datasource for tableview.
     self.categoryTableView.delegate = self;
     self.categoryTableView.dataSource = self;
     
@@ -68,11 +61,8 @@
         self.articlesDictionary[section] = [NSMutableArray new];
     }
     
-    [self.categoryTableView reloadData];
-    
-    __weak __typeof(self) weakSelf = self;
-    
     //Switching to a different thread to start network call.
+    __weak __typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         __strong __typeof(self) strongSelf = weakSelf;
         if (!strongSelf) {
@@ -132,6 +122,35 @@
     }
 }
 
+-(void)completionBlock:(NSData * _Nullable)data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable)error slant:(NSString *)slant topic:(NSString *)topic{
+    if (error) {
+        NSLog(@"Error");
+        return;
+    }
+    
+    NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
+    NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]];
+    
+    if (articles.count == 0) {
+        return;
+    }
+    
+    for (Article *article in articles) {
+        [article setAffiliation:slant];
+    }
+    
+    NSArray *filteredArticles = [self filterArticlesByTopic:topic articles:articles];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.articlesDictionary[topic] addObjectsFromArray:filteredArticles];
+        
+        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
+        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
+        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+        [self.refreshControl endRefreshing];
+    });
+}
+
 /**
 Uses API call that inputs a query, not a specific source.
 **/
@@ -144,33 +163,7 @@ Uses API call that inputs a query, not a specific source.
             for (NSString *source in sourcesArray) {
                 [[APIManager shared] getTopicArticles:topic source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     //Completion block.
-                    
-                    if (error) {
-                        NSLog(@"Error");
-                        return;
-                    }
-                    
-                    NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
-                    NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]];
-                    
-                    if (articles.count == 0) {
-                        return;
-                    }
-                    
-                    for (Article *article in articles) {
-                        [article setAffiliation:slant];
-                    }
-                    
-                    NSArray *filteredArticles = [self filterArticlesByTopic:topic articles:articles];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.articlesDictionary[topic] addObjectsFromArray:filteredArticles];
-                        
-                        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
-                        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
-                        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-                        [self.refreshControl endRefreshing];
-                    });
+                    [self completionBlock:data response:response error:error slant:slant topic:topic];
                 }];
             }
         }
@@ -185,37 +178,12 @@ Uses a different data structure to store sources and a different api call.
     NSDictionary *sourcesDictionary = [Utility retrieveSourceDict];
     for (NSString *category in self.sectionsList) {
         NSDictionary *sideDictionary = sourcesDictionary[category]; //Dictionary with keys left, middle, and right
-        for (NSString *side in sideDictionary){
-            NSArray *sourcesArray = sideDictionary[side];
+        for (NSString *slant in sideDictionary){
+            NSArray *sourcesArray = sideDictionary[slant];
             for (NSString *source in sourcesArray){
                 [[APIManager shared] getCategoryArticles:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     //Completion block.
-                    if (error) {
-                        NSLog(@"Error");
-                        return;
-                    }
-
-                    NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
-                    NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]];
-                    if (articles.count == 0) {
-                        return;
-                    }
-                    
-                    for (Article *article in articles) {
-                        [article setAffiliation:side];
-                    }
-
-                    NSArray *filteredArticles = [self filterArticles:category articles:articles];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.articlesDictionary[category] addObjectsFromArray:filteredArticles];
-
-                        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:category] inSection:0];
-                        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
-                        [self.categoryTableView beginUpdates];
-                        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-                        [self.categoryTableView endUpdates];
-                        [self.refreshControl endRefreshing];
-                    });
+                    [self completionBlock:data response:response error:error slant:slant topic:category];
                 }];
             }
         }
