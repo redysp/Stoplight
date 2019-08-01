@@ -96,16 +96,17 @@ static int const kHeaderSectionTag = 6900;
     
     //needs to be a cell user as clicked will get to later
     //NSArray *sources = [self.tempUserChoices allKeys];
-    NSArray *section = [self.sectionItems objectAtIndex:indexPath.section];
-    NSString *source = section[indexPath.row];
-    cell.isSelected = [self.tempUserChoices[source] boolValue];
+    NSLog(@"%@", self.sectionItems);
+    NSArray *sections = [self.sectionItems objectAtIndex:indexPath.section];
+    NSString *section = self.sectionNames[indexPath.row];
+    //cell.isSelected = [self.tempUserChoices[source] boolValue];
     
-    cell.source_name = source;
-    cell.sourceCellLabel.text = source;
-    cell.sourceCellLabel.textColor = [section objectAtIndex:indexPath.row];
+    cell.source_name = section;
+    cell.sourceCellLabel.text = section;
+    //cell.sourceCellLabel.textColor = [sections objectAtIndex:indexPath.row];
     
     //allows user to select and deselect
-    if (cell.isSelected)
+    /*if (cell.isSelected)
     {
         //marks cell as checked
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -115,7 +116,7 @@ static int const kHeaderSectionTag = 6900;
         //marks cell as unchecked
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
+    */
     return cell;
 }
 
