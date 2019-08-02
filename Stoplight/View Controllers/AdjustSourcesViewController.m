@@ -13,6 +13,8 @@
 #import "UIColor+AppColors.h"
 
 static int const kHeaderSectionTag = 6900;
+static int currentHeaderTag = 0;
+static int sourceIndex = 0;
 
 @interface AdjustSourcesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *sourcesTableView;
@@ -34,55 +36,89 @@ static int const kHeaderSectionTag = 6900;
     //list of dictionaries where key is pol. aff and vals dict where key is source and val is checked status
     self.sectionItems = @[
   //Politics
-                          @{@"left":@[@{@"vox.com":@YES}, @{@"nbcnews.com":@YES}],@"center":@[@{@"reuters.com":@YES}, @{@"apnews.com":@YES}],@"right":@[@{@"foxnews.com":@YES}, @{@"nypost.com":@YES}]},
+                          @{@"left":@{@"vox.com":@YES, @"nbcnews.com":@YES},@"center":@{@"reuters.com":@YES, @"apnews.com":@YES},@"right":@{@"foxnews.com":@YES, @"nypost.com":@YES}},
   //Business
-                          @{@"left":@[@{@"cnbc.com":@YES}, @{@"economist.com":@YES}],@"center":@[@{@"wsj.com":@YES}, @{@"bloomberg.com":@YES}],@"right":@[@{@"foxbusiness.com":@YES}, @{@"washingtonexaminer.com/business":@YES}]},
+                          @{@"left":@{@"cnbc.com":@YES, @"economist.com":@YES},@"center":@{@"wsj.com":@YES, @"bloomberg.com":@YES},@"right":@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES}},
   //US
-                          @{@"left":@[@{@"cnn.com":@YES}, @{@"time.com":@YES}],@"center":@[@{@"npr.org":@YES}, @{@"usatoday.com":@YES}],@"right":@[@{@"foxnews.com":@YES}, @{@"spectator.org":@YES}]},
+                          @{@"left":@{@"cnn.com":@YES, @"time.com":@YES},@"center":@{@"npr.org":@YES, @"usatoday.com":@YES},@"right":@{@"foxnews.com":@YES, @"spectator.org":@YES}},
   //World
-                          @{@"left":@[@{@"cnn.com/world":@YES}, @{@"theguardian.com":@YES}],@"center":@[@{@"reuters.com":@YES}, @{@"bbc.com":@YES}],@"right":@[@{@"foxnews.com/world":@YES}, @{@"dailymail.co.uk":@YES}]}];
+                          @{@"left":@{@"cnn.com/world":@YES, @"theguardian.com":@YES},@"center":@{@"reuters.com":@YES, @"bbc.com":@YES},@"right":@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES}}];
 }
 
 - (IBAction)didTapBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-- (IBAction)didTapSave:(id)sender {
-    /**
-     TODO: SAVE USER DEFAULTS FOR WHAT SOURCES WERE CHOSEN.
-     **/
-    self.user.selectedSources = [self.tempUserChoices mutableCopy];
-    NSLog(@"%d", [self.user.selectedSources isEqualToDictionary:self.tempUserChoices]);
-    [self dismissViewControllerAnimated:YES completion:nil];
+/*
+- (NSArray *) getAllSources: (NSArray *) sourceArray ofTag: (int) tag{
+    NSMutableDictionary *tagDict = [sourceArray objectAtIndex:tag];
     
-}
+}*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];;
     //if already checked, set to unchecked and remove source
     if (cellSelected.isSelected) {
-        //change checkedSources value to 0
-        //self.tempUserChoices[cellSelected.source_name] = @(0);
+        //change checkedSources value to False
         
         //changes cell accessory to None
         cellSelected.accessoryType = UITableViewCellAccessoryNone;
         
         //adds source to user sources list
-        [self.tempUserChoices setObject:@(0) forKey:cellSelected.source_name];
+        int count = 0;
+        while (TRUE){
+        if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"left"] allKeys] containsObject:cellSelected.source_name]){
+            [[[self.sectionItems objectAtIndex:count] objectForKey:@"left"] setValue:@(NO) forKey:cellSelected.source_name];
+            break;
+        }
+        else if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"center"] allKeys] containsObject:cellSelected.source_name]){
+            [[[self.sectionItems objectAtIndex:count] objectForKey:@"center"] setValue:@(NO) forKey:cellSelected.source_name];
+            break;
+        }
+        else if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"right"] allKeys] containsObject:cellSelected.source_name]){
+            [[[self.sectionItems objectAtIndex:count] objectForKey:@"right"] setValue:@(NO) forKey:cellSelected.source_name];
+            break;
+        }
+        else{
+            count++;
+        }
+             }
+        //updates isSelected to reflect changes made
+        cellSelected.isSelected = @(NO);
     }
     //if not already checked, set to checked and add source
     else {
         //change checkedSources value to 1
-        //self.user.checkedSources[indexPath.row] = @(1);
         
         //changes cell acessory to checkmark
         cellSelected.accessoryType = UITableViewCellAccessoryCheckmark;
         
         //removes source from user sources list
-        [self.tempUserChoices setObject:@(1) forKey:cellSelected.source_name];
+        int count = 0;
+        while (TRUE){
+            NSLog(@"%@", [self.sectionItems objectAtIndex:count]);
+            NSLog(@"%@",[[self.sectionItems objectAtIndex:count] objectForKey:@"left"]);
+            NSLog(@"Cell name: %@", cellSelected.source_name);
+            if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"left"] allKeys] containsObject:cellSelected.source_name]){
+                [[[self.sectionItems objectAtIndex:count] objectForKey:@"left"] setValue:@(YES) forKey:cellSelected.source_name];
+                break;
+            }
+            else if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"center"] allKeys] containsObject:cellSelected.source_name]){
+                [[[self.sectionItems objectAtIndex:count] objectForKey:@"center"] setValue:@(YES) forKey:cellSelected.source_name];
+                break;
+            }
+            else if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"right"] allKeys] containsObject:cellSelected.source_name]){
+                [[[self.sectionItems objectAtIndex:count] objectForKey:@"right"] setValue:@(YES) forKey:cellSelected.source_name];
+                break;
+            }
+            else{
+                NSLog(@"%d", count);
+                count++;
+            }
+        }
+        //updates isSelected to reflect changes made
+        cellSelected.isSelected = @(YES);
     }
-    //updates isSelected to reflect changes made
-    cellSelected.isSelected = [self.tempUserChoices[cellSelected.source_name] boolValue];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
@@ -93,38 +129,39 @@ static int const kHeaderSectionTag = 6900;
 - (SourceCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //get an empty cell
     SourceCell *cell = [self.sourcesTableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
-    
+    //NSLog(@"%@",indexPath);
     //needs to be a cell user as clicked will get to later
-    //NSArray *sources = [self.tempUserChoices allKeys];
-    NSLog(@"%@", self.sectionItems);
-    NSArray *sections = [self.sectionItems objectAtIndex:indexPath.section];
-    NSString *section = self.sectionNames[indexPath.row];
-    //cell.isSelected = [self.tempUserChoices[source] boolValue];
+    //cell.source_name = self.sectionItems[currentHeaderTag]
     
+    //cell.isSelected = [self.tempUserChoices[source] boolValue];
+    /*
     cell.source_name = section;
     cell.sourceCellLabel.text = section;
+     */
     //cell.sourceCellLabel.textColor = [sections objectAtIndex:indexPath.row];
+    NSArray *left_sources = [[self.sectionItems[currentHeaderTag] objectForKey:@"left"] allKeys];
+    NSArray *center_sources = [[self.sectionItems[currentHeaderTag] objectForKey:@"center"] allKeys];
+    NSArray *right_sources = [[self.sectionItems[currentHeaderTag] objectForKey:@"right"] allKeys];
     
-    //allows user to select and deselect
-    /*if (cell.isSelected)
-    {
-        //marks cell as checked
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
-        //marks cell as unchecked
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    */
+    //all sources in self.sectionItems
+    NSArray *sources = [[left_sources arrayByAddingObjectsFromArray:center_sources] arrayByAddingObjectsFromArray:right_sources];
+    cell.source_name = sources[sourceIndex];
+    cell.sourceCellLabel.text = sources[sourceIndex];
+    sourceIndex++;
     return cell;
 }
 
 //retrieve default list of all sources available
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.expandedSectionNumber == section) {
-        NSMutableArray *arrayOfItems = [self.sectionItems objectAtIndex:section];
-        return arrayOfItems.count;
+        NSArray *left_sources = [[self.sectionItems[section] objectForKey:@"left"] allKeys];
+        NSArray *center_sources = [[self.sectionItems[section] objectForKey:@"center"] allKeys];
+        NSArray *right_sources = [[self.sectionItems[section] objectForKey:@"right"] allKeys];
+        
+        //all sources in self.sectionItems
+        NSArray *sources = [[left_sources arrayByAddingObjectsFromArray:center_sources] arrayByAddingObjectsFromArray:right_sources];
+        //NSMutableArray *arrayOfItems = [self.sectionItems objectAtIndex:section];
+        return sources.count;
     } else {
         return 0;
     }
@@ -180,16 +217,24 @@ static int const kHeaderSectionTag = 6900;
     [header addGestureRecognizer:headerTapGesture];
 }
 - (void)tableViewCollapeSection:(NSInteger)section withImage:(UIImageView *)imageView {
-    NSArray *sectionData = [self.sectionItems objectAtIndex:section];
+    sourceIndex = 0;
+    NSArray *left_sources = [[self.sectionItems[section] objectForKey:@"left"] allKeys];
+    NSArray *center_sources = [[self.sectionItems[section] objectForKey:@"center"] allKeys];
+    NSArray *right_sources = [[self.sectionItems[section] objectForKey:@"right"] allKeys];
+    
+    //all sources in self.sectionItems
+    NSArray *sources = [[left_sources arrayByAddingObjectsFromArray:center_sources] arrayByAddingObjectsFromArray:right_sources];
+    
+    //NSArray *sectionData = [self.sectionItems objectAtIndex:section];
     self.expandedSectionNumber = -1;
-    if (sectionData.count == 0) {
+    if (sources.count == 0) {
         return;
     } else {
         [UIView animateWithDuration:0.4 animations:^{
             imageView.transform = CGAffineTransformMakeRotation((0.0 * M_PI) / 180.0);
         }];
         NSMutableArray *arrayOfIndexPaths = [NSMutableArray array];
-        for (int i=0; i< sectionData.count; i++) {
+        for (int i=0; i< sources.count; i++) {
             NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:section];
             [arrayOfIndexPaths addObject:index];
         }
@@ -200,8 +245,15 @@ static int const kHeaderSectionTag = 6900;
 }
 
 - (void)tableViewExpandSection:(NSInteger)section withImage:(UIImageView *)imageView {
-    NSArray *sectionData = [self.sectionItems objectAtIndex:section];
-    if (sectionData.count == 0) {
+    NSArray *left_sources = [[self.sectionItems[section] objectForKey:@"left"] allKeys];
+    NSArray *center_sources = [[self.sectionItems[section] objectForKey:@"center"] allKeys];
+    NSArray *right_sources = [[self.sectionItems[section] objectForKey:@"right"] allKeys];
+    
+    //all sources in self.sectionItems
+    NSArray *sources = [[left_sources arrayByAddingObjectsFromArray:center_sources] arrayByAddingObjectsFromArray:right_sources];
+    //NSArray *sectionData = [self.sectionItems objectAtIndex:section];
+    
+    if (sources.count == 0) {
         self.expandedSectionNumber = -1;
         return;
     } else {
@@ -209,7 +261,7 @@ static int const kHeaderSectionTag = 6900;
             imageView.transform = CGAffineTransformMakeRotation((180.0 * M_PI) / 180.0);
         }];
         NSMutableArray *arrayOfIndexPaths = [NSMutableArray array];
-        for (int i=0; i< sectionData.count; i++) {
+        for (int i=0; i< sources.count; i++) {
             NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:section];
             [arrayOfIndexPaths addObject:index];
         }
@@ -223,6 +275,9 @@ static int const kHeaderSectionTag = 6900;
 - (void)sectionHeaderWasTouched:(UITapGestureRecognizer *)sender {
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)sender.view;
     NSInteger section = headerView.tag;
+    currentHeaderTag = section;
+    //identifier for each header
+    
     UIImageView *eImageView = (UIImageView *)[headerView viewWithTag:kHeaderSectionTag + section];
     self.expandedSectionHeader = headerView;
     if (self.expandedSectionNumber == -1) {
@@ -238,14 +293,6 @@ static int const kHeaderSectionTag = 6900;
             [self tableViewExpandSection:section withImage: eImageView];
         }
     }
-}
-
-
-
-
-- (NSArray *)getNewsSources{
-    //hard coded here for now; DONT ACTUALLLY LEAVE LIKE THIS
-    return [[NSArray alloc] initWithObjects:@"CNN", @"CNBC", @"Economist", @"Bloomberg", @"Fox", @"Washington Examiner", @"WSJ", @"NBC", @"Reuters", @"AP News", @"Time", @"NPR", nil];
 }
 
 @end

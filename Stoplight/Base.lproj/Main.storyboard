@@ -450,11 +450,6 @@
                                                 <action selector="didTapBack:" destination="ow9-7f-rxF" id="7hx-wz-0bm"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="kzU-Rj-8Y5">
-                                            <connections>
-                                                <action selector="didTapSave:" destination="ow9-7f-rxF" id="ibt-f9-CJ5"/>
-                                            </connections>
-                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
