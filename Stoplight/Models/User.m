@@ -23,10 +23,10 @@
     // code below is temporary!!!!
     self.preferred_sources = [NSMutableArray arrayWithObjects:@"CNN", @"Economist", @"Fox", @"WSJ", nil];
     self.checkedSources = [NSMutableArray arrayWithObjects:@(1), @(0), @(1), @(0), @(1), @(0), @(1), @(0), @(0), @(0), @(0), @(0), nil];
-    self.affiliation = @"right";
 }
 
 - (NSString*)getArticleAffiliation{
+    self.affiliation = @"left";
     return self.affiliation; 
 }
 

@@ -43,8 +43,6 @@
         // Here, randomization would occur and vary between left and right
         self.oppositeAffiliation = @"center";
     }
-    
-   NSLog(@"%@", self.oppositeAffiliation);
 }
 
 #pragma mark - Collection View Methods
@@ -56,7 +54,7 @@
     
     @try {
         
-        [self setOppositeAffiliation];
+        //[self setOppositeAffiliation];
         
         [cell customizeCardView];
 
