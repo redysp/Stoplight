@@ -10,14 +10,14 @@
 #import "Utility.h"
 #import "APIManager.h"
 #import "Article.h"
-#import "SearchPageCell.h"
+#import "SearchArticleCell.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface SearchViewController ()
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *articles;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -29,8 +29,8 @@
     self.articles = [[NSMutableArray alloc] init];
     
     //Set datasource and delegate for collection.
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     //Delegate for search bar.
     self.searchBar.delegate = self;
@@ -47,11 +47,10 @@
 }
 */
 
-#pragma mark - CollectionView Methods
+#pragma mark - TableView Methods
 
-- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
-    SearchPageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SearchPageCell" forIndexPath:indexPath];
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    SearchArticleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchArticleCell" forIndexPath:indexPath];
     
     @try {
         Article *article = self.articles[indexPath.row];
@@ -62,15 +61,20 @@
         if (article.imageLink) {
             [cell.imageView setImageWithURL:article.imageLink];
         }
-            return cell;
-        } @catch (NSException *exception){
-            return cell;
-        }
+        return cell;
+    } @catch (NSException *exception){
+        return cell;
+    }
 }
 
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 6;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 300;
+}
+
 
 #pragma mark - Search Bar Methods
 
@@ -116,14 +120,13 @@
                 [self.articles addObject:[articles objectAtIndex:0]];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.collectionView reloadData];
+                    [self.tableView reloadData];
                 });
             }];
         }
         
     }
 }
-    
 
 
 @end

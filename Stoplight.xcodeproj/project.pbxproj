@@ -42,6 +42,7 @@
 		FC6FA4B422EBBBBB00316C1D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4B322EBBBBB00316C1D /* WebViewController.m */; };
 		FC6FA4B722F0B84A00316C1D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4B622F0B84A00316C1D /* SearchViewController.m */; };
 		FC6FA4BA22F206DE00316C1D /* SearchPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4B922F206DE00316C1D /* SearchPageCell.m */; };
+		FC6FA4BD22F3B38500316C1D /* SearchArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4BC22F3B38500316C1D /* SearchArticleCell.m */; };
 		FCD1850F22DF9F4C00315845 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FCD1852322DFDDF000315845 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851722DFDDF000315845 /* FeedViewController.m */; };
 		FCD1852422DFDDF000315845 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851822DFDDF000315845 /* SetupViewController.m */; };
@@ -114,6 +115,8 @@
 		FC6FA4B622F0B84A00316C1D /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		FC6FA4B822F206DE00316C1D /* SearchPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPageCell.h; sourceTree = "<group>"; };
 		FC6FA4B922F206DE00316C1D /* SearchPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPageCell.m; sourceTree = "<group>"; };
+		FC6FA4BB22F3B38500316C1D /* SearchArticleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchArticleCell.h; sourceTree = "<group>"; };
+		FC6FA4BC22F3B38500316C1D /* SearchArticleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchArticleCell.m; sourceTree = "<group>"; };
 		FCD1851722DFDDF000315845 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		FCD1851822DFDDF000315845 /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		FCD1851A22DFDDF000315845 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 				70886B6622DE7D56009F3DB8 /* User.m */,
 				FC6FA4B822F206DE00316C1D /* SearchPageCell.h */,
 				FC6FA4B922F206DE00316C1D /* SearchPageCell.m */,
+				FC6FA4BB22F3B38500316C1D /* SearchArticleCell.h */,
+				FC6FA4BC22F3B38500316C1D /* SearchArticleCell.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				2448817722DE3E64001BF872 /* AppDelegate.m in Sources */,
 				FC6FA4BA22F206DE00316C1D /* SearchPageCell.m in Sources */,
 				FCD1852622DFDDF000315845 /* SignupViewController.m in Sources */,
+				FC6FA4BD22F3B38500316C1D /* SearchArticleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
