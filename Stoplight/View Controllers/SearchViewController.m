@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) NSMutableArray *articles;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 
@@ -76,11 +77,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 300;
+    return self.articles.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,8 +113,8 @@
     for (NSString *slant in sourcesDictionary) {
         NSArray *sources = sourcesDictionary[slant];
         for (NSString *source in sources) {
-            [[APIManager shared] getTopicArticles:searchBarText source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                NSLog(@"%@", source);
+            //[[APIManager shared] getTopicArticlesWith:searchBarText source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            [[APIManager shared] getTopicArticlesWithCountAndOffset:searchBarText source:source count:1 offset:self.articles.count/6 completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 if (error) {
                     return;
                 }
@@ -130,14 +127,32 @@
                 [[articles objectAtIndex:0] setAffiliation:slant];
                 [self.articles addObject:[articles objectAtIndex:0]];
                 
+                self.isMoreDataLoading = false;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                 });
             }];
         }
-        
     }
 }
 
+#pragma mark - Scroll View
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            
+            NSLog(@"Want to load more.");
+            self.isMoreDataLoading = true;
+            [self queryForText:self.searchBar.text];
+        }
+    }
+}
 
 @end
