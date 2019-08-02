@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Article.h"
+#import "FeedViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,10 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *cardView;
 @property (weak, nonatomic) IBOutlet UIButton *readButton;
+@property (strong, nonatomic) FeedViewController *vc;
+
 
 
 - (void)customizeCardView;
 - (void)getButtonColor; 
+-(void) readButtonPressed:(UIButton *)sender;
 
 @end
 

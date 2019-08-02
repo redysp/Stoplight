@@ -38,5 +38,10 @@
     }
 }
 
+-(void) readButtonPressed:(UIButton *)sender {
+    [self.vc performSegueWithIdentifier:@"toWeb" sender:self];
+}
+
+
 
 @end

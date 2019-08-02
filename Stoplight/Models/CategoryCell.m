@@ -20,7 +20,6 @@
     self.categoryCollectionView.delegate = self;
     self.categoryCollectionView.dataSource = self;
     [self.categoryCollectionView reloadData];
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -52,6 +51,8 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     ArticleCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCell" forIndexPath:indexPath];
     
+    [cell.readButton addTarget:cell action:@selector(readButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
     @try {
         
         //[self setOppositeAffiliation];
@@ -61,6 +62,7 @@
         Article *article = self.articles[indexPath.row];
     
         cell.article = article;
+        cell.vc = self.vc;
         
         [cell getButtonColor];
 

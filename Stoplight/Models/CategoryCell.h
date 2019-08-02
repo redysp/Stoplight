@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *categoryNameLabel;
 @property (strong, nonatomic) NSArray *articles;
 @property (strong, nonatomic) NSString *oppositeAffiliation;
+@property (strong, nonatomic) FeedViewController *vc;
 
 -(void)setOppositeAffiliation;
 

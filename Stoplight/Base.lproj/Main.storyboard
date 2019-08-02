@@ -121,7 +121,6 @@
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kDX-s2-BMn">
                                                                         <rect key="frame" x="67" y="26" width="280" height="130"/>
-                                                                        <color key="backgroundColor" red="1" green="0.16281954639999999" blue="0.047203162159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="130" id="Qdr-Ke-lYK"/>
                                                                             <constraint firstAttribute="width" constant="280" id="Yr3-xO-7qt"/>
@@ -146,9 +145,6 @@
                                                                                         <integer key="value" value="5"/>
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
-                                                                                <connections>
-                                                                                    <action selector="didTapRead:" destination="gzR-eH-C8l" eventType="touchUpInside" id="1Vk-dv-030"/>
-                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -178,7 +174,6 @@
                                                                 <outlet property="cardView" destination="Btx-ZA-NPY" id="62L-6j-kpl"/>
                                                                 <outlet property="readButton" destination="wKV-VC-pEl" id="Vf6-cZ-gwt"/>
                                                                 <outlet property="titleLabel" destination="cXv-RH-3B8" id="f1t-6D-v78"/>
-                                                                <segue destination="Aks-PT-IQW" kind="presentation" identifier="toWeb" id="QIg-9r-YgP"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -223,11 +218,12 @@
                     <navigationItem key="navigationItem" title="Stoplight" id="mzK-wV-aul"/>
                     <connections>
                         <outlet property="categoryTableView" destination="6ki-gI-rfi" id="1JD-Y6-AeC"/>
+                        <segue destination="Aks-PT-IQW" kind="presentation" identifier="toWeb" id="kBa-qp-fba"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uny-bx-A1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1257.9710144927537" y="1626.5625"/>
+            <point key="canvasLocation" x="1158" y="1667"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="wuc-8Y-0Gw">

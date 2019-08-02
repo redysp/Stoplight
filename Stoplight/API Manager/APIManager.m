@@ -81,7 +81,6 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     
     NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@%@%@", topic, siteString, source, joinString, country];
     NSString *completeURL = [URLString stringByAppendingString:restOfURL];
-    NSLog(@"%@", completeURL);
     
     NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
     
