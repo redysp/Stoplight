@@ -12,6 +12,7 @@
 #import "Article.h"
 #import "SearchArticleCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "WebViewController.h"
 
 @interface SearchViewController ()
 
@@ -37,15 +38,22 @@
     self.searchBar.showsCancelButton = YES;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"SearchToWeb"]) {
+        
+        SearchArticleCell *tappedCell = sender;
+        Article *article = tappedCell.article;
+        
+        WebViewController *viewController = [segue destinationViewController];
+        viewController.url = article.link;
+    }
 }
-*/
 
 #pragma mark - TableView Methods
 
@@ -75,6 +83,10 @@
     return 300;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"SearchToWeb" sender:[self.tableView cellForRowAtIndexPath:indexPath]];
+}
+
 
 #pragma mark - Search Bar Methods
 
@@ -83,7 +95,6 @@
     NSString *searchBarText = self.searchBar.text;
     
     __weak __typeof(self) weakSelf = self;
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         __strong __typeof(self) strongSelf = weakSelf;
         if (!strongSelf) {
