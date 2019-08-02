@@ -23,7 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) FeedViewController *vc;
 
 
--(void)customizeCardView;
+
+- (void)customizeCardView;
+- (void)getButtonColor; 
 -(void) readButtonPressed:(UIButton *)sender;
 
 @end

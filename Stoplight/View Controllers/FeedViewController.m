@@ -14,6 +14,7 @@
 #import "APIManager.h"
 #import "WebViewController.h"
 #import "ArticleCell.h"
+#import "User.h"
 
 /**
 For right now, tab bar
@@ -33,8 +34,9 @@
 //dictionary --> (key) pol aff. to (val) list of sources
 @property (strong,nonatomic) NSDictionary *sortedSourcesDict;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) User *user; 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
-
 @end
 
 @implementation FeedViewController

@@ -4,12 +4,14 @@
 //
 //  Created by arleneigwe on 7/18/19.
 //  Copyright © 2019 powercarlos25. All rights reserved.
+
 //
 
 #import "CategoryCell.h"
 #import "ArticleCell.h"
 #import "Article.h"
 #import "UIImageView+AFNetworking.h"
+#import "User.h"
 
 @implementation CategoryCell
 
@@ -24,6 +26,24 @@
     [super setSelected:selected animated:animated];
 }
 
+- (void)setOppositeAffiliation{
+    
+    // Not sure if this is the correct way
+    
+    NSString *currentAffiliation = [[User shared] getArticleAffiliation];
+
+    if ([currentAffiliation  isEqual: @"left"]){
+        self.oppositeAffiliation = @"right";
+    }
+    else if ([currentAffiliation isEqual:@"right"]){
+        self.oppositeAffiliation = @"left";
+    }
+    else{
+        // Here, randomization would occur and vary between left and right
+        self.oppositeAffiliation = @"center";
+    }
+}
+
 #pragma mark - Collection View Methods
 //table view asks its dataSource for num rows and cell for row at
 
@@ -34,10 +54,18 @@
     [cell.readButton addTarget:cell action:@selector(readButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     @try {
+        
+        //[self setOppositeAffiliation];
+        
+        [cell customizeCardView];
 
         Article *article = self.articles[indexPath.row];
+    
         cell.article = article;
         cell.vc = self.vc;
+        
+        [cell getButtonColor];
+
         
         //sets headline text
         if (article.title){
@@ -49,8 +77,8 @@
             [cell.articleImageView setImageWithURL:article.imageLink];
         }
         
+        
         //Returns an ArticleCell
-         [cell customizeCardView];
         return cell;
     } @catch (NSException *exception) {
         
