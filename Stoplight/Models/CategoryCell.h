@@ -16,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UICollectionView *categoryCollectionView;
 @property (strong, nonatomic) IBOutlet UILabel *categoryNameLabel;
 @property (strong, nonatomic) NSArray *articles;
+@property (strong, nonatomic) NSString *oppositeAffiliation;
+
+-(void)setOppositeAffiliation;
+
 @end
 
 NS_ASSUME_NONNULL_END

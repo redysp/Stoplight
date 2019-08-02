@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *readButton;
 
 
-- (void)customizeCardView; 
+- (void)customizeCardView;
+- (void)getButtonColor; 
 
 @end
 

@@ -11,7 +11,7 @@
 #import "CategoryCell.h"
 #import "Article.h"
 
-@implementation ArticleCellbi
+@implementation ArticleCell
 
 - (void)customizeCardView{
     
@@ -23,13 +23,20 @@
     self.cardView.layer.cornerRadius = 20;
     self.cardView.layer.maskedCorners = kCALayerMinXMaxYCorner | kCALayerMaxXMaxYCorner;
     
-    // Changes the color of the button depending on the affiliation
-    if ([self.article.affiliation isEqualToString:@"left"]){
-        [self.readButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    }
-    
 }
 
+- (void)getButtonColor{
+    // Changes the color of the button depending on the affiliation
+    if ([self.article.affiliation isEqualToString:@"left"]){
+        [self.readButton setBackgroundColor:[UIColor blueColor]];
+    }
+    else if ([self.article.affiliation isEqualToString:@"center"]){
+        [self.readButton setBackgroundColor:[UIColor purpleColor]];
+    }
+    else{
+        [self.readButton setBackgroundColor:[UIColor redColor]];
+    }
+}
 
 
 @end
