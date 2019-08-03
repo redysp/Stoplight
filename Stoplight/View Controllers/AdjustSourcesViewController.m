@@ -34,15 +34,16 @@ static int sourceIndex = 0;
     self.sectionNames = @[@"Politics", @"Business", @"US", @"World"];
     
     //list of dictionaries where key is pol. aff and vals dict where key is source and val is checked status
+    //when refactoring figure out how to make all of these mutable dictionaries without needing to use mutable copy lololol. it doesn't work if these dictionaries are created the normal way (as nsdictionaries)
     self.sectionItems = @[
   //Politics
-                          @{@"left":@{@"vox.com":@YES, @"nbcnews.com":@YES},@"center":@{@"reuters.com":@YES, @"apnews.com":@YES},@"right":@{@"foxnews.com":@YES, @"nypost.com":@YES}},
+                          [@{@"left":[@{@"vox.com":@YES, @"nbcnews.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"apnews.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"nypost.com":@YES}  mutableCopy]} mutableCopy],
   //Business
-                          @{@"left":@{@"cnbc.com":@YES, @"economist.com":@YES},@"center":@{@"wsj.com":@YES, @"bloomberg.com":@YES},@"right":@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES}},
+                          [@{@"left":[@{@"cnbc.com":@YES, @"economist.com":@YES}  mutableCopy],@"center":[@{@"wsj.com":@YES, @"bloomberg.com":@YES}  mutableCopy],@"right":[@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES} mutableCopy]} mutableCopy],
   //US
-                          @{@"left":@{@"cnn.com":@YES, @"time.com":@YES},@"center":@{@"npr.org":@YES, @"usatoday.com":@YES},@"right":@{@"foxnews.com":@YES, @"spectator.org":@YES}},
+                          [@{@"left":[@{@"cnn.com":@YES, @"time.com":@YES}  mutableCopy],@"center":[@{@"npr.org":@YES, @"usatoday.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"spectator.org":@YES} mutableCopy]} mutableCopy],
   //World
-                          @{@"left":@{@"cnn.com/world":@YES, @"theguardian.com":@YES},@"center":@{@"reuters.com":@YES, @"bbc.com":@YES},@"right":@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES}}];
+                          [@{@"left":[@{@"cnn.com/world":@YES, @"theguardian.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"bbc.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES} mutableCopy]} mutableCopy]];
 }
 
 - (IBAction)didTapBack:(id)sender {
@@ -66,17 +67,26 @@ static int sourceIndex = 0;
         
         //adds source to user sources list
         int count = 0;
+        NSMutableDictionary *indexDict = [self.sectionItems objectAtIndex:count];
+        NSMutableDictionary *leftDict = [indexDict objectForKey:@"left"];
+        NSMutableDictionary *centerDict = [indexDict objectForKey:@"center"];
+        NSMutableDictionary *rightDict = [indexDict objectForKey:@"right"];
+        
+        NSArray *leftSources = [leftDict allKeys];
+        NSArray *centerSources = [centerDict allKeys];
+        NSArray *rightSources = [rightDict allKeys];
+        
         while (TRUE){
-        if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"left"] allKeys] containsObject:cellSelected.source_name]){
-            [[[self.sectionItems objectAtIndex:count] objectForKey:@"left"] setValue:@(NO) forKey:cellSelected.source_name];
+        if ([leftSources containsObject:cellSelected.source_name]){
+            [leftDict setValue:@(NO) forKey:cellSelected.source_name];
             break;
         }
-        else if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"center"] allKeys] containsObject:cellSelected.source_name]){
-            [[[self.sectionItems objectAtIndex:count] objectForKey:@"center"] setValue:@(NO) forKey:cellSelected.source_name];
+        else if ([centerSources containsObject:cellSelected.source_name]){
+            [centerDict setValue:@(NO) forKey:cellSelected.source_name];
             break;
         }
-        else if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"right"] allKeys] containsObject:cellSelected.source_name]){
-            [[[self.sectionItems objectAtIndex:count] objectForKey:@"right"] setValue:@(NO) forKey:cellSelected.source_name];
+        else if ([rightSources containsObject:cellSelected.source_name]){
+            [rightDict setValue:@(NO) forKey:cellSelected.source_name];
             break;
         }
         else{
@@ -95,24 +105,32 @@ static int sourceIndex = 0;
         
         //removes source from user sources list
         int count = 0;
+        NSMutableDictionary *indexDict = [self.sectionItems objectAtIndex:count];
+        NSMutableDictionary *leftDict = [indexDict objectForKey:@"left"];
+        NSMutableDictionary *centerDict = [indexDict objectForKey:@"center"];
+        NSMutableDictionary *rightDict = [indexDict objectForKey:@"right"];
+        
+        NSArray *leftSources = [leftDict allKeys];
+        NSArray *centerSources = [centerDict allKeys];
+        NSArray *rightSources = [rightDict allKeys];
+        
         while (TRUE){
             NSLog(@"%@", [self.sectionItems objectAtIndex:count]);
             NSLog(@"%@",[[self.sectionItems objectAtIndex:count] objectForKey:@"left"]);
             NSLog(@"Cell name: %@", cellSelected.source_name);
-            if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"left"] allKeys] containsObject:cellSelected.source_name]){
-                [[[self.sectionItems objectAtIndex:count] objectForKey:@"left"] setValue:@(YES) forKey:cellSelected.source_name];
+            if ([leftSources containsObject:cellSelected.source_name]){
+                [leftDict setValue:@(NO) forKey:cellSelected.source_name];
                 break;
             }
-            else if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"center"] allKeys] containsObject:cellSelected.source_name]){
-                [[[self.sectionItems objectAtIndex:count] objectForKey:@"center"] setValue:@(YES) forKey:cellSelected.source_name];
+            else if ([centerSources containsObject:cellSelected.source_name]){
+                [centerDict setValue:@(NO) forKey:cellSelected.source_name];
                 break;
             }
-            else if ([[[[self.sectionItems objectAtIndex:count] objectForKey:@"right"] allKeys] containsObject:cellSelected.source_name]){
-                [[[self.sectionItems objectAtIndex:count] objectForKey:@"right"] setValue:@(YES) forKey:cellSelected.source_name];
+            else if ([rightSources containsObject:cellSelected.source_name]){
+                [rightDict setValue:@(NO) forKey:cellSelected.source_name];
                 break;
             }
             else{
-                NSLog(@"%d", count);
                 count++;
             }
         }
