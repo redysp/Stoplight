@@ -92,6 +92,8 @@
     NSString *section = self.sectionsList[indexPath.row];
     NSArray *categoryArticles = self.articlesDictionary[section];
     
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     cell.articles = categoryArticles;
     cell.categoryNameLabel.text = [section capitalizedString];
     [cell.categoryCollectionView reloadData];
