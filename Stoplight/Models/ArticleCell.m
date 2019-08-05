@@ -23,17 +23,24 @@
     self.cardView.layer.cornerRadius = 20;
     self.cardView.layer.maskedCorners = kCALayerMinXMaxYCorner | kCALayerMaxXMaxYCorner;
     
+}
+
+- (void)getButtonColor{
     // Changes the color of the button depending on the affiliation
     if ([self.article.affiliation isEqualToString:@"left"]){
-        [self.readButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.readButton setBackgroundColor:[UIColor blueColor]];
     }
-    
+    else if ([self.article.affiliation isEqualToString:@"center"]){
+        [self.readButton setBackgroundColor:[UIColor purpleColor]];
+    }
+    else{
+        [self.readButton setBackgroundColor:[UIColor redColor]];
+    }
 }
 
 -(void) readButtonPressed:(UIButton *)sender {
     [self.vc performSegueWithIdentifier:@"toWeb" sender:self];
 }
-
 
 
 
