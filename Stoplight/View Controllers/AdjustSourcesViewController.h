@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableDictionary *tempUserChoices;
 @property (assign) NSInteger expandedSectionNumber;
 @property (assign) UITableViewHeaderFooterView *expandedSectionHeader;
-@property (strong) NSArray *sectionItems;
+@property (strong) NSMutableArray *sectionItems;
 @property (strong) NSArray *sectionNames;
 @end
 

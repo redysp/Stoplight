@@ -35,32 +35,28 @@ static int sourceIndex = 0;
     self.user = [User new];
     [self.user setStuff];
     
-    self.tempUserChoices = [self.user.selectedSources mutableCopy];
+    //self.tempUserChoices = [self.user.selectedSources mutableCopy];
     
     //Later should fetch from user defaults I think....
-    self.sectionNames = @[@"politics", @"business", @"us", @"world"];
+    //self.sectionNames = @[@"politics", @"business", @"us", @"world"];
+    self.sectionNames = [Utility fetchCategoriesList];
     
     [self initializeSectionItems];
 }
 
 - (void) initializeSectionItems {
-    //list of dictionaries where key is pol. aff and vals dict where key is source and val is checked status
-    self.sectionItems = @[
-                          //Politics
-                          [@{@"left":[@{@"vox.com":@YES, @"nbcnews.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"apnews.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"nypost.com":@YES}  mutableCopy]} mutableCopy],
-                          //Business
-                          [@{@"left":[@{@"cnbc.com":@YES, @"economist.com":@YES}  mutableCopy],@"center":[@{@"wsj.com":@YES, @"bloomberg.com":@YES}  mutableCopy],@"right":[@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES} mutableCopy]} mutableCopy],
-                          //US
-                          [@{@"left":[@{@"cnn.com":@YES, @"time.com":@YES}  mutableCopy],@"center":[@{@"npr.org":@YES, @"usatoday.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"spectator.org":@YES} mutableCopy]} mutableCopy],
-                          //World
-                          [@{@"left":[@{@"cnn.com/world":@YES, @"theguardian.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"bbc.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES} mutableCopy]} mutableCopy]];
+    //Fetch from user defaults and make all nested layers mutable.
+    
+    self.sectionItems = [[Utility getSavedSources] mutableCopy];
+    for (int i = 0; i < self.sectionItems.count; i++) {
+        self.sectionItems[i] = [self.sectionItems[i] mutableCopy];
+        NSArray *keys = [self.sectionItems[i] allKeys];
+        for (NSString *slant in keys) {
+            self.sectionItems[i][slant] = [self.sectionItems[i][slant] mutableCopy];
+        }
+    }
 }
 
-/*
- - (NSArray *) getAllSources: (NSArray *) sourceArray ofTag: (int) tag{
- NSMutableDictionary *tagDict = [sourceArray objectAtIndex:tag];
- 
- }*/
 
 #pragma mark - TableView Methods
 
@@ -77,18 +73,8 @@ static int sourceIndex = 0;
 
 //request a cell and run the following code for each one
 - (SourceCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //get an empty cell
-    SourceCell *cell = [self.sourcesTableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
-    //NSLog(@"%@",indexPath);
-    //needs to be a cell user as clicked will get to later
-    //cell.source_name = self.sectionItems[currentHeaderTag]
     
-    //cell.isSelected = [self.tempUserChoices[source] boolValue];
-    /*
-     cell.source_name = section;
-     cell.sourceCellLabel.text = section;
-     */
-    //cell.sourceCellLabel.textColor = [sections objectAtIndex:indexPath.row];
+    SourceCell *cell = [self.sourcesTableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
     
     NSArray *left_sources = [[self.sectionItems[currentHeaderTag] objectForKey:@"left"] allKeys];
     NSArray *center_sources = [[self.sectionItems[currentHeaderTag] objectForKey:@"center"] allKeys];
@@ -334,10 +320,46 @@ static int sourceIndex = 0;
 #pragma mark - Saving Data
 
 /**
- Put this in a format compatible with Utility class structure.
+ Save to User defaults the array of dictionaries in raw form.
  **/
 -(void) saveSelectedItems {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.sectionItems forKey:@"savedSources"];
+    [defaults synchronize];
+}
+
+/**
+Process to format compatible with feed view controller, save to user defaults.
+**/
+-(void) saveSelectedItemsDictionary {
+    NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc] init];
+    NSArray *slantList = [NSArray arrayWithObjects:@"left", @"center", @"right", nil];
     
+    for (int i = 0; i < self.sectionNames.count; i++) { //This level of iteration is for categories on both.
+        NSString *categoryName = self.sectionNames[i];
+        NSMutableDictionary *categoryDictionary = [[NSMutableDictionary alloc] init];
+        for (NSString *slant in slantList) {
+            NSArray *sourcesBySlant = [self sourcesBySlant:i slant:slant];
+            [categoryDictionary setObject:sourcesBySlant forKey:slant];
+        }
+        [feedDictionary setObject:categoryDictionary forKey:categoryName];
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.sectionItems forKey:@"savedSourcesDictionary"];
+    [defaults synchronize];
+    
+}
+
+-(NSMutableArray *)sourcesBySlant:(NSInteger)categoryIndex slant:(NSString *)slant {
+    NSMutableDictionary *leftDict = self.sectionItems[categoryIndex][slant]; //gets dictionary of yes no for all sources in particular category.slant
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    for (NSString *source in leftDict) {
+        if (leftDict[source]) {
+            [arr addObject:source];
+        }
+    }
+    return arr;
 }
 
 #pragma mark - Navigation
@@ -346,6 +368,14 @@ static int sourceIndex = 0;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)didTapSave:(id)sender {
+    //Save the data
+    [self saveSelectedItems];
+    [self saveSelectedItemsDictionary];
+    
+    //Dismiss view controller.
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 

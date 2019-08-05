@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
+#import "Utility.h"
 
 @interface LoginViewController ()
 
@@ -38,6 +39,10 @@
            [self performSegueWithIdentifier:@"successLoginSegue" sender:nil];
         }
     }];
+    
+    //Save default stuff.
+    [Utility saveDefaultSources];
+    
 }
 
 - (IBAction)signupButton:(id)sender {
