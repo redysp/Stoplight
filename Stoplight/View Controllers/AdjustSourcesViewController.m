@@ -23,6 +23,8 @@ static int sourceIndex = 0;
 
 @implementation AdjustSourcesViewController
 
+#pragma mark - Initialization
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -43,186 +45,35 @@ static int sourceIndex = 0;
 
 - (void) initializeSectionItems {
     //list of dictionaries where key is pol. aff and vals dict where key is source and val is checked status
-        self.sectionItems = @[
-      //Politics
-                              [@{@"left":[@{@"vox.com":@YES, @"nbcnews.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"apnews.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"nypost.com":@YES}  mutableCopy]} mutableCopy],
-      //Business
-                              [@{@"left":[@{@"cnbc.com":@YES, @"economist.com":@YES}  mutableCopy],@"center":[@{@"wsj.com":@YES, @"bloomberg.com":@YES}  mutableCopy],@"right":[@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES} mutableCopy]} mutableCopy],
-      //US
-                              [@{@"left":[@{@"cnn.com":@YES, @"time.com":@YES}  mutableCopy],@"center":[@{@"npr.org":@YES, @"usatoday.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"spectator.org":@YES} mutableCopy]} mutableCopy],
-      //World
-                              [@{@"left":[@{@"cnn.com/world":@YES, @"theguardian.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"bbc.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES} mutableCopy]} mutableCopy]];
+    self.sectionItems = @[
+                          //Politics
+                          [@{@"left":[@{@"vox.com":@YES, @"nbcnews.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"apnews.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"nypost.com":@YES}  mutableCopy]} mutableCopy],
+                          //Business
+                          [@{@"left":[@{@"cnbc.com":@YES, @"economist.com":@YES}  mutableCopy],@"center":[@{@"wsj.com":@YES, @"bloomberg.com":@YES}  mutableCopy],@"right":[@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES} mutableCopy]} mutableCopy],
+                          //US
+                          [@{@"left":[@{@"cnn.com":@YES, @"time.com":@YES}  mutableCopy],@"center":[@{@"npr.org":@YES, @"usatoday.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"spectator.org":@YES} mutableCopy]} mutableCopy],
+                          //World
+                          [@{@"left":[@{@"cnn.com/world":@YES, @"theguardian.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"bbc.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES} mutableCopy]} mutableCopy]];
 }
 
-/**
-Put this in a format compatible with Utility class structure.
-**/
--(void) saveSelectedItems {
-    
-}
-
-- (IBAction)didTapBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 /*
-- (NSArray *) getAllSources: (NSArray *) sourceArray ofTag: (int) tag{
-    NSMutableDictionary *tagDict = [sourceArray objectAtIndex:tag];
-    
-}*/
+ - (NSArray *) getAllSources: (NSArray *) sourceArray ofTag: (int) tag{
+ NSMutableDictionary *tagDict = [sourceArray objectAtIndex:tag];
+ 
+ }*/
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];;
-//    //if already checked, set to unchecked and remove source
-//    if (cellSelected.isSelected) {
-//        //change checkedSources value to False
-//
-//        //changes cell accessory to None
-//        cellSelected.accessoryType = UITableViewCellAccessoryNone;
-//
-//        //adds source to user sources list
-//        int count = 0;
-//        NSMutableDictionary *indexDict = [self.sectionItems objectAtIndex:count];
-//        NSMutableDictionary *leftDict = [indexDict objectForKey:@"left"];
-//        NSMutableDictionary *centerDict = [indexDict objectForKey:@"center"];
-//        NSMutableDictionary *rightDict = [indexDict objectForKey:@"right"];
-//
-//        NSArray *leftSources = [leftDict allKeys];
-//        NSArray *centerSources = [centerDict allKeys];
-//        NSArray *rightSources = [rightDict allKeys];
-//
-//        while (TRUE){
-//        if ([leftSources containsObject:cellSelected.source_name]){
-//            [leftDict setValue:@(NO) forKey:cellSelected.source_name];
-//            break;
-//        }
-//        else if ([centerSources containsObject:cellSelected.source_name]){
-//            [centerDict setValue:@(NO) forKey:cellSelected.source_name];
-//            break;
-//        }
-//        else if ([rightSources containsObject:cellSelected.source_name]){
-//            [rightDict setValue:@(NO) forKey:cellSelected.source_name];
-//            break;
-//        }
-//        else{
-//            count++;
-//        }
-//             }
-//        //updates isSelected to reflect changes made
-//        cellSelected.isSelected = @(NO);
-//    }
-//    //if not already checked, set to checked and add source
-//    else {
-//        //change checkedSources value to 1
-//
-//        //changes cell acessory to checkmark
-//        cellSelected.accessoryType = UITableViewCellAccessoryCheckmark;
-//
-//        //removes source from user sources list
-//        int count = 0;
-//        NSMutableDictionary *indexDict = [self.sectionItems objectAtIndex:count];
-//        NSMutableDictionary *leftDict = [indexDict objectForKey:@"left"];
-//        NSMutableDictionary *centerDict = [indexDict objectForKey:@"center"];
-//        NSMutableDictionary *rightDict = [indexDict objectForKey:@"right"];
-//
-//        NSArray *leftSources = [leftDict allKeys];
-//        NSArray *centerSources = [centerDict allKeys];
-//        NSArray *rightSources = [rightDict allKeys];
-//
-//        while (TRUE){
-//            NSLog(@"%@", [self.sectionItems objectAtIndex:count]);
-//            NSLog(@"%@",[[self.sectionItems objectAtIndex:count] objectForKey:@"left"]);
-//            NSLog(@"Cell name: %@", cellSelected.source_name);
-//            if ([leftSources containsObject:cellSelected.source_name]){
-//                [leftDict setValue:@(NO) forKey:cellSelected.source_name];
-//                break;
-//            }
-//            else if ([centerSources containsObject:cellSelected.source_name]){
-//                [centerDict setValue:@(NO) forKey:cellSelected.source_name];
-//                break;
-//            }
-//            else if ([rightSources containsObject:cellSelected.source_name]){
-//                [rightDict setValue:@(NO) forKey:cellSelected.source_name];
-//                break;
-//            }
-//            else{
-//                count++;
-//            }
-//        }
-//        //updates isSelected to reflect changes made
-//        cellSelected.isSelected = @(YES);
-//    }
-//}
+#pragma mark - TableView Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //Retrieve header string.
-    NSString *headerTitle = [self.sourcesTableView headerViewForSection:indexPath.section].textLabel.text;
     //Retrieve selected cell
     SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
     
-    //change nested dictionary value to NO.
-    NSInteger headerIndex = [self.sectionNames indexOfObject:headerTitle];
-    //This gets a dictionary with keys left/right/center
-    NSDictionary *sourcesDictionary = self.sectionItems[headerIndex];
-    
-    //Iterate through dictionary keys ("left", "right", "center") to find the item
-    for (NSString *key in sourcesDictionary) {
-        //Get nested dictionary where key:source, value:YES/NO
-        NSMutableDictionary *dict = sourcesDictionary[key];
-        //Get keys of that dictionary, which should be source names
-        NSArray *sourceNames = [dict allKeys];
-        if ([sourceNames containsObject:cellSelected.source_name]) {
-            self.sectionItems[headerIndex][key][cellSelected.source_name] = @(YES);
-            break;
-        }
+    if (cellSelected.isSelected) {
+        [self deselectSource:indexPath];
+    } else {
+        [self selectSource:indexPath];
     }
-    
-    //changes cell accessory to None
-    cellSelected.accessoryType = UITableViewCellAccessoryCheckmark;
-    
-    //updates isSelected to reflect changes made
-    cellSelected.isSelected = @(YES);
-    
-    //reload cell to update changes
-    [self.sourcesTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //Retrieve header string.
-    NSString *headerTitle = [self.sourcesTableView headerViewForSection:indexPath.section].textLabel.text;
-    //Retrieve selected cell
-    SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
-    
-    //change nested dictionary value to NO.
-    NSInteger headerIndex = [self.sectionNames indexOfObject:headerTitle];
-    //This gets a dictionary with keys left/right/center
-    NSDictionary *sourcesDictionary = self.sectionItems[headerIndex];
-    
-    //Iterate through dictionary keys ("left", "right", "center") to find the item
-    for (NSString *key in sourcesDictionary) {
-        //Get nested dictionary where key:source, value:YES/NO
-        NSMutableDictionary *dict = sourcesDictionary[key];
-        //Get keys of that dictionary, which should be source names
-        NSArray *sourceNames = [dict allKeys];
-        if ([sourceNames containsObject:cellSelected.source_name]) {
-            self.sectionItems[headerIndex][key][cellSelected.source_name] = @(NO);
-            break;
-        }
-    }
-
-    //changes cell accessory to None
-    cellSelected.accessoryType = UITableViewCellAccessoryNone;
-    
-    //updates isSelected to reflect changes made
-    cellSelected.isSelected = @(NO);
-    
-    //reload cell to update changes
-    [self.sourcesTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-//- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//}
 
 //request a cell and run the following code for each one
 - (SourceCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -234,8 +85,8 @@ Put this in a format compatible with Utility class structure.
     
     //cell.isSelected = [self.tempUserChoices[source] boolValue];
     /*
-    cell.source_name = section;
-    cell.sourceCellLabel.text = section;
+     cell.source_name = section;
+     cell.sourceCellLabel.text = section;
      */
     //cell.sourceCellLabel.textColor = [sections objectAtIndex:indexPath.row];
     
@@ -268,7 +119,7 @@ Put this in a format compatible with Utility class structure.
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-
+    
     
     return cell;
 }
@@ -416,5 +267,86 @@ Put this in a format compatible with Utility class structure.
         }
     }
 }
+
+
+#pragma mark - User Selection Methods
+
+-(void) selectSource:(NSIndexPath *)indexPath {
+    //Retrieve header string.
+    NSString *headerTitle = [self.sourcesTableView headerViewForSection:indexPath.section].textLabel.text;
+    //Retrieve selected cell
+    SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
+    
+    //change nested dictionary value to NO.
+    NSInteger headerIndex = [self.sectionNames indexOfObject:headerTitle];
+    //This gets a dictionary with keys left/right/center
+    NSDictionary *sourcesDictionary = self.sectionItems[headerIndex];
+    
+    //Iterate through dictionary keys ("left", "right", "center") to find the item
+    for (NSString *key in sourcesDictionary) {
+        //Get nested dictionary where key:source, value:YES/NO
+        NSMutableDictionary *dict = sourcesDictionary[key];
+        //Get keys of that dictionary, which should be source names
+        NSArray *sourceNames = [dict allKeys];
+        if ([sourceNames containsObject:cellSelected.source_name]) {
+            self.sectionItems[headerIndex][key][cellSelected.source_name] = @(YES);
+            break;
+        }
+    }
+    
+    //changes cell accessory to None
+    cellSelected.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    //updates isSelected to reflect changes made
+    cellSelected.isSelected = YES;
+}
+
+- (void) deselectSource:(NSIndexPath *)indexPath {
+    //Retrieve header string.
+    NSString *headerTitle = [self.sourcesTableView headerViewForSection:indexPath.section].textLabel.text;
+    //Retrieve selected cell
+    SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
+    
+    //change nested dictionary value to NO.
+    NSInteger headerIndex = [self.sectionNames indexOfObject:headerTitle];
+    //This gets a dictionary with keys left/right/center
+    NSDictionary *sourcesDictionary = self.sectionItems[headerIndex];
+    
+    //Iterate through dictionary keys ("left", "right", "center") to find the item
+    for (NSString *key in sourcesDictionary) {
+        //Get nested dictionary where key:source, value:YES/NO
+        NSMutableDictionary *dict = sourcesDictionary[key];
+        //Get keys of that dictionary, which should be source names
+        NSArray *sourceNames = [dict allKeys];
+        if ([sourceNames containsObject:cellSelected.source_name]) {
+            self.sectionItems[headerIndex][key][cellSelected.source_name] = @(NO);
+            break;
+        }
+    }
+    
+    //changes cell accessory to None
+    cellSelected.accessoryType = UITableViewCellAccessoryNone;
+    
+    //updates isSelected to reflect changes made
+    cellSelected.isSelected = NO;
+}
+
+#pragma mark - Saving Data
+
+/**
+ Put this in a format compatible with Utility class structure.
+ **/
+-(void) saveSelectedItems {
+    
+}
+
+#pragma mark - Navigation
+
+- (IBAction)didTapBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
 
 @end
