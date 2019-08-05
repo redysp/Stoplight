@@ -424,7 +424,9 @@
         <scene sceneID="IBu-OG-7rO">
             <objects>
                 <navigationController id="crr-Vy-0fa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Following" id="Zlx-zH-TEn"/>
+                    <tabBarItem key="tabBarItem" title="Following" image="following" id="Zlx-zH-TEn">
+                        <inset key="imageInsets" minX="3" minY="3" maxX="3" maxY="3"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jN6-jP-uqT">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -441,7 +443,7 @@
         <scene sceneID="C8B-hr-hTa">
             <objects>
                 <navigationController id="Yg8-Bg-10s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="h4j-Yz-eLW"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="h4j-Yz-eLW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Oxl-G4-iNq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -479,7 +481,7 @@
         <scene sceneID="bIr-3l-KHd">
             <objects>
                 <navigationController id="sjP-cM-MWx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="Y5f-xg-VBa"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="search" id="Y5f-xg-VBa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pbz-XB-7MT">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -496,7 +498,7 @@
         <scene sceneID="3RF-1c-uqV">
             <objects>
                 <navigationController id="qFg-mT-yRg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="Ryr-Sl-0I4"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="Ryr-Sl-0I4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aFm-4y-MgK">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -772,10 +774,15 @@
             <point key="canvasLocation" x="4643" y="2492"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="following" width="40" height="33"/>
+        <image name="home" width="40" height="33"/>
+        <image name="search" width="40" height="33"/>
+        <image name="settings" width="36" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qGh-PW-PNL"/>
         <segue reference="7HH-7D-eEg"/>
-        <segue reference="ono-qa-Amy"/>
         <segue reference="ea5-uw-u41"/>
     </inferredMetricsTieBreakers>
 </document>
