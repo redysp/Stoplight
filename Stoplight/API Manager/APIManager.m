@@ -18,7 +18,8 @@ static NSString * const siteString = @"+site:";
 static NSString * const country = @"mkt=en-us";
 static NSString * const consumerKey = @"0de3cc86e7664ea4914f0c0e9880a773";
 static NSString * const imageBool = @"originalImg=true";
-
+static NSString * const countString = @"count=";
+static NSString * const offsetString = @"offset=";
 
 static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=+site:npr.org&originalImg=true&mkt=en-us";
 
@@ -86,6 +87,22 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
     [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
+    [self makeRequestWithCompletion:session request:request completionHandler:completion];
+}
+
+-(void)getTopicArticlesWithCountAndOffset:(NSString *)topic source:(NSString *)source count:(NSInteger)count offset:(NSInteger)offset completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *restOfURL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@", topic, siteString, source, joinString, country, joinString, countString, [NSString stringWithFormat:@"%ld", (long)count], joinString, offsetString, [NSString stringWithFormat:@"%ld", (long)offset]];
+    NSString *completeURL = [URLString stringByAppendingString:restOfURL];
+    NSLog(@"%@", completeURL);
+    
+    NSURL *url = [[NSURL alloc]initWithString:completeURL]; //should be full URL
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+    [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
+    
     [self makeRequestWithCompletion:session request:request completionHandler:completion];
 }
 
