@@ -57,7 +57,7 @@
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //    NSArray *topicsList = [defaults objectForKey:@"topicsList"];
 //    return topicsList;
-    return [NSArray arrayWithObjects:@"Global+Warming", @"sudan", nil];
+    return [NSArray arrayWithObjects:@"Global+Warming", @"SUDAN", nil];
 }
 
 /**

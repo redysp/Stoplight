@@ -591,18 +591,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohC-Ro-w0H">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="889"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohC-Ro-w0H">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rTj-Eq-sDd">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTj-Eq-sDd">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="PNL-Jf-40b">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="dqS-HH-5N3">
@@ -615,6 +613,15 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ohC-Ro-w0H" secondAttribute="bottom" id="46E-6g-RGf"/>
+                            <constraint firstItem="rTj-Eq-sDd" firstAttribute="top" secondItem="AL2-dJ-1bw" secondAttribute="top" id="LJA-fb-5Tt"/>
+                            <constraint firstItem="rTj-Eq-sDd" firstAttribute="leading" secondItem="AL2-dJ-1bw" secondAttribute="leading" id="Lu0-OE-b4N"/>
+                            <constraint firstItem="rTj-Eq-sDd" firstAttribute="trailing" secondItem="AL2-dJ-1bw" secondAttribute="trailing" id="QR8-FQ-zzj"/>
+                            <constraint firstItem="ohC-Ro-w0H" firstAttribute="leading" secondItem="AL2-dJ-1bw" secondAttribute="leading" id="VOq-6a-MSM"/>
+                            <constraint firstItem="ohC-Ro-w0H" firstAttribute="trailing" secondItem="AL2-dJ-1bw" secondAttribute="trailing" id="gTD-Hw-N0G"/>
+                            <constraint firstItem="ohC-Ro-w0H" firstAttribute="top" secondItem="rTj-Eq-sDd" secondAttribute="bottom" id="z3a-Bc-Lsb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="AL2-dJ-1bw"/>
                     </view>
                     <connections>

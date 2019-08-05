@@ -90,12 +90,20 @@
 {
     CategoryCell *cell = [self.categoryTableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
     NSString *section = self.sectionsList[indexPath.row];
+
     NSArray *categoryArticles = self.articlesDictionary[section];
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     cell.articles = categoryArticles;
-    cell.categoryNameLabel.text = [section capitalizedString];
+    
+    // Special check for United States category (for correct UI display only)
+    if ([section isEqualToString:@"us"]){
+        cell.categoryNameLabel.text = @"United States";
+    }
+    else{
+        cell.categoryNameLabel.text = [section capitalizedString];
+    }
     [cell.categoryCollectionView reloadData];
     cell.vc = self;
   
