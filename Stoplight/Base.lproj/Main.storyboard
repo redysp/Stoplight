@@ -269,44 +269,11 @@
                         <outlet property="signUpEmailField" destination="KAW-fA-U7U" id="Jkn-KX-QQs"/>
                         <outlet property="signUpPasswordField" destination="L4T-09-yC2" id="DAc-fw-mCj"/>
                         <outlet property="signUpUsernameField" destination="cN7-1b-wnT" id="zHB-Sk-1vx"/>
-                        <segue destination="W6j-yy-6VR" kind="presentation" identifier="succesfulSignUpSegue" id="Vdr-aH-344"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yTg-MB-gl0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1258" y="-708"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="5rh-OY-Der">
-            <objects>
-                <navigationController id="W6j-yy-6VR" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6F2-h6-QME">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="UXt-vu-GD3" kind="relationship" relationship="rootViewController" id="VWi-EC-bO4"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FTl-7u-ZLi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2167" y="-708"/>
-        </scene>
-        <!--Set Up View Controller-->
-        <scene sceneID="GQ7-It-45L">
-            <objects>
-                <viewController id="UXt-vu-GD3" userLabel="Set Up View Controller" customClass="SetupViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ODD-y9-BfR" userLabel="Set Up View">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Z5u-SM-YsH"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="jws-2D-R44"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0II-ec-76F" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3068" y="-708"/>
         </scene>
         <!--Home-->
         <scene sceneID="C8B-hr-hTa">
@@ -556,6 +523,7 @@
                         <viewLayoutGuide key="safeArea" id="jGv-cn-3iN"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="Y67-Uf-tJ0" id="v8T-iF-GRA"/>
                         <outlet property="categoriesTableView" destination="Gyd-F9-SmH" id="beG-nv-PiU"/>
                     </connections>
                 </viewController>
@@ -563,6 +531,53 @@
                 <tapGestureRecognizer id="8G4-Ks-QQy"/>
             </objects>
             <point key="canvasLocation" x="3821.739130434783" y="2479.6875"/>
+        </scene>
+        <!--Add Topics View Controller-->
+        <scene sceneID="Uau-Ym-3DH">
+            <objects>
+                <viewController storyboardIdentifier="addTopics" id="AX5-Jx-GtT" userLabel="Add Topics View Controller" customClass="AddTopicViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DfH-y3-VMn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPH-bP-2Bn">
+                                <rect key="frame" x="100" y="369" width="214" height="123"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.59843543628516471" green="0.46424230732269722" blue="0.92133218050003052" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="39"/>
+                                <state key="normal" title="Follow">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="isPressed:" destination="AX5-Jx-GtT" eventType="touchUpInside" id="Mtf-j8-aLX"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Topic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pd-ro-EVc">
+                                <rect key="frame" x="75" y="73" width="273" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="47"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GBU-jX-IHQ">
+                                <rect key="frame" x="20" y="207" width="374" height="97"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="65"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="rin-Pg-Xan"/>
+                    </view>
+                    <connections>
+                        <outlet property="followButton" destination="tPH-bP-2Bn" id="gbo-SC-NK6"/>
+                        <outlet property="userInputTextView" destination="GBU-jX-IHQ" id="9uF-t3-31T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q35-4K-s5S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3865.217391304348" y="3260.4910714285711"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

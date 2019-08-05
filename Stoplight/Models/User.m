@@ -12,7 +12,7 @@
 - (void) setStuff{
     // code below is temporary!!!!
     //lol dont make the same mistake i did.. values first and then keys
-    self.selectedSources = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@(1), @"CNN", @(0), @"CNBC", @(1), @"Economist", @(0), @"Bloomberg", @(1), @"Fox", @(0), @"Washington Examiner", @(1), @"WSJ", @(0), @"NBC", @(0), @"Reuters", @(0), @"AP News", @(0), @"Time", @(0), @"NPR", nil];
+    //self.selectedSources = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@(1), @"CNN", @(0), @"CNBC", @(1), @"Economist", @(0), @"Bloomberg", @(1), @"Fox", @(0), @"Washington Examiner", @(1), @"WSJ", @(0), @"NBC", @(0), @"Reuters", @(0), @"AP News", @(0), @"Time", @(0), @"NPR", nil];
 }
 
 @end

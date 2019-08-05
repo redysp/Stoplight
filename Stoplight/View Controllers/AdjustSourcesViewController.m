@@ -30,7 +30,7 @@ static int sourceIndex = 0;
     self.sourcesTableView.delegate = self;
     self.user = [User new];
     [self.user setStuff];
-    self.tempUserChoices = [self.user.selectedSources mutableCopy];
+    //self.tempUserChoices = [self.user.selectedSources mutableCopy];
     self.sectionNames = @[@"Politics", @"Business", @"US", @"World"];
     
     //list of dictionaries where key is pol. aff and vals dict where key is source and val is checked status

@@ -35,6 +35,7 @@
 		70886B6722DE7D56009F3DB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6622DE7D56009F3DB8 /* User.m */; };
 		7093A8D622E0F0E60020F977 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7093A8D522E0F0E60020F977 /* CategoryCell.m */; };
 		7093A8E522E2409D0020F977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7093A8E422E2409D0020F977 /* SettingsViewController.m */; };
+		70C8D5FD22F8D09F0046A65A /* AddTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C8D5FC22F8D09F0046A65A /* AddTopicViewController.m */; };
 		70EA3C4022E674060047F361 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3F22E674060047F361 /* Utility.m */; };
 		B21A5D4C790187AE56B6CBC5 /* Pods_StoplightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */; };
 		C2BD654EAD96C4B6D5644B49 /* Pods_Stoplight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */; };
@@ -98,6 +99,8 @@
 		7093A8D522E0F0E60020F977 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		7093A8E322E2409D0020F977 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		7093A8E422E2409D0020F977 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		70C8D5FB22F8D09F0046A65A /* AddTopicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTopicViewController.h; sourceTree = "<group>"; };
+		70C8D5FC22F8D09F0046A65A /* AddTopicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTopicViewController.m; sourceTree = "<group>"; };
 		70EA3C3E22E674060047F361 /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		70EA3C3F22E674060047F361 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoplightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,6 +260,8 @@
 		FCD1851622DFDDF000315845 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				70C8D5FB22F8D09F0046A65A /* AddTopicViewController.h */,
+				70C8D5FC22F8D09F0046A65A /* AddTopicViewController.m */,
 				FC11E89B22E67DE5007380B7 /* AdjustCategoriesViewController.h */,
 				FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */,
 				FC11E89822E67DB8007380B7 /* AdjustSourcesViewController.h */,
@@ -530,6 +535,7 @@
 				7093A8D622E0F0E60020F977 /* CategoryCell.m in Sources */,
 				FCD1852422DFDDF000315845 /* SetupViewController.m in Sources */,
 				70886B6722DE7D56009F3DB8 /* User.m in Sources */,
+				70C8D5FD22F8D09F0046A65A /* AddTopicViewController.m in Sources */,
 				70886B5522DE709E009F3DB8 /* (null) in Sources */,
 				70886B6422DE7855009F3DB8 /* ArticleCell.m in Sources */,
 				FCD1852322DFDDF000315845 /* FeedViewController.m in Sources */,
@@ -707,7 +713,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 893L9MG4VR;
+				DEVELOPMENT_TEAM = 2Q39SP36P8;
 				INFOPLIST_FILE = Stoplight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -726,7 +732,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 893L9MG4VR;
+				DEVELOPMENT_TEAM = 2Q39SP36P8;
 				INFOPLIST_FILE = Stoplight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
