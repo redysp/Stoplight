@@ -11,11 +11,12 @@
 #import "SettingsCategoryCell.h"
 #import "User.h"
 
-@interface AdjustCategoriesViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface AdjustCategoriesViewController () <UITableViewDelegate, UITableViewDataSource, AddTopicViewControllerDelegate>
 @property User *user;
 @property (weak, nonatomic) IBOutlet UITableView *categoriesTableView;
 @property (nonatomic, retain) UITextField *userInput;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
+@property AddTopicViewController *controller;
 @property NSMutableArray *sortedTopics;
 @property NSString *addedString;
 @end
@@ -49,18 +50,29 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)didTapFollowWithText:(NSString *)text{
+    NSLog(@"didTapFollowCalled");
+    self.addedString = text;
+    if (![self.addedString isEqualToString:@""]){
+    [self.user.preferred_topics addObject:self.addedString];
+    }
+    NSLog(@"Updated preferred topics:  %@",self.user.preferred_topics);
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.categoriesTableView reloadData];
+}
+
 - (IBAction)didTapAdd:(id)sender {
     // grab the view controller we want to show
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    AddTopicViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"addTopics"];
-    controller.delegate = self;
+    self.controller = [storyboard instantiateViewControllerWithIdentifier:@"addTopics"];
+    self.controller.delegate = self;
     
     // present the controller
-    controller.modalPresentationStyle = UIModalPresentationPopover;
-    [self presentViewController:controller animated:YES completion:nil];
+    self.controller.modalPresentationStyle = UIModalPresentationPopover;
+    [self presentViewController:self.controller animated:YES completion:nil];
     
     // configure the Popover controller
-    UIPopoverPresentationController *popController = [controller popoverPresentationController];
+    UIPopoverPresentationController *popController = [self.controller popoverPresentationController];
     popController.permittedArrowDirections = UIPopoverArrowDirectionAny;
     popController.barButtonItem = self.addButton;
     popController.delegate = self;

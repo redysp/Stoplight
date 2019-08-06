@@ -34,8 +34,8 @@
 		70886B6722DE7D56009F3DB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6622DE7D56009F3DB8 /* User.m */; };
 		7093A8D622E0F0E60020F977 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7093A8D522E0F0E60020F977 /* CategoryCell.m */; };
 		7093A8E522E2409D0020F977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7093A8E422E2409D0020F977 /* SettingsViewController.m */; };
-		70C8D5FF22F9EC490046A65A /* Main copy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C8D5FE22F9EC490046A65A /* Main copy.storyboard */; };
 		70C8D60222F9EC880046A65A /* AddTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C8D60122F9EC880046A65A /* AddTopicViewController.m */; };
+		70C8D60422F9F4640046A65A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C8D60322F9F4640046A65A /* Main.storyboard */; };
 		70EA3C4022E674060047F361 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3F22E674060047F361 /* Utility.m */; };
 		B21A5D4C790187AE56B6CBC5 /* Pods_StoplightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */; };
 		C2BD654EAD96C4B6D5644B49 /* Pods_Stoplight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */; };
@@ -103,9 +103,9 @@
 		7093A8D522E0F0E60020F977 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		7093A8E322E2409D0020F977 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		7093A8E422E2409D0020F977 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		70C8D5FE22F9EC490046A65A /* Main copy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main copy.storyboard"; path = "../../Main copy.storyboard"; sourceTree = "<group>"; };
 		70C8D60022F9EC880046A65A /* AddTopicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTopicViewController.h; sourceTree = "<group>"; };
 		70C8D60122F9EC880046A65A /* AddTopicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTopicViewController.m; sourceTree = "<group>"; };
+		70C8D60322F9F4640046A65A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		70EA3C3E22E674060047F361 /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		70EA3C3F22E674060047F361 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoplightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,7 +201,7 @@
 				2448817622DE3E64001BF872 /* AppDelegate.m */,
 				70EA3C3E22E674060047F361 /* Utility.h */,
 				70EA3C3F22E674060047F361 /* Utility.m */,
-				70C8D5FE22F9EC490046A65A /* Main copy.storyboard */,
+				70C8D60322F9F4640046A65A /* Main.storyboard */,
 				2448818022DE3E64001BF872 /* LaunchScreen.storyboard */,
 				2448817E22DE3E64001BF872 /* Assets.xcassets */,
 				2448818322DE3E64001BF872 /* Info.plist */,
@@ -422,7 +422,7 @@
 			files = (
 				2448818222DE3E64001BF872 /* LaunchScreen.storyboard in Resources */,
 				2448817F22DE3E64001BF872 /* Assets.xcassets in Resources */,
-				70C8D5FF22F9EC490046A65A /* Main copy.storyboard in Resources */,
+				70C8D60422F9F4640046A65A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,11 +561,7 @@
 				7093A8D622E0F0E60020F977 /* CategoryCell.m in Sources */,
 				FCD1852422DFDDF000315845 /* SetupViewController.m in Sources */,
 				70886B6722DE7D56009F3DB8 /* User.m in Sources */,
-<<<<<<< HEAD
-				70C8D5FD22F8D09F0046A65A /* AddTopicViewController.m in Sources */,
-=======
 				70C8D60222F9EC880046A65A /* AddTopicViewController.m in Sources */,
->>>>>>> 651ec5c9acbee40c1bfaa84673f1d3366f2d0a82
 				70886B5522DE709E009F3DB8 /* (null) in Sources */,
 				70886B6422DE7855009F3DB8 /* ArticleCell.m in Sources */,
 				FCD1852322DFDDF000315845 /* FeedViewController.m in Sources */,
@@ -744,7 +740,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.powercarlos25.Stoplight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arleneigwe.Stoplight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -763,7 +759,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.powercarlos25.Stoplight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arleneigwe.Stoplight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
