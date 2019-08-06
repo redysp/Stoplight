@@ -52,6 +52,9 @@
     self.activityIndicator.center = self.view.center;
     [self.activityIndicator startAnimating];
     
+    //Delete later
+    [Utility saveDefaultSources];
+
 
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     
@@ -130,11 +133,6 @@
     return 1;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 300;
-//}
-
-
 #pragma mark - Data Fetching
 
 -(void)fetchArticles {
@@ -189,7 +187,6 @@ Uses API call that inputs a query, not a specific source.
             NSArray *sourcesArray = sourcesDictionary[slant];
             for (NSString *source in sourcesArray) {
                 [[APIManager shared] getTopicArticles:topic source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    //Completion block.
                     [self completionBlock:data response:response error:error slant:slant topic:topic];
                 }];
             }
@@ -202,14 +199,14 @@ Fetches articles by category, not topic.
 Uses a different data structure to store sources and a different api call.
 **/
 -(void)fetchArticlesByCategory {
-    NSDictionary *sourcesDictionary = [Utility retrieveSourceDict];
+    //NSDictionary *sourcesDictionary = [Utility retrieveSourceDict];
+    NSDictionary *sourcesDictionary = [Utility getSavedSourcesDictionary];
     for (NSString *category in self.sectionsList) {
         NSDictionary *sideDictionary = sourcesDictionary[category]; //Dictionary with keys left, middle, and right
         for (NSString *slant in sideDictionary){
             NSArray *sourcesArray = sideDictionary[slant];
             for (NSString *source in sourcesArray){
                 [[APIManager shared] getCategoryArticles:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    //Completion block.
                     [self completionBlock:data response:response error:error slant:slant topic:category];
                 }];
             }

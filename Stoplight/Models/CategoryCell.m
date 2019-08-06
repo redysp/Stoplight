@@ -56,7 +56,6 @@
     @try {
         
         //[self setOppositeAffiliation];
-        
         [cell customizeCardView];
 
         Article *article = self.articles[indexPath.row];
@@ -77,7 +76,6 @@
             [cell.articleImageView setImageWithURL:article.imageLink];
         }
         
-        
         //Returns an ArticleCell
         return cell;
     } @catch (NSException *exception) {
@@ -97,7 +95,7 @@
 
 //collection view asks its dataSource for num items in each section
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 6;
+    return self.articles.count;
 }
 
 
