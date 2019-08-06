@@ -24,7 +24,6 @@
 		2461EBFF22E1357C00077272 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 2448817522DE3E64001BF872 /* AppDelegate.h */; };
 		2461EC0022E1375F00077272 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851A22DFDDF000315845 /* LoginViewController.m */; };
 		2461EC0122E1376800077272 /* LoginViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851F22DFDDF000315845 /* LoginViewController.h */; };
-		24E33CCF22E8D7DA001C5C40 /* Utility.h in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3E22E674060047F361 /* Utility.h */; };
 		373D107763C3D0757F4C10EC /* Pods_StoplightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1492F1CC1FD23A5C11848C /* Pods_StoplightTests.framework */; };
 		706946D822E8E75B0009FB03 /* SourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 706946D722E8E75B0009FB03 /* SourceCell.m */; };
 		7075743D22EF8C9300AA669A /* SettingsCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7075743C22EF8C9300AA669A /* SettingsCategoryCell.m */; };
@@ -34,17 +33,15 @@
 		70886B6722DE7D56009F3DB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70886B6622DE7D56009F3DB8 /* User.m */; };
 		7093A8D622E0F0E60020F977 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7093A8D522E0F0E60020F977 /* CategoryCell.m */; };
 		7093A8E522E2409D0020F977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7093A8E422E2409D0020F977 /* SettingsViewController.m */; };
-		70C8D5FF22F9EC490046A65A /* Main copy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C8D5FE22F9EC490046A65A /* Main copy.storyboard */; };
-		70C8D60222F9EC880046A65A /* AddTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C8D60122F9EC880046A65A /* AddTopicViewController.m */; };
-		70EA3C4022E674060047F361 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3F22E674060047F361 /* Utility.m */; };
 		B21A5D4C790187AE56B6CBC5 /* Pods_StoplightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682BA60F8CB4BFD5BD31D337 /* Pods_StoplightUITests.framework */; };
 		C2BD654EAD96C4B6D5644B49 /* Pods_Stoplight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD58D9CE8EA4CE4E34A0DA3 /* Pods_Stoplight.framework */; };
 		FC11E89A22E67DB8007380B7 /* AdjustSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC11E89922E67DB8007380B7 /* AdjustSourcesViewController.m */; };
 		FC11E89D22E67DE5007380B7 /* AdjustCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */; };
+		FC50EB3E22F9F61400F267D4 /* Utility.h in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3E22E674060047F361 /* Utility.h */; };
+		FC50EB3F22F9F61400F267D4 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3F22E674060047F361 /* Utility.m */; };
 		FC6FA4B122EBBB8400316C1D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6FA4B022EBBB8400316C1D /* WebKit.framework */; };
 		FC6FA4B422EBBBBB00316C1D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4B322EBBBBB00316C1D /* WebViewController.m */; };
 		FC6FA4B722F0B84A00316C1D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4B622F0B84A00316C1D /* SearchViewController.m */; };
-		FC6FA4BA22F206DE00316C1D /* SearchPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4B922F206DE00316C1D /* SearchPageCell.m */; };
 		FC6FA4BD22F3B38500316C1D /* SearchArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4BC22F3B38500316C1D /* SearchArticleCell.m */; };
 		FCD1850F22DF9F4C00315845 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FCD1852322DFDDF000315845 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1851722DFDDF000315845 /* FeedViewController.m */; };
@@ -122,8 +119,6 @@
 		FC6FA4B322EBBBBB00316C1D /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		FC6FA4B522F0B84A00316C1D /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		FC6FA4B622F0B84A00316C1D /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
-		FC6FA4B822F206DE00316C1D /* SearchPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPageCell.h; sourceTree = "<group>"; };
-		FC6FA4B922F206DE00316C1D /* SearchPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPageCell.m; sourceTree = "<group>"; };
 		FC6FA4BB22F3B38500316C1D /* SearchArticleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchArticleCell.h; sourceTree = "<group>"; };
 		FC6FA4BC22F3B38500316C1D /* SearchArticleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchArticleCell.m; sourceTree = "<group>"; };
 		FCD1851722DFDDF000315845 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
@@ -245,8 +240,6 @@
 				706946D722E8E75B0009FB03 /* SourceCell.m */,
 				70886B6522DE7D56009F3DB8 /* User.h */,
 				70886B6622DE7D56009F3DB8 /* User.m */,
-				FC6FA4B822F206DE00316C1D /* SearchPageCell.h */,
-				FC6FA4B922F206DE00316C1D /* SearchPageCell.m */,
 				FC6FA4BB22F3B38500316C1D /* SearchArticleCell.h */,
 				FC6FA4BC22F3B38500316C1D /* SearchArticleCell.m */,
 			);
@@ -533,12 +526,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC50EB3E22F9F61400F267D4 /* Utility.h in Sources */,
+				FC50EB3F22F9F61400F267D4 /* Utility.m in Sources */,
 				706946D822E8E75B0009FB03 /* SourceCell.m in Sources */,
 				FC6FA4B422EBBBBB00316C1D /* WebViewController.m in Sources */,
-				24E33CCF22E8D7DA001C5C40 /* Utility.h in Sources */,
 				2461EC0122E1376800077272 /* LoginViewController.h in Sources */,
 				2461EC0022E1375F00077272 /* LoginViewController.m in Sources */,
-				70EA3C4022E674060047F361 /* Utility.m in Sources */,
 				2461EBFE22E1357C00077272 /* APIManager.h in Sources */,
 				7075743D22EF8C9300AA669A /* SettingsCategoryCell.m in Sources */,
 				FC11E89D22E67DE5007380B7 /* AdjustCategoriesViewController.m in Sources */,
@@ -566,7 +559,6 @@
 				70886B6422DE7855009F3DB8 /* ArticleCell.m in Sources */,
 				FCD1852322DFDDF000315845 /* FeedViewController.m in Sources */,
 				2448817722DE3E64001BF872 /* AppDelegate.m in Sources */,
-				FC6FA4BA22F206DE00316C1D /* SearchPageCell.m in Sources */,
 				FCD1852622DFDDF000315845 /* SignupViewController.m in Sources */,
 				FC6FA4BD22F3B38500316C1D /* SearchArticleCell.m in Sources */,
 			);
@@ -733,14 +725,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 893L9MG4VR;
+				DEVELOPMENT_TEAM = 7QT8F3C5QR;
 				INFOPLIST_FILE = Stoplight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.powercarlos25.Stoplight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emily13hsiao.Stoplight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -752,14 +744,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 893L9MG4VR;
+				DEVELOPMENT_TEAM = 7QT8F3C5QR;
 				INFOPLIST_FILE = Stoplight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.powercarlos25.Stoplight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emily13hsiao.Stoplight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

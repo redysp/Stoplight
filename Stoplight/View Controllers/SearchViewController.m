@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *articles;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
+@property NSInteger loadCount;
 
 @end
 
@@ -37,6 +38,8 @@
     //Delegate for search bar.
     self.searchBar.delegate = self;
     self.searchBar.showsCancelButton = YES;
+    
+    self.loadCount = 0;
 }
 
 
@@ -68,7 +71,9 @@
             cell.titleLabel.text = article.title;
         }
         if (article.imageLink) {
-            [cell.imageView setImageWithURL:article.imageLink];
+            cell.articleImageView.layer.cornerRadius = 10;
+            cell.articleImageView.clipsToBounds = YES;
+            [cell.articleImageView setImageWithURL:article.imageLink];
         }
         return cell;
     } @catch (NSException *exception){
@@ -126,10 +131,15 @@
                 }
                 [[articles objectAtIndex:0] setAffiliation:slant];
                 [self.articles addObject:[articles objectAtIndex:0]];
+                self.loadCount += 1;
                 
                 self.isMoreDataLoading = false;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
+                    if (self.loadCount == 6) {
+                        [self.tableView reloadData];
+                        self.loadCount = 0;
+                    }
+                    
                 });
             }];
         }
@@ -140,13 +150,15 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(!self.isMoreDataLoading){
-        
-        // Calculate the position of one screen length before the bottom of the results
-        int scrollViewContentHeight = self.tableView.contentSize.height;
-        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
-        
-        // When the user has scrolled past the threshold, start requesting
-        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging && ![self.searchBar.text isEqualToString:@""] ) {
+        CGPoint offset = scrollView.contentOffset;
+        CGRect bounds = scrollView.bounds;
+        CGSize size = scrollView.contentSize;
+        UIEdgeInsets inset = scrollView.contentInset;
+        float y = offset.y + bounds.size.height - inset.bottom;
+        float h = size.height;
+        float reload_distance = 10;
+        if(y > h + reload_distance && ![self.searchBar.text isEqualToString:@""] ) {
+            NSLog(@"load more rows");
             self.isMoreDataLoading = true;
             [self queryForText:self.searchBar.text];
         }
