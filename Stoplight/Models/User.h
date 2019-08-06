@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableArray *checkedTopics;
 + (instancetype)shared;
 - (NSString*)getArticleAffiliation;
-
 @end
 
 NS_ASSUME_NONNULL_END
