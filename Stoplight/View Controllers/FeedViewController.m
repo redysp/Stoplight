@@ -34,15 +34,24 @@
 //dictionary --> (key) pol aff. to (val) list of sources
 @property (strong,nonatomic) NSDictionary *sortedSourcesDict;
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
-@property (strong, nonatomic) User *user; 
+@property (strong, nonatomic) User *user;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @end
 
 @implementation FeedViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
+    // Prevents view from showing up before API call
+    self.categoryTableView.alpha = 0;
+    self.activityIndicator.center = self.view.center;
+    [self.activityIndicator startAnimating];
+    
 
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     
@@ -71,12 +80,14 @@
             return;
         }
         [strongSelf fetchArticles];
+        
     });
     
     //Initialize refresh control.
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.categoryTableView insertSubview:self.refreshControl atIndex:0];
+    
 }
 
 
@@ -160,6 +171,10 @@
         NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
         [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
         [self.refreshControl endRefreshing];
+        
+        self.categoryTableView.alpha = 1;
+        [self.activityIndicator stopAnimating];
+        
     });
 }
 

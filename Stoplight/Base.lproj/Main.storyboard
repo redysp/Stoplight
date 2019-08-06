@@ -91,6 +91,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="edg-MW-Ndr">
+                                <rect key="frame" x="190.78445578650235" y="389.63863511583259" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="0.1647058824" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="455" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6ki-gI-rfi">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -191,7 +196,6 @@
                                                 <constraint firstItem="zm7-zF-LZr" firstAttribute="top" secondItem="yOy-LK-wBE" secondAttribute="bottom" id="EKV-eL-naA"/>
                                                 <constraint firstItem="zm7-zF-LZr" firstAttribute="leading" secondItem="QpD-sM-fq9" secondAttribute="leading" id="WHd-r9-Kdt"/>
                                                 <constraint firstAttribute="bottom" secondItem="zm7-zF-LZr" secondAttribute="bottom" id="bzH-gQ-xu5"/>
-                                                <constraint firstItem="zm7-zF-LZr" firstAttribute="top" secondItem="yOy-LK-wBE" secondAttribute="bottom" id="ded-zy-xs6"/>
                                                 <constraint firstAttribute="trailing" secondItem="zm7-zF-LZr" secondAttribute="trailing" id="l0T-19-CEf"/>
                                                 <constraint firstItem="yOy-LK-wBE" firstAttribute="top" secondItem="QpD-sM-fq9" secondAttribute="top" constant="10" id="wfB-Qi-0k8"/>
                                                 <constraint firstAttribute="trailing" secondItem="yOy-LK-wBE" secondAttribute="trailing" id="y9v-hO-Cip"/>
@@ -217,6 +221,7 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Stoplight" id="mzK-wV-aul"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="edg-MW-Ndr" id="bNB-e5-3jL"/>
                         <outlet property="categoryTableView" destination="6ki-gI-rfi" id="1JD-Y6-AeC"/>
                         <segue destination="Aks-PT-IQW" kind="presentation" identifier="toWeb" id="kBa-qp-fba"/>
                     </connections>
