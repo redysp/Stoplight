@@ -21,7 +21,7 @@
 
 - (NSString*)getArticleAffiliation{
     self.affiliation = @"left";
-    return self.affiliation; 
+    return self.affiliation;
 }
 
 @end
