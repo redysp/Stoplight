@@ -12,19 +12,31 @@
 #import "CategoryCell.h"
 #import "Utility.h"
 #import "APIManager.h"
+#import "WebViewController.h"
+#import "ArticleCell.h"
+#import "User.h"
 
+/**
+For right now, tab bar
+0 - Home
+1 - Following
+**/
 @interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
 //keys --> category; vals--> art list
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
-@property (strong, nonatomic) NSMutableArray *categoriesList;
+@property (strong, nonatomic) NSArray *sectionsList;
 
 //Dictionary containing articles we want organized by source
 @property (strong,nonatomic) NSMutableDictionary *displayDict;
 
 //dictionary --> (key) pol aff. to (val) list of sources
 @property (strong,nonatomic) NSDictionary *sortedSourcesDict;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) User *user; 
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation FeedViewController
@@ -32,99 +44,153 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [Utility init];
-    
+    //Delete later
+    [Utility saveDefaultSources];
+
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     
+    //Set delegate and datasource for tableview.
     self.categoryTableView.delegate = self;
     self.categoryTableView.dataSource = self;
     
-    // We will be getting this from the Utility file (which is set by the user in settings)
-    self.categoriesList = [NSMutableArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];
+     //After merging and doing user defaults from the settings page, it should be like this:
+    if (self.tabBarController.selectedIndex == 0) { //Main feed page
+        self.sectionsList = [Utility fetchCategoriesList];
+    } else  { //Following topics page
+        self.sectionsList = [Utility fetchTopicsList];
+    }
+
     
     //Initialize the arrays in dictionaries to be empty
-    for (NSString *category in self.categoriesList) {
-        self.articlesDictionary[category] = [NSMutableArray new];
+    for (NSString *section in self.sectionsList) {
+        self.articlesDictionary[section] = [NSMutableArray new];
     }
     
-    [self fetchArticlesByCategory];
+    //Switching to a different thread to start network call.
+    __weak __typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __strong __typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        [strongSelf fetchArticles];
+    });
+    
+    //Initialize refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.categoryTableView insertSubview:self.refreshControl atIndex:0];
 }
 
 
 #pragma mark - TableView management
 
+-(void) beginRefresh:(UIRefreshControl *)refreshControl {
+    [self fetchArticles];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CategoryCell *cell = [self.categoryTableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
-    NSString *category = self.categoriesList[indexPath.row];
-    NSArray *categoryArticles = self.articlesDictionary[category];
+    NSString *section = self.sectionsList[indexPath.row];
+    NSArray *categoryArticles = self.articlesDictionary[section];
+    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     cell.articles = categoryArticles;
-    cell.categoryNameLabel.text = [category capitalizedString];
+    cell.categoryNameLabel.text = [section capitalizedString];
     [cell.categoryCollectionView reloadData];
+    cell.vc = self;
   
     return cell;
     
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.categoriesList.count;
+    return self.sectionsList.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-
-
-
 #pragma mark - Data Fetching
 
--(void)fetchArticlesByCategory {
-    NSDictionary *sourcesDictionary = [Utility retrieveSourceDict];
+-(void)fetchArticles {
+    if (self.tabBarController.selectedIndex == 0) {
+        [self fetchArticlesByCategory];
+    } else  {
+        [self fetchArticlesByTopic];
+    }
+}
+
+-(void)completionBlock:(NSData * _Nullable)data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable)error slant:(NSString *)slant topic:(NSString *)topic{
+    if (error) {
+        NSLog(@"Error");
+        return;
+    }
     
-    for (NSString *category in self.categoriesList) {
-        NSDictionary *sideDictionary = sourcesDictionary[category]; //Dictionary with keys left, middle, and right
-        for (NSString *side in sideDictionary){
-            NSArray *sourcesArray = sideDictionary[side];
-            for (NSString *source in sourcesArray){
-                [NSThread sleepForTimeInterval:0.4];
-                [[APIManager shared] getCategoryArticles:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    //Completion block.
-                    if (error) {
-                        NSLog(@"Error");
-                        return;
-                    }
-                    
-                    NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
-                    NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]]; //array of Articles
-                    //NSArray *filteredArticles = [self filterArticles:category articles:articles]; //filter so only articles we want stay
-                
-                    if (articles.count == 0) {
-                        NSLog(@"Failed to fetch: %@, %@", source, category);
-                        return;
-                    }
-                    
-                    NSArray *filteredArticles = [self filterArticles:category articles:articles];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.articlesDictionary[category] addObjectsFromArray:filteredArticles];
-                        [self.categoryTableView reloadData];
-                    });
+    NSDictionary *articlesDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]; //array of unprocessed dictionaries
+    NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]];
+    
+    if (articles.count == 0) {
+        return;
+    }
+    
+    for (Article *article in articles) {
+        [article setAffiliation:slant];
+    }
+    
+    NSArray *filteredArticles = [self filterArticlesByTopic:topic articles:articles];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.articlesDictionary[topic] addObjectsFromArray:filteredArticles];
+        
+        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
+        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
+        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+        [self.refreshControl endRefreshing];
+    });
+}
+
+/**
+Uses API call that inputs a query, not a specific source.
+**/
+-(void)fetchArticlesByTopic {
+    NSDictionary *sourcesDictionary = [Utility fetchGeneralSourceDictionary];
+    
+    for (NSString *topic in self.sectionsList) {
+        for (NSString *slant in sourcesDictionary) {
+            NSArray *sourcesArray = sourcesDictionary[slant];
+            for (NSString *source in sourcesArray) {
+                [[APIManager shared] getTopicArticles:topic source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    [self completionBlock:data response:response error:error slant:slant topic:topic];
                 }];
             }
         }
     }
 }
-        
-// FOR REFERENCE.
-//            need to create indexpath for that one, not sure how to do this
-//            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.categoriesList indexOfObjectIdenticalTo:categoryName] inSection:0];
-//            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
-//            NSLog(@"Got data");
-//            [self.categoryTableView beginUpdates];
-//            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-//            [self.categoryTableView endUpdates];
+
+/**
+Fetches articles by category, not topic.
+Uses a different data structure to store sources and a different api call.
+**/
+-(void)fetchArticlesByCategory {
+    //NSDictionary *sourcesDictionary = [Utility retrieveSourceDict];
+    NSDictionary *sourcesDictionary = [Utility getSavedSourcesDictionary];
+    for (NSString *category in self.sectionsList) {
+        NSDictionary *sideDictionary = sourcesDictionary[category]; //Dictionary with keys left, middle, and right
+        for (NSString *slant in sideDictionary){
+            NSArray *sourcesArray = sideDictionary[slant];
+            for (NSString *source in sourcesArray){
+                [[APIManager shared] getCategoryArticles:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    [self completionBlock:data response:response error:error slant:slant topic:category];
+                }];
+            }
+        }
+    }
+}
+
 
 #pragma mark - Article Filter Logic
 
@@ -143,5 +209,29 @@
         [keepArticles addObject:[articles objectAtIndex:i]];
     }
     return keepArticles;
+}
+
+- (NSArray *) filterArticlesByTopic:(NSString *)topic articles:(NSArray *)articles {
+    //For this one just take the first 2?
+    NSMutableArray *keepArticles = [NSMutableArray new];
+    [keepArticles addObject:[articles objectAtIndex:0]];
+    [keepArticles addObject:[articles objectAtIndex:1]];
+    return keepArticles;
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    //Segue into webview.
+    if ([segue.identifier isEqualToString:@"toWeb"]) {
+        
+        ArticleCell *tappedCell = sender;
+        Article *article = tappedCell.article;
+        
+        WebViewController *viewController = [segue destinationViewController];
+        viewController.url = article.link;
+        
+    }
+    
 }
 @end

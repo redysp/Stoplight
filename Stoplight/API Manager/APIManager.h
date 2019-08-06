@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 -(void)getCategoryArticles:(NSString *)source completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion;
+-(void)getTopicArticles:(NSString *)topic source:(NSString *)source completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion;
+-(void)getTopicArticlesWithCountAndOffset:(NSString *)topic source:(NSString *)source count:(NSInteger)count offset:(NSInteger)offset completion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion;
 @end
 
 NS_ASSUME_NONNULL_END

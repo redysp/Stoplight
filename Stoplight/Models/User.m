@@ -9,10 +9,19 @@
 #import "User.h"
 
 @implementation User
-- (void) setStuff{
-    // code below is temporary!!!!
-    //lol dont make the same mistake i did.. values first and then keys
-    //self.selectedSources = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@(1), @"CNN", @(0), @"CNBC", @(1), @"Economist", @(0), @"Bloomberg", @(1), @"Fox", @(0), @"Washington Examiner", @(1), @"WSJ", @(0), @"NBC", @(0), @"Reuters", @(0), @"AP News", @(0), @"Time", @(0), @"NPR", nil];
+
++ (instancetype)shared {
+    static User *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[self alloc] init];
+    });
+    return sharedManager;
+}
+
+- (NSString*)getArticleAffiliation{
+    self.affiliation = @"left";
+    return self.affiliation;
 }
 
 @end

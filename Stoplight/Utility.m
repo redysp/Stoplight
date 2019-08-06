@@ -47,31 +47,31 @@
 
 + (NSArray *)fetchCategoriesList {
     //This is what it should be eventually but just keeping it like this for functionality rn.
-    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //    NSArray *categoriesList = [defaults objectForKey:@"categoriesList"];
-    //    return categoriesList
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSArray *categoriesList = [defaults objectForKey:@"categoriesList"];
+//    return categoriesList
     return [NSArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];;
 }
 
 + (NSArray *)fetchTopicsList {
-    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //    NSArray *topicsList = [defaults objectForKey:@"topicsList"];
-    //    return topicsList;
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSArray *topicsList = [defaults objectForKey:@"topicsList"];
+//    return topicsList;
     return [NSArray arrayWithObjects:@"Global+Warming", @"sudan", nil];
 }
 
 /**
- Returns dictionary with this structure
+Returns dictionary with this structure
  {
  "left": [cnn.com, vox.com]
  "center": [npr.org, cnbc.com"]
  "right": [foxnews.com, nypost.com"]
  }
- **/
+**/
 + (NSDictionary *)fetchGeneralSourceDictionary {
-    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //    NSDictionary *sourcesDictionary = [defaults objectForKey:@"sourcesForTopics"];
-    //    return sourcesDictionary;
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *sourcesDictionary = [defaults objectForKey:@"sourcesForTopics"];
+//    return sourcesDictionary;
     NSArray *leftArray = [NSArray arrayWithObjects:@"cnn.com", @"theguardian.com", nil];
     NSArray *centerArray = [NSArray arrayWithObjects:@"npr.org", @"reuters.com", nil];
     NSArray *rightArray = [NSArray arrayWithObjects:@"foxnews.com", @"wsj.com", nil];
@@ -80,36 +80,16 @@
 }
 
 /**
- Takes in human-readable topic (ex "Global Warming") and creates
- query format (ex "Global+Warming)
- **/
+Takes in human-readable topic (ex "Global Warming") and creates
+query format (ex "Global+Warming)
+**/
 + (NSString *) topicToQuery:(NSString *)topic {
     return [topic stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 }
 
 + (void)saveDefaultSources {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-//    NSMutableDictionary *politicsDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                                         [@{@"vox.com":@YES, @"nbcnews.com":@YES}  mutableCopy], @"left",
-//                                         [@{@"reuters.com":@YES, @"apnews.com":@YES}  mutableCopy], @"center",
-//                                         [@{@"foxnews.com":@YES, @"nypost.com":@YES}  mutableCopy], @"right",
-//                                         nil];
-//    NSMutableDictionary *businessDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                                         [@{@"cnbc.com":@YES, @"economist.com":@YES}  mutableCopy], @"left",
-//                                         [@{@"wsj.com":@YES, @"bloomberg.com":@YES}  mutableCopy], @"center",
-//                                         [@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES} mutableCopy], @"right",
-//                                         nil];
-//    NSMutableDictionary *usDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                                         [@{@"cnn.com":@YES, @"time.com":@YES}  mutableCopy], @"left",
-//                                         [@{@"npr.org":@YES, @"usatoday.com":@YES}  mutableCopy], @"center",
-//                                         [@{@"foxnews.com":@YES, @"spectator.org":@YES} mutableCopy], @"right",
-//                                         nil];
-//    NSMutableDictionary *worldDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                                   [@{@"cnn.com/world":@YES, @"theguardian.com":@YES}  mutableCopy], @"left",
-//                                   [@{@"reuters.com":@YES, @"bbc.com":@YES}  mutableCopy], @"center",
-//                                   [@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES} mutableCopy], @"right",
-//                                   nil];
+
     NSMutableDictionary *politicsDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                          [[NSMutableDictionary alloc] initWithDictionary:@{@"vox.com":@YES, @"nbcnews.com":@YES}], @"left",
                                          [[NSMutableDictionary alloc] initWithDictionary:@{@"reuters.com":@YES, @"apnews.com":@YES}], @"center",
@@ -132,16 +112,17 @@
                                       nil];
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:politicsDict, businessDict, usDict, worldDict, nil];
-//    NSMutableArray *arr = [@[
-//                     //Politics
-//                     [@{@"left":[@{@"vox.com":@YES, @"nbcnews.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"apnews.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"nypost.com":@YES}  mutableCopy]} mutableCopy],
-//                     //Business
-//                     [@{@"left":[@{@"cnbc.com":@YES, @"economist.com":@YES}  mutableCopy],@"center":[@{@"wsj.com":@YES, @"bloomberg.com":@YES}  mutableCopy],@"right":[@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES} mutableCopy]} mutableCopy],
-//                     //US
-//                     [@{@"left":[@{@"cnn.com":@YES, @"time.com":@YES}  mutableCopy],@"center":[@{@"npr.org":@YES, @"usatoday.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"spectator.org":@YES} mutableCopy]} mutableCopy],
-//                     //World
-//                     [@{@"left":[@{@"cnn.com/world":@YES, @"theguardian.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"bbc.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES} mutableCopy]} mutableCopy]] mutableCopy];
+    
     [defaults setObject:arr forKey:@"savedSources"];
+    [defaults synchronize];
+    
+    NSDictionary *defaultSourcesDictionary = [[NSMutableDictionary alloc] init];
+    [defaultSourcesDictionary setValue:politicsDict forKey:@"politics"];
+    [defaultSourcesDictionary setValue:businessDict forKey:@"business"];
+    [defaultSourcesDictionary setValue:usDict forKey:@"us"];
+    [defaultSourcesDictionary setValue:worldDict forKey:@"world"];
+    
+    [defaults setObject:defaultSourcesDictionary forKey:@"savedSourcesDictionary"];
     [defaults synchronize];
 }
 
@@ -162,6 +143,5 @@ Returns dictionary format sources for FEED VIEW CONTROLLER.
     NSMutableDictionary *savedSourcesDictionary = [defaults objectForKey:@"savedSourcesDictionary"];
     return savedSourcesDictionary;
 }
-
 
 @end
