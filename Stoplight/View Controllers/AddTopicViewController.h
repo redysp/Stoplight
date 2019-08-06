@@ -2,7 +2,9 @@
 //  AddTopicViewController.h
 //  Stoplight
 //
-//  Created by arleneigwe on 8/6/19.
+
+//  Created by arleneigwe on 8/5/19.
+
 //  Copyright © 2019 powercarlos25. All rights reserved.
 //
 
@@ -10,7 +12,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol AddTopicViewControllerDelegate;
+
 @interface AddTopicViewController : UIViewController
+@property (weak, nonatomic) id<AddTopicViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITextView *userInputTextView;
+@property (weak, nonatomic) IBOutlet UIButton *followButton;
+- (IBAction)isPressed:(id)sender;
+@end
+
+
+@protocol AddTopicViewControllerDelegate <NSObject>
+
+- (void) didTapFollowWithText:(NSString *) text;
 
 @end
 

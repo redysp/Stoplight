@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AddTopicViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AdjustCategoriesViewController : UIViewController
-
 @end
 
 NS_ASSUME_NONNULL_END
