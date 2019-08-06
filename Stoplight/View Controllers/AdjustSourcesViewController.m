@@ -93,13 +93,12 @@ static int sourceIndex = 0;
         //Get keys of that dictionary, which should be source names
         NSArray *sourceNames = [dict allKeys];
         if ([sourceNames containsObject:cell.source_name]) {
-            cell.isSelected = self.sectionItems[indexPath.section][key][cell.source_name];
+            cell.isSelected = [self.sectionItems[indexPath.section][key][cell.source_name] boolValue];
             break;
         }
     }
     
     //Set checkmark or no checkmark.
-    cell.highlighted = NO;
     if (cell.isSelected) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
