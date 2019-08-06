@@ -183,7 +183,6 @@ Uses a different data structure to store sources and a different api call.
         for (NSString *slant in sideDictionary){
             NSArray *sourcesArray = sideDictionary[slant];
             for (NSString *source in sourcesArray){
-                NSLog(@"ARTICLES FROM: %@", source);
                 [[APIManager shared] getCategoryArticles:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     [self completionBlock:data response:response error:error slant:slant topic:category];
                 }];
