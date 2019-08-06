@@ -39,6 +39,7 @@
 		FC11E89D22E67DE5007380B7 /* AdjustCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */; };
 		FC50EB3E22F9F61400F267D4 /* Utility.h in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3E22E674060047F361 /* Utility.h */; };
 		FC50EB3F22F9F61400F267D4 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EA3C3F22E674060047F361 /* Utility.m */; };
+		FC50EB4222FA275300F267D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC50EB4022FA275300F267D4 /* Main.storyboard */; };
 		FC6FA4B122EBBB8400316C1D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6FA4B022EBBB8400316C1D /* WebKit.framework */; };
 		FC6FA4B422EBBBBB00316C1D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4B322EBBBBB00316C1D /* WebViewController.m */; };
 		FC6FA4B722F0B84A00316C1D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FA4B622F0B84A00316C1D /* SearchViewController.m */; };
@@ -114,6 +115,7 @@
 		FC11E89922E67DB8007380B7 /* AdjustSourcesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustSourcesViewController.m; sourceTree = "<group>"; };
 		FC11E89B22E67DE5007380B7 /* AdjustCategoriesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustCategoriesViewController.h; sourceTree = "<group>"; };
 		FC11E89C22E67DE5007380B7 /* AdjustCategoriesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustCategoriesViewController.m; sourceTree = "<group>"; };
+		FC50EB4122FA275300F267D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC6FA4B022EBBB8400316C1D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		FC6FA4B222EBBBBB00316C1D /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		FC6FA4B322EBBBBB00316C1D /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				2448817622DE3E64001BF872 /* AppDelegate.m */,
 				70EA3C3E22E674060047F361 /* Utility.h */,
 				70EA3C3F22E674060047F361 /* Utility.m */,
+				FC50EB4022FA275300F267D4 /* Main.storyboard */,
 				70C8D5FE22F9EC490046A65A /* Main copy.storyboard */,
 				2448818022DE3E64001BF872 /* LaunchScreen.storyboard */,
 				2448817E22DE3E64001BF872 /* Assets.xcassets */,
@@ -413,9 +416,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC50EB4222FA275300F267D4 /* Main.storyboard in Resources */,
 				2448818222DE3E64001BF872 /* LaunchScreen.storyboard in Resources */,
 				2448817F22DE3E64001BF872 /* Assets.xcassets in Resources */,
-				70C8D5FF22F9EC490046A65A /* Main copy.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,7 +557,6 @@
 				7093A8D622E0F0E60020F977 /* CategoryCell.m in Sources */,
 				FCD1852422DFDDF000315845 /* SetupViewController.m in Sources */,
 				70886B6722DE7D56009F3DB8 /* User.m in Sources */,
-				70C8D60222F9EC880046A65A /* AddTopicViewController.m in Sources */,
 				70886B5522DE709E009F3DB8 /* (null) in Sources */,
 				70886B6422DE7855009F3DB8 /* ArticleCell.m in Sources */,
 				FCD1852322DFDDF000315845 /* FeedViewController.m in Sources */,
@@ -602,6 +604,14 @@
 				2448818122DE3E64001BF872 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FC50EB4022FA275300F267D4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC50EB4122FA275300F267D4 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
