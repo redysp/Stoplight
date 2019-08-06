@@ -76,12 +76,14 @@ static int sourceIndex = 0;
     sourceIndex++; //literally what even is this?
     
     //SET SELECTED STATE
+    NSString *affiliation;
     for (NSString *key in self.sectionItems[indexPath.section]) { //self.sectionItems[indexPath.section] will be like "politics dictionary", so keys are "left", "center", "right"
         //Get nested dictionary where key:source, value:YES/NO
         NSMutableDictionary *dict = self.sectionItems[indexPath.section][key];
         //Get keys of that dictionary, which should be source names
         NSArray *sourceNames = [dict allKeys];
         if ([sourceNames containsObject:cell.source_name]) {
+            affiliation = key;
             cell.isSelected = [self.sectionItems[indexPath.section][key][cell.source_name] boolValue];
             break;
         }
@@ -94,6 +96,13 @@ static int sourceIndex = 0;
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
+    if ([affiliation isEqualToString:@"left"]) {
+        cell.contentView.backgroundColor = [UIColor blueColor];
+    } else if ([affiliation isEqualToString:@"center"]) {
+        cell.contentView.backgroundColor = [UIColor grayColor];
+    } else {
+        cell.contentView.backgroundColor = [UIColor redColor];
+    }
     
     return cell;
 }
@@ -138,7 +147,7 @@ static int sourceIndex = 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section; {
-    return 44.0;
+    return 80.0;
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
@@ -358,8 +367,6 @@ Process to format compatible with feed view controller, save to user defaults.
     //Save the data
     [self saveSelectedItems];
     [self saveSelectedItemsDictionary];
-    
-    NSLog(@"\n\n saving sources \n\n");
     
     //Dismiss view controller.
     [self dismissViewControllerAnimated:YES completion:nil];
