@@ -91,6 +91,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="edg-MW-Ndr">
+                                <rect key="frame" x="190.78445578650235" y="389.63863511583259" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="0.1647058824" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="455" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6ki-gI-rfi">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -191,7 +196,6 @@
                                                 <constraint firstItem="zm7-zF-LZr" firstAttribute="top" secondItem="yOy-LK-wBE" secondAttribute="bottom" id="EKV-eL-naA"/>
                                                 <constraint firstItem="zm7-zF-LZr" firstAttribute="leading" secondItem="QpD-sM-fq9" secondAttribute="leading" id="WHd-r9-Kdt"/>
                                                 <constraint firstAttribute="bottom" secondItem="zm7-zF-LZr" secondAttribute="bottom" id="bzH-gQ-xu5"/>
-                                                <constraint firstItem="zm7-zF-LZr" firstAttribute="top" secondItem="yOy-LK-wBE" secondAttribute="bottom" id="ded-zy-xs6"/>
                                                 <constraint firstAttribute="trailing" secondItem="zm7-zF-LZr" secondAttribute="trailing" id="l0T-19-CEf"/>
                                                 <constraint firstItem="yOy-LK-wBE" firstAttribute="top" secondItem="QpD-sM-fq9" secondAttribute="top" constant="10" id="wfB-Qi-0k8"/>
                                                 <constraint firstAttribute="trailing" secondItem="yOy-LK-wBE" secondAttribute="trailing" id="y9v-hO-Cip"/>
@@ -217,6 +221,7 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Stoplight" id="mzK-wV-aul"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="edg-MW-Ndr" id="bNB-e5-3jL"/>
                         <outlet property="categoryTableView" destination="6ki-gI-rfi" id="1JD-Y6-AeC"/>
                         <segue destination="Aks-PT-IQW" kind="presentation" identifier="toWeb" id="kBa-qp-fba"/>
                     </connections>
@@ -600,7 +605,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohC-Ro-w0H">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                              <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -608,7 +613,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTj-Eq-sDd">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="PNL-Jf-40b">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="dqS-HH-5N3">
@@ -622,13 +627,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="rTj-Eq-sDd" firstAttribute="top" secondItem="7A5-Qh-SW5" secondAttribute="top" id="AJA-ny-SN3"/>
-                            <constraint firstItem="rTj-Eq-sDd" firstAttribute="trailing" secondItem="AL2-dJ-1bw" secondAttribute="trailing" id="DoV-HJ-KB2"/>
-                            <constraint firstItem="rTj-Eq-sDd" firstAttribute="leading" secondItem="AL2-dJ-1bw" secondAttribute="leading" id="EaY-o1-Fxu"/>
-                            <constraint firstItem="ohC-Ro-w0H" firstAttribute="leading" secondItem="AL2-dJ-1bw" secondAttribute="leading" id="PHg-4K-W8x"/>
-                            <constraint firstItem="ohC-Ro-w0H" firstAttribute="top" secondItem="7A5-Qh-SW5" secondAttribute="top" id="PRT-k7-DA2"/>
-                            <constraint firstAttribute="bottom" secondItem="ohC-Ro-w0H" secondAttribute="bottom" id="eDH-sw-wnN"/>
-                            <constraint firstItem="ohC-Ro-w0H" firstAttribute="trailing" secondItem="AL2-dJ-1bw" secondAttribute="trailing" id="isa-Jf-u1K"/>
+                            <constraint firstAttribute="bottom" secondItem="ohC-Ro-w0H" secondAttribute="bottom" id="46E-6g-RGf"/>
+                            <constraint firstItem="rTj-Eq-sDd" firstAttribute="top" secondItem="AL2-dJ-1bw" secondAttribute="top" id="LJA-fb-5Tt"/>
+                            <constraint firstItem="rTj-Eq-sDd" firstAttribute="leading" secondItem="AL2-dJ-1bw" secondAttribute="leading" id="Lu0-OE-b4N"/>
+                            <constraint firstItem="rTj-Eq-sDd" firstAttribute="trailing" secondItem="AL2-dJ-1bw" secondAttribute="trailing" id="QR8-FQ-zzj"/>
+                            <constraint firstItem="ohC-Ro-w0H" firstAttribute="leading" secondItem="AL2-dJ-1bw" secondAttribute="leading" id="VOq-6a-MSM"/>
+                            <constraint firstItem="ohC-Ro-w0H" firstAttribute="trailing" secondItem="AL2-dJ-1bw" secondAttribute="trailing" id="gTD-Hw-N0G"/>
+                            <constraint firstItem="ohC-Ro-w0H" firstAttribute="top" secondItem="rTj-Eq-sDd" secondAttribute="bottom" id="z3a-Bc-Lsb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AL2-dJ-1bw"/>
                     </view>
