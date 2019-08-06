@@ -44,8 +44,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //Delete later
+    //Delete later, should put in login
     [Utility saveDefaultSources];
+    [Utility saveDefaultTopics];
 
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     
@@ -98,6 +99,7 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     cell.articles = categoryArticles;
+    
     cell.categoryNameLabel.text = [section capitalizedString];
     [cell.categoryCollectionView reloadData];
     cell.vc = self;
@@ -159,7 +161,8 @@ Uses API call that inputs a query, not a specific source.
 -(void)fetchArticlesByTopic {
     NSDictionary *sourcesDictionary = [Utility fetchGeneralSourceDictionary];
     
-    for (NSString *topic in self.sectionsList) {
+    for (NSString *topicName in self.sectionsList) {
+        NSString *topic = [Utility topicToQuery:topicName];
         for (NSString *slant in sourcesDictionary) {
             NSArray *sourcesArray = sourcesDictionary[slant];
             for (NSString *source in sourcesArray) {

@@ -10,6 +10,7 @@
 #import "AddTopicViewController.h"
 #import "SettingsCategoryCell.h"
 #import "User.h"
+#import "Utility.h"
 
 @interface AdjustCategoriesViewController () <UITableViewDelegate, UITableViewDataSource, AddTopicViewControllerDelegate>
 @property User *user;
@@ -17,8 +18,7 @@
 @property (nonatomic, retain) UITextField *userInput;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property AddTopicViewController *controller;
-@property NSMutableArray *sortedTopics;
-@property NSString *addedString;
+@property NSMutableArray *selectedTopics;
 @end
 
 @implementation AdjustCategoriesViewController
@@ -29,38 +29,38 @@
     // Do any additional setup after loading the view.
     self.categoriesTableView.dataSource = self;
     self.categoriesTableView.delegate = self;
-    self.user = [User new];
-    self.addedString = @"";
-    if (self.user.preferred_topics[0] == nil){
-        //call utility class instead
-        self.user.preferred_topics = [@[@"Gilroy", @"Dayton shooting", @"tarrifs", @"Hong Kong"] mutableCopy];
-    }
-    //makes sure array sorted alphabetically
-    //self.sortedTopics = (NSMutableArray *)[self.user.preferred_topics sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    self.selectedTopics = [Utility getSelectedTopics];
 }
 
+
 - (IBAction)didTapBack:(id)sender {
-    /**
-     Save user defauls
-     **/
+    //Save in raw form.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.user.preferred_topics forKey:@"selectedCategories"];
+    [defaults setObject:self.selectedTopics forKey:@"selectedTopics"];
     [defaults synchronize];
+    
+    //Save in form feed view controller uses.
+    for (int i = 0; i < self.selectedTopics.count; i++) {
+        [self.selectedTopics replaceObjectAtIndex:i withObject:[Utility topicToQuery:self.selectedTopics[i]]];
+    }
+    [defaults setObject:self.selectedTopics forKey:@"selectedTopicsQueryFormat"];
+    [defaults synchronize];
+    
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+//Need to add text to the list of followed topics.
 - (void)didTapFollowWithText:(NSString *)text{
-    NSLog(@"didTapFollowCalled");
-    self.addedString = text;
-    if (![self.addedString isEqualToString:@""]){
-    [self.user.preferred_topics addObject:self.addedString];
+    if (![text isEqualToString:@""] && ![self.selectedTopics containsObject:text]) {
+        [self.selectedTopics addObject:text];
     }
-    NSLog(@"Updated preferred topics:  %@",self.user.preferred_topics);
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.categoriesTableView reloadData];
 }
 
+//Opens the view controller where you add the topic in.
 - (IBAction)didTapAdd:(id)sender {
     // grab the view controller we want to show
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -87,7 +87,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.user.preferred_topics.count;
+    return self.selectedTopics.count;
 }
 
 //allows for the slide to delete thing

@@ -733,14 +733,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2Q39SP36P8;
+				DEVELOPMENT_TEAM = 7QT8F3C5QR;
 				INFOPLIST_FILE = Stoplight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.arleneigwe.Stoplight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emily13hsiao.Stoplight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -752,14 +752,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2Q39SP36P8;
+				DEVELOPMENT_TEAM = 7QT8F3C5QR;
 				INFOPLIST_FILE = Stoplight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.arleneigwe.Stoplight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emily13hsiao.Stoplight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
