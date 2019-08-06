@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Uw-sT-aTn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tGh-5Q-FnN">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -603,7 +603,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rTj-Eq-sDd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="21" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="PNL-Jf-40b">
@@ -658,6 +658,11 @@
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="pJ7-5Q-uFA">
                                             <connections>
                                                 <action selector="didTapBack:" destination="ow9-7f-rxF" id="7hx-wz-0bm"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="1e1-yh-FRW">
+                                            <connections>
+                                                <action selector="didTapSave:" destination="ow9-7f-rxF" id="TAK-Is-aRx"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

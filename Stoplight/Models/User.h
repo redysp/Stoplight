@@ -15,19 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *politics;
-@property (strong, nonatomic) NSString *affiliation; 
-
-//on set-up both should be set to NSUserDefaults
-
-//list of only source names and topics user prefers
+@property (strong, nonatomic) NSString *affiliation;
 @property (strong, nonatomic) NSMutableArray *preferred_topics;
-//@property (strong, nonatomic) NSMutableArray *preferred_sources;
-
-//array to represent bools for each avail source
 @property (strong, nonatomic) NSMutableArray *checkedSources;
 @property (strong, nonatomic) NSMutableArray *checkedTopics;
 + (instancetype)shared;
-- (void)setStuff;
 - (NSString*)getArticleAffiliation;
 @end
 

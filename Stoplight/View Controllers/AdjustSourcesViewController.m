@@ -23,149 +23,87 @@ static int sourceIndex = 0;
 
 @implementation AdjustSourcesViewController
 
+#pragma mark - Initialization
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.sourcesTableView.dataSource = self;
     self.sourcesTableView.delegate = self;
-    self.user = [User new];
-    [self.user setStuff];
-    //self.tempUserChoices = [self.user.selectedSources mutableCopy];
-    self.sectionNames = @[@"Politics", @"Business", @"US", @"World"];
     
-    //list of dictionaries where key is pol. aff and vals dict where key is source and val is checked status
-    //when refactoring figure out how to make all of these mutable dictionaries without needing to use mutable copy lololol. it doesn't work if these dictionaries are created the normal way (as nsdictionaries)
-    self.sectionItems = @[
-  //Politics
-                          [@{@"left":[@{@"vox.com":@YES, @"nbcnews.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"apnews.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"nypost.com":@YES}  mutableCopy]} mutableCopy],
-  //Business
-                          [@{@"left":[@{@"cnbc.com":@YES, @"economist.com":@YES}  mutableCopy],@"center":[@{@"wsj.com":@YES, @"bloomberg.com":@YES}  mutableCopy],@"right":[@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES} mutableCopy]} mutableCopy],
-  //US
-                          [@{@"left":[@{@"cnn.com":@YES, @"time.com":@YES}  mutableCopy],@"center":[@{@"npr.org":@YES, @"usatoday.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"spectator.org":@YES} mutableCopy]} mutableCopy],
-  //World
-                          [@{@"left":[@{@"cnn.com/world":@YES, @"theguardian.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"bbc.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES} mutableCopy]} mutableCopy]];
+    self.sectionNames = [Utility fetchCategoriesList];
+    
+    [self initializeSectionItems];
 }
 
-- (IBAction)didTapBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void) initializeSectionItems {
+    //Fetch from user defaults and make all nested layers mutable.
+    self.sectionItems = [[Utility getSavedSources] mutableCopy];
+    for (int i = 0; i < self.sectionItems.count; i++) {
+        self.sectionItems[i] = [self.sectionItems[i] mutableCopy];
+        NSArray *keys = [self.sectionItems[i] allKeys];
+        for (NSString *slant in keys) {
+            self.sectionItems[i][slant] = [self.sectionItems[i][slant] mutableCopy];
+        }
+    }
 }
-/*
-- (NSArray *) getAllSources: (NSArray *) sourceArray ofTag: (int) tag{
-    NSMutableDictionary *tagDict = [sourceArray objectAtIndex:tag];
-    
-}*/
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];;
-    //if already checked, set to unchecked and remove source
+
+#pragma mark - TableView Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
+    
     if (cellSelected.isSelected) {
-        //change checkedSources value to False
-        
-        //changes cell accessory to None
-        cellSelected.accessoryType = UITableViewCellAccessoryNone;
-        
-        //adds source to user sources list
-        int count = 0;
-        NSMutableDictionary *indexDict = [self.sectionItems objectAtIndex:count];
-        NSMutableDictionary *leftDict = [indexDict objectForKey:@"left"];
-        NSMutableDictionary *centerDict = [indexDict objectForKey:@"center"];
-        NSMutableDictionary *rightDict = [indexDict objectForKey:@"right"];
-        
-        NSArray *leftSources = [leftDict allKeys];
-        NSArray *centerSources = [centerDict allKeys];
-        NSArray *rightSources = [rightDict allKeys];
-        
-        while (TRUE){
-        if ([leftSources containsObject:cellSelected.source_name]){
-            [leftDict setValue:@(NO) forKey:cellSelected.source_name];
-            break;
-        }
-        else if ([centerSources containsObject:cellSelected.source_name]){
-            [centerDict setValue:@(NO) forKey:cellSelected.source_name];
-            break;
-        }
-        else if ([rightSources containsObject:cellSelected.source_name]){
-            [rightDict setValue:@(NO) forKey:cellSelected.source_name];
-            break;
-        }
-        else{
-            count++;
-        }
-             }
-        //updates isSelected to reflect changes made
-        cellSelected.isSelected = @(NO);
-    }
-    //if not already checked, set to checked and add source
-    else {
-        //change checkedSources value to 1
-        
-        //changes cell acessory to checkmark
-        cellSelected.accessoryType = UITableViewCellAccessoryCheckmark;
-        
-        //removes source from user sources list
-        int count = 0;
-        NSMutableDictionary *indexDict = [self.sectionItems objectAtIndex:count];
-        NSMutableDictionary *leftDict = [indexDict objectForKey:@"left"];
-        NSMutableDictionary *centerDict = [indexDict objectForKey:@"center"];
-        NSMutableDictionary *rightDict = [indexDict objectForKey:@"right"];
-        
-        NSArray *leftSources = [leftDict allKeys];
-        NSArray *centerSources = [centerDict allKeys];
-        NSArray *rightSources = [rightDict allKeys];
-        
-        while (TRUE){
-            NSLog(@"%@", [self.sectionItems objectAtIndex:count]);
-            NSLog(@"%@",[[self.sectionItems objectAtIndex:count] objectForKey:@"left"]);
-            NSLog(@"Cell name: %@", cellSelected.source_name);
-            if ([leftSources containsObject:cellSelected.source_name]){
-                [leftDict setValue:@(NO) forKey:cellSelected.source_name];
-                break;
-            }
-            else if ([centerSources containsObject:cellSelected.source_name]){
-                [centerDict setValue:@(NO) forKey:cellSelected.source_name];
-                break;
-            }
-            else if ([rightSources containsObject:cellSelected.source_name]){
-                [rightDict setValue:@(NO) forKey:cellSelected.source_name];
-                break;
-            }
-            else{
-                count++;
-            }
-        }
-        //updates isSelected to reflect changes made
-        cellSelected.isSelected = @(YES);
+        [self deselectSource:indexPath];
+    } else {
+        [self selectSource:indexPath];
     }
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-//request a cell and run the following code for each one
 - (SourceCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //get an empty cell
-    SourceCell *cell = [self.sourcesTableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
-    //NSLog(@"%@",indexPath);
-    //needs to be a cell user as clicked will get to later
-    //cell.source_name = self.sectionItems[currentHeaderTag]
     
-    //cell.isSelected = [self.tempUserChoices[source] boolValue];
-    /*
-    cell.source_name = section;
-    cell.sourceCellLabel.text = section;
-     */
-    //cell.sourceCellLabel.textColor = [sections objectAtIndex:indexPath.row];
+    SourceCell *cell = [self.sourcesTableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
+    
     NSArray *left_sources = [[self.sectionItems[currentHeaderTag] objectForKey:@"left"] allKeys];
     NSArray *center_sources = [[self.sectionItems[currentHeaderTag] objectForKey:@"center"] allKeys];
     NSArray *right_sources = [[self.sectionItems[currentHeaderTag] objectForKey:@"right"] allKeys];
     
-    //all sources in self.sectionItems
+
     NSArray *sources = [[left_sources arrayByAddingObjectsFromArray:center_sources] arrayByAddingObjectsFromArray:right_sources];
-    cell.source_name = sources[sourceIndex];
-    cell.sourceCellLabel.text = sources[sourceIndex];
-    sourceIndex++;
+    cell.source_name = sources[indexPath.row];
+    cell.sourceCellLabel.text = sources[indexPath.row];
+    sourceIndex++; //literally what even is this?
+    
+    //SET SELECTED STATE
+    NSString *affiliation;
+    for (NSString *key in self.sectionItems[indexPath.section]) { //self.sectionItems[indexPath.section] will be like "politics dictionary", so keys are "left", "center", "right"
+        //Get nested dictionary where key:source, value:YES/NO
+        NSMutableDictionary *dict = self.sectionItems[indexPath.section][key];
+        //Get keys of that dictionary, which should be source names
+        NSArray *sourceNames = [dict allKeys];
+        if ([sourceNames containsObject:cell.source_name]) {
+            affiliation = key;
+            cell.isSelected = [self.sectionItems[indexPath.section][key][cell.source_name] boolValue];
+            break;
+        }
+    }
+    
+    //Set checkmark or no checkmark.
+    if (cell.isSelected) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    if ([affiliation isEqualToString:@"left"]) {
+        cell.contentView.backgroundColor = [UIColor blueColor];
+    } else if ([affiliation isEqualToString:@"center"]) {
+        cell.contentView.backgroundColor = [UIColor grayColor];
+    } else {
+        cell.contentView.backgroundColor = [UIColor redColor];
+    }
+    
     return cell;
 }
 
@@ -178,12 +116,10 @@ static int sourceIndex = 0;
         
         //all sources in self.sectionItems
         NSArray *sources = [[left_sources arrayByAddingObjectsFromArray:center_sources] arrayByAddingObjectsFromArray:right_sources];
-        //NSMutableArray *arrayOfItems = [self.sectionItems objectAtIndex:section];
         return sources.count;
     } else {
         return 0;
     }
-    //return [self.tempUserChoices count];
 }
 
 //number of sections to be displayed
@@ -211,7 +147,7 @@ static int sourceIndex = 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section; {
-    return 44.0;
+    return 80.0;
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
@@ -312,5 +248,130 @@ static int sourceIndex = 0;
         }
     }
 }
+
+
+#pragma mark - User Selection Methods
+
+-(void) selectSource:(NSIndexPath *)indexPath {
+    //Retrieve header string.
+    NSString *headerTitle = [self.sourcesTableView headerViewForSection:indexPath.section].textLabel.text;
+    //Retrieve selected cell
+    SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
+    
+    //change nested dictionary value to NO.
+    NSInteger headerIndex = [self.sectionNames indexOfObject:headerTitle];
+    //This gets a dictionary with keys left/right/center
+    NSDictionary *sourcesDictionary = self.sectionItems[headerIndex];
+    
+    //Iterate through dictionary keys ("left", "right", "center") to find the item
+    for (NSString *key in sourcesDictionary) {
+        //Get nested dictionary where key:source, value:YES/NO
+        NSMutableDictionary *dict = sourcesDictionary[key];
+        //Get keys of that dictionary, which should be source names
+        NSArray *sourceNames = [dict allKeys];
+        if ([sourceNames containsObject:cellSelected.source_name]) {
+            self.sectionItems[headerIndex][key][cellSelected.source_name] = @(YES);
+            break;
+        }
+    }
+    
+    //changes cell accessory to None
+    cellSelected.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    //updates isSelected to reflect changes made
+    cellSelected.isSelected = YES;
+}
+
+- (void) deselectSource:(NSIndexPath *)indexPath {
+    //Retrieve header string.
+    NSString *headerTitle = [self.sourcesTableView headerViewForSection:indexPath.section].textLabel.text;
+    //Retrieve selected cell
+    SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
+    
+    //change nested dictionary value to NO.
+    NSInteger headerIndex = [self.sectionNames indexOfObject:headerTitle];
+    //This gets a dictionary with keys left/right/center
+    NSDictionary *sourcesDictionary = self.sectionItems[headerIndex];
+    
+    //Iterate through dictionary keys ("left", "right", "center") to find the item
+    for (NSString *key in sourcesDictionary) {
+        //Get nested dictionary where key:source, value:YES/NO
+        NSMutableDictionary *dict = sourcesDictionary[key];
+        //Get keys of that dictionary, which should be source names
+        NSArray *sourceNames = [dict allKeys];
+        if ([sourceNames containsObject:cellSelected.source_name]) {
+            self.sectionItems[headerIndex][key][cellSelected.source_name] = @(NO);
+            break;
+        }
+    }
+    
+    //changes cell accessory to None
+    cellSelected.accessoryType = UITableViewCellAccessoryNone;
+    
+    //updates isSelected to reflect changes made
+    cellSelected.isSelected = NO;
+}
+
+#pragma mark - Saving Data
+
+/**
+ Save to User defaults the array of dictionaries in raw form.
+ **/
+-(void) saveSelectedItems {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.sectionItems forKey:@"savedSources"];
+    [defaults synchronize];
+}
+
+/**
+Process to format compatible with feed view controller, save to user defaults.
+**/
+-(void) saveSelectedItemsDictionary {
+    NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc] init];
+    NSArray *slantList = [NSArray arrayWithObjects:@"left", @"center", @"right", nil];
+    
+    for (int i = 0; i < self.sectionNames.count; i++) { //This level of iteration is for categories on both.
+        NSString *categoryName = self.sectionNames[i];
+        NSMutableDictionary *categoryDictionary = [[NSMutableDictionary alloc] init];
+        for (NSString *slant in slantList) {
+            NSArray *sourcesBySlant = [self sourcesBySlant:i slant:slant];
+            [categoryDictionary setObject:sourcesBySlant forKey:slant];
+        }
+        [feedDictionary setObject:categoryDictionary forKey:categoryName];
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:feedDictionary forKey:@"savedSourcesDictionary"];
+    [defaults synchronize];
+    
+}
+
+-(NSMutableArray *)sourcesBySlant:(NSInteger)categoryIndex slant:(NSString *)slant {
+    NSMutableDictionary *leftDict = self.sectionItems[categoryIndex][slant]; //gets dictionary of yes no for all sources in particular category.slant
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    for (NSString *source in leftDict) {
+        if ([leftDict[source] boolValue]) {
+            [arr addObject:source];
+        }
+    }
+    return arr;
+}
+
+#pragma mark - Navigation
+
+- (IBAction)didTapBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)didTapSave:(id)sender {
+    //Save the data
+    [self saveSelectedItems];
+    [self saveSelectedItemsDictionary];
+    
+    //Dismiss view controller.
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 @end
