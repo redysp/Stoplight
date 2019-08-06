@@ -400,8 +400,6 @@
             </objects>
             <point key="canvasLocation" x="1258" y="-708"/>
         </scene>
-<<<<<<< HEAD
-=======
         <!--Navigation Controller-->
         <scene sceneID="5rh-OY-Der">
             <objects>
@@ -453,7 +451,6 @@
             </objects>
             <point key="canvasLocation" x="99" y="826"/>
         </scene>
->>>>>>> ff8aa7e7631185a50fe966725cac393e1a6e7b07
         <!--Home-->
         <scene sceneID="C8B-hr-hTa">
             <objects>
@@ -607,7 +604,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohC-Ro-w0H">
-                              <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>

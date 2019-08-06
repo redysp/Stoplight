@@ -81,7 +81,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     SettingsCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsCategoryCell" forIndexPath:indexPath];
-    cell.settingsCategoryLabel.text = [self.user.preferred_topics[indexPath.row] capitalizedString];
+    cell.settingsCategoryLabel.text = [self.selectedTopics[indexPath.row] capitalizedString];
     
     return cell;
 }

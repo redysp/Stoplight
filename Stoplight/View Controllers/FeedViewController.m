@@ -67,7 +67,7 @@
     if (self.tabBarController.selectedIndex == 0) { //Main feed page
         self.sectionsList = [Utility fetchCategoriesList];
     } else  { //Following topics page
-        self.sectionsList = [Utility fetchTopicsList];
+        self.sectionsList = [Utility getSelectedTopics];
     }
 
     
