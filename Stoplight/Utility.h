@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)fetchTopicsList;
 + (NSDictionary *)fetchGeneralSourceDictionary;
 + (NSString *) topicToQuery:(NSString *)topic;
++ (NSMutableArray *)getSavedSources;
++ (void)saveDefaultSources;
++ (NSDictionary *)getSavedSourcesDictionary;
 
 //+ (NSString *)getSiteURL:(NSString *)site category:(NSString *)category;
 //+ (NSMutableArray *) decideSourcesList;
