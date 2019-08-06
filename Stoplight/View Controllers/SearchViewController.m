@@ -68,7 +68,7 @@
             cell.titleLabel.text = article.title;
         }
         if (article.imageLink) {
-            [cell.imageView setImageWithURL:article.imageLink];
+            [cell.articleImageView setImageWithURL:article.imageLink];
         }
         return cell;
     } @catch (NSException *exception){
@@ -140,13 +140,15 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(!self.isMoreDataLoading){
-        
-        // Calculate the position of one screen length before the bottom of the results
-        int scrollViewContentHeight = self.tableView.contentSize.height;
-        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
-        
-        // When the user has scrolled past the threshold, start requesting
-        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging && ![self.searchBar.text isEqualToString:@""] ) {
+        CGPoint offset = scrollView.contentOffset;
+        CGRect bounds = scrollView.bounds;
+        CGSize size = scrollView.contentSize;
+        UIEdgeInsets inset = scrollView.contentInset;
+        float y = offset.y + bounds.size.height - inset.bottom;
+        float h = size.height;
+        float reload_distance = 10;
+        if(y > h + reload_distance && ![self.searchBar.text isEqualToString:@""] ) {
+            NSLog(@"load more rows");
             self.isMoreDataLoading = true;
             [self queryForText:self.searchBar.text];
         }
