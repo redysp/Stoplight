@@ -23,9 +23,9 @@
     self.categoriesTableView.dataSource = self;
     self.categoriesTableView.delegate = self;
     self.user = [User new];
-    if (self.user.preferred_topics == nil){
-        [self.user setStuff];
-    }
+//    if (self.user.preferred_topics == nil){
+//        [self.user setStuff];
+//    }
 }
 
 - (IBAction)didTapBack:(id)sender {

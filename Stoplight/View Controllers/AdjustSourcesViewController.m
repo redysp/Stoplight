@@ -31,14 +31,6 @@ static int sourceIndex = 0;
     self.sourcesTableView.dataSource = self;
     self.sourcesTableView.delegate = self;
     
-    //This needs to change
-    self.user = [User new];
-    [self.user setStuff];
-    
-    //self.tempUserChoices = [self.user.selectedSources mutableCopy];
-    
-    //Later should fetch from user defaults I think....
-    //self.sectionNames = @[@"politics", @"business", @"us", @"world"];
     self.sectionNames = [Utility fetchCategoriesList];
     
     [self initializeSectionItems];
@@ -46,7 +38,6 @@ static int sourceIndex = 0;
 
 - (void) initializeSectionItems {
     //Fetch from user defaults and make all nested layers mutable.
-    
     self.sectionItems = [[Utility getSavedSources] mutableCopy];
     for (int i = 0; i < self.sectionItems.count; i++) {
         self.sectionItems[i] = [self.sectionItems[i] mutableCopy];
@@ -61,7 +52,6 @@ static int sourceIndex = 0;
 #pragma mark - TableView Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //Retrieve selected cell
     SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
     
     if (cellSelected.isSelected) {
@@ -71,7 +61,6 @@ static int sourceIndex = 0;
     }
 }
 
-//request a cell and run the following code for each one
 - (SourceCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SourceCell *cell = [self.sourcesTableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
@@ -80,7 +69,7 @@ static int sourceIndex = 0;
     NSArray *center_sources = [[self.sectionItems[currentHeaderTag] objectForKey:@"center"] allKeys];
     NSArray *right_sources = [[self.sectionItems[currentHeaderTag] objectForKey:@"right"] allKeys];
     
-    //all sources in self.sectionItems
+
     NSArray *sources = [[left_sources arrayByAddingObjectsFromArray:center_sources] arrayByAddingObjectsFromArray:right_sources];
     cell.source_name = sources[indexPath.row];
     cell.sourceCellLabel.text = sources[indexPath.row];
@@ -118,12 +107,10 @@ static int sourceIndex = 0;
         
         //all sources in self.sectionItems
         NSArray *sources = [[left_sources arrayByAddingObjectsFromArray:center_sources] arrayByAddingObjectsFromArray:right_sources];
-        //NSMutableArray *arrayOfItems = [self.sectionItems objectAtIndex:section];
         return sources.count;
     } else {
         return 0;
     }
-    //return [self.tempUserChoices count];
 }
 
 //number of sections to be displayed
@@ -345,7 +332,7 @@ Process to format compatible with feed view controller, save to user defaults.
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.sectionItems forKey:@"savedSourcesDictionary"];
+    [defaults setObject:feedDictionary forKey:@"savedSourcesDictionary"];
     [defaults synchronize];
     
 }
@@ -354,7 +341,7 @@ Process to format compatible with feed view controller, save to user defaults.
     NSMutableDictionary *leftDict = self.sectionItems[categoryIndex][slant]; //gets dictionary of yes no for all sources in particular category.slant
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for (NSString *source in leftDict) {
-        if (leftDict[source]) {
+        if ([leftDict[source] boolValue]) {
             [arr addObject:source];
         }
     }
@@ -371,6 +358,8 @@ Process to format compatible with feed view controller, save to user defaults.
     //Save the data
     [self saveSelectedItems];
     [self saveSelectedItemsDictionary];
+    
+    NSLog(@"\n\n saving sources \n\n");
     
     //Dismiss view controller.
     [self dismissViewControllerAnimated:YES completion:nil];

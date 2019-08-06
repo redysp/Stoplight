@@ -89,27 +89,7 @@ query format (ex "Global+Warming)
 
 + (void)saveDefaultSources {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-//    NSMutableDictionary *politicsDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                                         [@{@"vox.com":@YES, @"nbcnews.com":@YES}  mutableCopy], @"left",
-//                                         [@{@"reuters.com":@YES, @"apnews.com":@YES}  mutableCopy], @"center",
-//                                         [@{@"foxnews.com":@YES, @"nypost.com":@YES}  mutableCopy], @"right",
-//                                         nil];
-//    NSMutableDictionary *businessDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                                         [@{@"cnbc.com":@YES, @"economist.com":@YES}  mutableCopy], @"left",
-//                                         [@{@"wsj.com":@YES, @"bloomberg.com":@YES}  mutableCopy], @"center",
-//                                         [@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES} mutableCopy], @"right",
-//                                         nil];
-//    NSMutableDictionary *usDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                                         [@{@"cnn.com":@YES, @"time.com":@YES}  mutableCopy], @"left",
-//                                         [@{@"npr.org":@YES, @"usatoday.com":@YES}  mutableCopy], @"center",
-//                                         [@{@"foxnews.com":@YES, @"spectator.org":@YES} mutableCopy], @"right",
-//                                         nil];
-//    NSMutableDictionary *worldDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                                   [@{@"cnn.com/world":@YES, @"theguardian.com":@YES}  mutableCopy], @"left",
-//                                   [@{@"reuters.com":@YES, @"bbc.com":@YES}  mutableCopy], @"center",
-//                                   [@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES} mutableCopy], @"right",
-//                                   nil];
+
     NSMutableDictionary *politicsDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                          [[NSMutableDictionary alloc] initWithDictionary:@{@"vox.com":@YES, @"nbcnews.com":@YES}], @"left",
                                          [[NSMutableDictionary alloc] initWithDictionary:@{@"reuters.com":@YES, @"apnews.com":@YES}], @"center",
@@ -132,16 +112,17 @@ query format (ex "Global+Warming)
                                       nil];
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:politicsDict, businessDict, usDict, worldDict, nil];
-//    NSMutableArray *arr = [@[
-//                     //Politics
-//                     [@{@"left":[@{@"vox.com":@YES, @"nbcnews.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"apnews.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"nypost.com":@YES}  mutableCopy]} mutableCopy],
-//                     //Business
-//                     [@{@"left":[@{@"cnbc.com":@YES, @"economist.com":@YES}  mutableCopy],@"center":[@{@"wsj.com":@YES, @"bloomberg.com":@YES}  mutableCopy],@"right":[@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES} mutableCopy]} mutableCopy],
-//                     //US
-//                     [@{@"left":[@{@"cnn.com":@YES, @"time.com":@YES}  mutableCopy],@"center":[@{@"npr.org":@YES, @"usatoday.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com":@YES, @"spectator.org":@YES} mutableCopy]} mutableCopy],
-//                     //World
-//                     [@{@"left":[@{@"cnn.com/world":@YES, @"theguardian.com":@YES}  mutableCopy],@"center":[@{@"reuters.com":@YES, @"bbc.com":@YES}  mutableCopy],@"right":[@{@"foxnews.com/world":@YES, @"dailymail.co.uk":@YES} mutableCopy]} mutableCopy]] mutableCopy];
+    
     [defaults setObject:arr forKey:@"savedSources"];
+    [defaults synchronize];
+    
+    NSDictionary *defaultSourcesDictionary = [[NSMutableDictionary alloc] init];
+    [defaultSourcesDictionary setValue:politicsDict forKey:@"politics"];
+    [defaultSourcesDictionary setValue:businessDict forKey:@"business"];
+    [defaultSourcesDictionary setValue:usDict forKey:@"us"];
+    [defaultSourcesDictionary setValue:worldDict forKey:@"world"];
+    
+    [defaults setObject:defaultSourcesDictionary forKey:@"savedSourcesDictionary"];
     [defaults synchronize];
 }
 
