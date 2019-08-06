@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *articles;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
+@property NSInteger loadCount;
 
 @end
 
@@ -37,6 +38,8 @@
     //Delegate for search bar.
     self.searchBar.delegate = self;
     self.searchBar.showsCancelButton = YES;
+    
+    self.loadCount = 0;
 }
 
 
@@ -68,6 +71,8 @@
             cell.titleLabel.text = article.title;
         }
         if (article.imageLink) {
+            cell.articleImageView.layer.cornerRadius = 10;
+            cell.articleImageView.clipsToBounds = YES;
             [cell.articleImageView setImageWithURL:article.imageLink];
         }
         return cell;
@@ -126,10 +131,15 @@
                 }
                 [[articles objectAtIndex:0] setAffiliation:slant];
                 [self.articles addObject:[articles objectAtIndex:0]];
+                self.loadCount += 1;
                 
                 self.isMoreDataLoading = false;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
+                    if (self.loadCount == 6) {
+                        [self.tableView reloadData];
+                        self.loadCount = 0;
+                    }
+                    
                 });
             }];
         }

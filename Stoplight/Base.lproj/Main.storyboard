@@ -244,31 +244,31 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchArticleCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchArticleCell" rowHeight="151" id="hNL-S7-ZaW" customClass="SearchArticleCell">
                                         <rect key="frame" x="0.0" y="28" width="414" height="151"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hNL-S7-ZaW" id="0kR-4N-DUM">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hNL-S7-ZaW" id="0kR-4N-DUM">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="150.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mfO-ki-eW9">
-                                                    <rect key="frame" x="12" y="12" width="126.5" height="126.5"/>
-                                                    <color key="backgroundColor" red="1" green="0.29871593070000002" blue="0.80106883429999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <rect key="frame" x="12.5" y="12" width="126.5" height="126.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="126.5" id="80o-aJ-6rO"/>
                                                         <constraint firstAttribute="height" constant="126.5" id="lgz-Sg-lc0"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyL-w0-ZnI">
-                                                    <rect key="frame" x="146" y="14" width="256" height="122"/>
+                                                    <rect key="frame" x="151" y="14" width="256" height="122"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="256" id="L7F-sX-C0l"/>
                                                         <constraint firstAttribute="height" constant="122" id="lZA-iz-JK3"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="uyL-w0-ZnI" secondAttribute="bottom" constant="14.5" id="4As-8p-VpL"/>
+                                                <constraint firstItem="uyL-w0-ZnI" firstAttribute="leading" secondItem="mfO-ki-eW9" secondAttribute="trailing" constant="12" id="9q6-FI-r63"/>
                                                 <constraint firstItem="mfO-ki-eW9" firstAttribute="top" secondItem="0kR-4N-DUM" secondAttribute="top" constant="12" id="CeX-pk-9ZV"/>
                                                 <constraint firstItem="uyL-w0-ZnI" firstAttribute="top" secondItem="0kR-4N-DUM" secondAttribute="top" constant="14" id="ReV-OD-kbj"/>
                                                 <constraint firstItem="mfO-ki-eW9" firstAttribute="leading" secondItem="0kR-4N-DUM" secondAttribute="leading" constant="12" id="S6Y-eb-PxT"/>
