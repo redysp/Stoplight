@@ -146,9 +146,7 @@
         int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
         
         // When the user has scrolled past the threshold, start requesting
-        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
-            
-            NSLog(@"Want to load more.");
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging && ![self.searchBar.text isEqualToString:@""] ) {
             self.isMoreDataLoading = true;
             [self queryForText:self.searchBar.text];
         }
