@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "AdjustSourcesViewController.h"
 #import "AdjustCategoriesViewController.h"
+#import "Utility.h"
 
 @interface SettingsViewController ()
 
@@ -34,6 +35,7 @@
 //    NSArray *categoriesList = [[NSArray alloc] initWithObjects:@"politics", @"business", @"us", @"world", nil];
 //    [defaults setObject:categoriesList forKey:@"categoriesArray"];
 //    [defaults synchronize];
+    [Utility saveDefaultSources];
 }
 
 - (IBAction)didTapSources:(id)sender {

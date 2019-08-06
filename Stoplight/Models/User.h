@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //list of only source names and topics user prefers
 @property (strong, nonatomic) NSMutableArray *preferred_topics;
-@property (strong, nonatomic) NSMutableArray *preferred_sources;
+//@property (strong, nonatomic) NSMutableArray *preferred_sources;
 
 //array to represent bools for each avail source
 @property (strong, nonatomic) NSMutableArray *checkedSources;
@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)shared;
 - (void)setStuff;
 - (NSString*)getArticleAffiliation;
+
+/**
+//@property (strong, nonatomic) NSMutableArray *checkedSources;
+@property(strong, nonatomic) NSMutableDictionary *selectedSources;
+- (void) setStuff;
+**/
 
 @end
 
