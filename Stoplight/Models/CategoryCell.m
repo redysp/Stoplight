@@ -4,12 +4,14 @@
 //
 //  Created by arleneigwe on 7/18/19.
 //  Copyright © 2019 powercarlos25. All rights reserved.
+
 //
 
 #import "CategoryCell.h"
 #import "ArticleCell.h"
 #import "Article.h"
 #import "UIImageView+AFNetworking.h"
+#import "User.h"
 
 @implementation CategoryCell
 
@@ -18,11 +20,28 @@
     self.categoryCollectionView.delegate = self;
     self.categoryCollectionView.dataSource = self;
     [self.categoryCollectionView reloadData];
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
+
+- (void)setOppositeAffiliation{
+    
+    // Not sure if this is the correct way
+    
+    NSString *currentAffiliation = [[User shared] getArticleAffiliation];
+
+    if ([currentAffiliation  isEqual: @"left"]){
+        self.oppositeAffiliation = @"right";
+    }
+    else if ([currentAffiliation isEqual:@"right"]){
+        self.oppositeAffiliation = @"left";
+    }
+    else{
+        // Here, randomization would occur and vary between left and right
+        self.oppositeAffiliation = @"center";
+    }
 }
 
 #pragma mark - Collection View Methods
@@ -30,24 +49,34 @@
 
 //This is creating an ARTICLE CELL
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    
-    //get ArticleCell
     ArticleCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCell" forIndexPath:indexPath];
     
-
+    [cell.readButton addTarget:cell action:@selector(readButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
     @try {
-        Article *article = self.articles[indexPath.row];
-        cell.article = article;
         
-        //sets the image for the article's image view
-//        if (article.imageLink) {
-//            [cell.articleImageView setImageWithURL: article.imageLink];
-//        }
+        //[self setOppositeAffiliation];
+        
+        [cell customizeCardView];
+
+        Article *article = self.articles[indexPath.row];
+    
+        cell.article = article;
+        cell.vc = self.vc;
+        
+        [cell getButtonColor];
+
         
         //sets headline text
         if (article.title){
             cell.titleLabel.text = article.title;
         }
+        
+        //sets the image for the article's image view
+        if (article.imageLink) {
+            [cell.articleImageView setImageWithURL:article.imageLink];
+        }
+        
         
         //Returns an ArticleCell
         return cell;
@@ -55,9 +84,6 @@
         
         return cell;
     }
-    
-    //return instance of custom cell and its reuse identifier w/ elements at proper index
-    return cell;
 }
 
 //collection view asks its dataSource for num items in each section

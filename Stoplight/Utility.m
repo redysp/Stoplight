@@ -45,4 +45,47 @@
     return [Utility shared].siteDictionary;
 }
 
++ (NSArray *)fetchCategoriesList {
+    //This is what it should be eventually but just keeping it like this for functionality rn.
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSArray *categoriesList = [defaults objectForKey:@"categoriesList"];
+//    return categoriesList
+    return [NSArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];;
+}
+
++ (NSArray *)fetchTopicsList {
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSArray *topicsList = [defaults objectForKey:@"topicsList"];
+//    return topicsList;
+    return [NSArray arrayWithObjects:@"Global+Warming", @"sudan", nil];
+}
+
+/**
+Returns dictionary with this structure
+ {
+ "left": [cnn.com, vox.com]
+ "center": [npr.org, cnbc.com"]
+ "right": [foxnews.com, nypost.com"]
+ }
+**/
++ (NSDictionary *)fetchGeneralSourceDictionary {
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *sourcesDictionary = [defaults objectForKey:@"sourcesForTopics"];
+//    return sourcesDictionary;
+    NSArray *leftArray = [NSArray arrayWithObjects:@"cnn.com", @"theguardian.com", nil];
+    NSArray *centerArray = [NSArray arrayWithObjects:@"npr.org", @"reuters.com", nil];
+    NSArray *rightArray = [NSArray arrayWithObjects:@"foxnews.com", @"wsj.com", nil];
+    NSDictionary *sourcesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:leftArray, @"left", centerArray, @"center", rightArray, @"right", nil];
+    return sourcesDictionary;
+}
+
+/**
+Takes in human-readable topic (ex "Global Warming") and creates
+query format (ex "Global+Warming)
+**/
++ (NSString *) topicToQuery:(NSString *)topic {
+    return [topic stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+}
+
+
 @end
