@@ -103,6 +103,18 @@
     } else  { //Following topics page
         self.sectionsList = [Utility getSelectedTopics];
     }
+    
+    //Need to see which ones weren't there before.
+    NSArray *allKeys = [self.articlesDictionary allKeys];
+    for (NSString *title in self.sectionsList) {
+        if (![allKeys containsObject:title]) {
+            self.articlesDictionary[title] = [NSMutableArray new];
+        }
+    }
+    
+    //Need to delete ones that were there but now aren't.
+    
+    [self.categoryTableView reloadData];
     [self fetchArticles];
 }
 
@@ -151,9 +163,6 @@
 
 -(void)completionBlock:(NSData * _Nullable)data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable)error slant:(NSString *)slant topic:(NSString *)topic{
     
-    if (self.tabBarController.selectedIndex > 0) {
-        NSLog(@"topics");
-    }
     if (error) {
         NSLog(@"Error");
         return;
@@ -178,8 +187,10 @@
         NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
         NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
         [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-        [self.refreshControl endRefreshing];
+        //[self.categoryTableView reloadData];
         
+        
+        [self.refreshControl endRefreshing];
         self.categoryTableView.alpha = 1;
         [self.activityIndicator stopAnimating];
         
@@ -191,13 +202,12 @@ Uses API call that inputs a query, not a specific source.
 **/
 -(void)fetchArticlesByTopic {
     NSDictionary *sourcesDictionary = [Utility fetchGeneralSourceDictionary];
-    
-    for (NSString *topicName in self.sectionsList) {
-        NSString *topic = [Utility topicToQuery:topicName];
+    for (NSString *topic in self.sectionsList) {
+        NSLog(@"%@", topic);
         for (NSString *slant in sourcesDictionary) {
             NSArray *sourcesArray = sourcesDictionary[slant];
             for (NSString *source in sourcesArray) {
-                [[APIManager shared] getTopicArticles:topic source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                [[APIManager shared] getTopicArticles:[Utility topicToQuery:topic] source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     [self completionBlock:data response:response error:error slant:slant topic:topic];
                 }];
             }
