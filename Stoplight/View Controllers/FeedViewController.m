@@ -15,13 +15,13 @@
 #import "WebViewController.h"
 #import "ArticleCell.h"
 #import "User.h"
-
+#import "AdjustCategoriesViewController.h"
 /**
 For right now, tab bar
 0 - Home
 1 - Following
 **/
-@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate, AdjustTopicsViewControllerDelegate>
 
 //keys --> category; vals--> art list
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
@@ -98,23 +98,6 @@
 #pragma mark - TableView management
 
 -(void) beginRefresh:(UIRefreshControl *)refreshControl {
-    if (self.tabBarController.selectedIndex == 0) { //Main feed page
-        self.sectionsList = [Utility fetchCategoriesList];
-    } else  { //Following topics page
-        self.sectionsList = [Utility getSelectedTopics];
-    }
-    
-    //Need to see which ones weren't there before.
-    NSArray *allKeys = [self.articlesDictionary allKeys];
-    for (NSString *title in self.sectionsList) {
-        if (![allKeys containsObject:title]) {
-            self.articlesDictionary[title] = [NSMutableArray new];
-        }
-    }
-    
-    //Need to delete ones that were there but now aren't.
-    
-    [self.categoryTableView reloadData];
     [self fetchArticles];
 }
 
@@ -278,4 +261,23 @@ Uses a different data structure to store sources and a different api call.
     }
     
 }
+- (void)didUpdateSources {
+    if (self.tabBarController.selectedIndex == 0) { //Main feed page
+        self.sectionsList = [Utility fetchCategoriesList];
+    } else  { //Following topics page
+        self.sectionsList = [Utility getSelectedTopics];
+    }
+    
+    //Need to see which ones weren't there before.
+    NSArray *allKeys = [self.articlesDictionary allKeys];
+    for (NSString *title in self.sectionsList) {
+        if (![allKeys containsObject:title]) {
+            self.articlesDictionary[title] = [NSMutableArray new];
+        }
+    }
+    [self.categoryTableView reloadData];
+    [self fetchArticles];
+}
+
+
 @end

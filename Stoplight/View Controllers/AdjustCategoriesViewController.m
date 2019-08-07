@@ -41,7 +41,11 @@
     [defaults setObject:self.selectedTopics forKey:@"selectedTopics"];
     [defaults synchronize];
     
+    
+    [self.delegate didUpdateSources];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
+   
 }
 
 //Need to add text to the list of followed topics.

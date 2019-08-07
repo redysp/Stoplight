@@ -25,10 +25,7 @@
 
 - (IBAction)isPressed:(id)sender {
     //use utilities to edit preferred topics of user
-    /*[self.adjust.user.preferredTopics addObject:]*/
-    NSLog(@"isPressed called");
     [self.delegate didTapFollowWithText:self.userInputTextView.text];
-    /*[AddTopicViewController didTapFollowWithText:self.userInputTextView.text];*/
     [self dismissViewControllerAnimated:YES completion:nil];
     //reload the view
 }

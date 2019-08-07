@@ -10,7 +10,14 @@
 #import "AddTopicViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol AdjustTopicsViewControllerDelegate
+- (void) didUpdateSources;
+@end
+
 @interface AdjustCategoriesViewController : UIViewController
+
+@property (nonatomic, weak) id delegate;
+
 @end
 
 NS_ASSUME_NONNULL_END
