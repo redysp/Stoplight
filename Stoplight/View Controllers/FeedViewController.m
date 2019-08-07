@@ -98,6 +98,11 @@
 #pragma mark - TableView management
 
 -(void) beginRefresh:(UIRefreshControl *)refreshControl {
+    if (self.tabBarController.selectedIndex == 0) { //Main feed page
+        self.sectionsList = [Utility fetchCategoriesList];
+    } else  { //Following topics page
+        self.sectionsList = [Utility getSelectedTopics];
+    }
     [self fetchArticles];
 }
 
@@ -145,6 +150,10 @@
 }
 
 -(void)completionBlock:(NSData * _Nullable)data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable)error slant:(NSString *)slant topic:(NSString *)topic{
+    
+    if (self.tabBarController.selectedIndex > 0) {
+        NSLog(@"topics");
+    }
     if (error) {
         NSLog(@"Error");
         return;

@@ -41,14 +41,6 @@
     [defaults setObject:self.selectedTopics forKey:@"selectedTopics"];
     [defaults synchronize];
     
-    //Save in form feed view controller uses.
-    for (int i = 0; i < self.selectedTopics.count; i++) {
-        [self.selectedTopics replaceObjectAtIndex:i withObject:[Utility topicToQuery:self.selectedTopics[i]]];
-    }
-    [defaults setObject:self.selectedTopics forKey:@"selectedTopicsQueryFormat"];
-    [defaults synchronize];
-    
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -96,7 +88,7 @@
 //allows for the slide to delete thing
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete){
-        [self.user.preferred_topics removeObjectAtIndex:indexPath.row];
+        [self.selectedTopics removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
