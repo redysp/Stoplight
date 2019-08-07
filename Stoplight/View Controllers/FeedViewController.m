@@ -15,13 +15,13 @@
 #import "WebViewController.h"
 #import "ArticleCell.h"
 #import "User.h"
-
+#import "AdjustCategoriesViewController.h"
 /**
 For right now, tab bar
 0 - Home
 1 - Following
 **/
-@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate, AdjustTopicsViewControllerDelegate>
 
 //keys --> category; vals--> art list
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
@@ -54,6 +54,7 @@
     
     //Delete later
     [Utility saveDefaultSources];
+    [Utility saveDefaultTopics];
 
 
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
@@ -66,7 +67,7 @@
     if (self.tabBarController.selectedIndex == 0) { //Main feed page
         self.sectionsList = [Utility fetchCategoriesList];
     } else  { //Following topics page
-        self.sectionsList = [Utility fetchTopicsList];
+        self.sectionsList = [Utility getSelectedTopics];
     }
 
     
@@ -144,6 +145,7 @@
 }
 
 -(void)completionBlock:(NSData * _Nullable)data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable)error slant:(NSString *)slant topic:(NSString *)topic{
+    
     if (error) {
         NSLog(@"Error");
         return;
@@ -168,8 +170,10 @@
         NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
         NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
         [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-        [self.refreshControl endRefreshing];
+        //[self.categoryTableView reloadData];
         
+        
+        [self.refreshControl endRefreshing];
         self.categoryTableView.alpha = 1;
         [self.activityIndicator stopAnimating];
         
@@ -181,12 +185,12 @@ Uses API call that inputs a query, not a specific source.
 **/
 -(void)fetchArticlesByTopic {
     NSDictionary *sourcesDictionary = [Utility fetchGeneralSourceDictionary];
-    
     for (NSString *topic in self.sectionsList) {
+        NSLog(@"%@", topic);
         for (NSString *slant in sourcesDictionary) {
             NSArray *sourcesArray = sourcesDictionary[slant];
             for (NSString *source in sourcesArray) {
-                [[APIManager shared] getTopicArticles:topic source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                [[APIManager shared] getTopicArticles:[Utility topicToQuery:topic] source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     [self completionBlock:data response:response error:error slant:slant topic:topic];
                 }];
             }
@@ -257,4 +261,23 @@ Uses a different data structure to store sources and a different api call.
     }
     
 }
+- (void)didUpdateSources {
+    if (self.tabBarController.selectedIndex == 0) { //Main feed page
+        self.sectionsList = [Utility fetchCategoriesList];
+    } else  { //Following topics page
+        self.sectionsList = [Utility getSelectedTopics];
+    }
+    
+    //Need to see which ones weren't there before.
+    NSArray *allKeys = [self.articlesDictionary allKeys];
+    for (NSString *title in self.sectionsList) {
+        if (![allKeys containsObject:title]) {
+            self.articlesDictionary[title] = [NSMutableArray new];
+        }
+    }
+    [self.categoryTableView reloadData];
+    [self fetchArticles];
+}
+
+
 @end
