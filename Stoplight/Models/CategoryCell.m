@@ -76,6 +76,9 @@
             [cell.articleImageView setImageWithURL:article.imageLink];
         }
         
+        // set the source for the card view
+        cell.sourceLabel.text = article.provider; 
+        
         //Returns an ArticleCell
         return cell;
     } @catch (NSException *exception) {

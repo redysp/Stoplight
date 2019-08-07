@@ -20,13 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *cardView;
 @property (weak, nonatomic) IBOutlet UIButton *readButton;
+@property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 @property (strong, nonatomic) FeedViewController *vc;
 
 
 
 - (void)customizeCardView;
 - (void)getButtonColor; 
--(void) readButtonPressed:(UIButton *)sender;
+- (void)readButtonPressed:(UIButton *)sender;
 
 @end
 
