@@ -98,7 +98,17 @@
 #pragma mark - TableView management
 
 -(void) beginRefresh:(UIRefreshControl *)refreshControl {
-    [self fetchArticles];
+    //Switching to a different thread to start network call.
+    __weak __typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __strong __typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        [strongSelf fetchArticles];
+        
+    });
+    //[self fetchArticles];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -167,15 +177,26 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.articlesDictionary[topic] addObjectsFromArray:filteredArticles];
         
-        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
-        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
-        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-        //[self.categoryTableView reloadData];
-        
-        
-        [self.refreshControl endRefreshing];
-        self.categoryTableView.alpha = 1;
-        [self.activityIndicator stopAnimating];
+        if ([self.articlesDictionary[topic] count] == 6) {
+            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
+            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
+            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+            //[self.categoryTableView reloadData];
+
+
+            [self.refreshControl endRefreshing];
+            self.categoryTableView.alpha = 1;
+            [self.activityIndicator stopAnimating];
+        }
+//        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
+//        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
+//        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+//        //[self.categoryTableView reloadData];
+//
+//
+//        [self.refreshControl endRefreshing];
+//        self.categoryTableView.alpha = 1;
+//        [self.activityIndicator stopAnimating];
         
     });
 }
@@ -261,6 +282,7 @@ Uses a different data structure to store sources and a different api call.
     }
     
 }
+
 - (void)didUpdateSources {
     if (self.tabBarController.selectedIndex == 0) { //Main feed page
         self.sectionsList = [Utility fetchCategoriesList];
@@ -276,7 +298,18 @@ Uses a different data structure to store sources and a different api call.
         }
     }
     [self.categoryTableView reloadData];
-    [self fetchArticles];
+    //[self fetchArticles];
+    
+    //Switching to a different thread to start network call.
+    __weak __typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __strong __typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        [strongSelf fetchArticles];
+        
+    });
 }
 
 
