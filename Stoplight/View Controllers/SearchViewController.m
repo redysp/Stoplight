@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) NSMutableArray *articles;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+///check this property later
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property NSInteger loadCount;
 
@@ -93,6 +94,7 @@
 #pragma mark - Search Bar Methods
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.articles = [[NSMutableArray alloc] init];
     [self.view endEditing:YES];
     NSString *searchBarText = self.searchBar.text;
     
