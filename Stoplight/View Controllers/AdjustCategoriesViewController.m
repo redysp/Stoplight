@@ -13,12 +13,14 @@
 #import "Utility.h"
 
 @interface AdjustCategoriesViewController () <UITableViewDelegate, UITableViewDataSource, AddTopicViewControllerDelegate>
+
 @property User *user;
 @property (weak, nonatomic) IBOutlet UITableView *categoriesTableView;
 @property (nonatomic, retain) UITextField *userInput;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property AddTopicViewController *controller;
 @property NSMutableArray *selectedTopics;
+
 @end
 
 @implementation AdjustCategoriesViewController
@@ -65,12 +67,13 @@
     // grab the view controller we want to show
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.controller = [storyboard instantiateViewControllerWithIdentifier:@"addTopics"];
-    self.controller.delegate = self;
-    
+    //self.controller = [[AddTopicViewController alloc] init];
+    [self.controller setDelegate:self];
+
     // present the controller
     self.controller.modalPresentationStyle = UIModalPresentationPopover;
     [self presentViewController:self.controller animated:YES completion:nil];
-    
+
     // configure the Popover controller
     UIPopoverPresentationController *popController = [self.controller popoverPresentationController];
     popController.permittedArrowDirections = UIPopoverArrowDirectionAny;

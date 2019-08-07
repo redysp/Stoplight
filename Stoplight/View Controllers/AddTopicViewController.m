@@ -15,11 +15,14 @@
 @end
 
 @implementation AddTopicViewController
+@synthesize delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
+
 - (IBAction)isPressed:(id)sender {
     //use utilities to edit preferred topics of user
     /*[self.adjust.user.preferredTopics addObject:]*/
