@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) NSMutableArray *articles;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-///check this property later
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property NSInteger loadCount;
 
@@ -115,7 +114,17 @@
 
 #pragma mark - Network Call
 
+//spaces cannot be present in a query
+-(NSString *)handlesSpacesForQuery:(NSString *)Query{
+    if([Query containsString:@" "]){
+        NSString *newQuery = [Query stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        return newQuery;
+    }
+    return Query;
+}
+
 -(void)queryForText:(NSString *)searchBarText {
+    searchBarText = [self handlesSpacesForQuery:searchBarText];
     NSDictionary *sourcesDictionary = [Utility fetchGeneralSourceDictionary];
     for (NSString *slant in sourcesDictionary) {
         NSArray *sources = sourcesDictionary[slant];
