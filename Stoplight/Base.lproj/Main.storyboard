@@ -166,13 +166,13 @@
                                                             </view>
                                                             <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
+                                                                <constraint firstItem="Btx-ZA-NPY" firstAttribute="centerX" secondItem="gzR-eH-C8l" secondAttribute="centerX" id="9fN-Vu-dfg"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Btx-ZA-NPY" secondAttribute="bottom" constant="49" id="IRi-IX-Ngk"/>
-                                                                <constraint firstItem="Btx-ZA-NPY" firstAttribute="leading" secondItem="gzR-eH-C8l" secondAttribute="leading" constant="67" id="b5r-yD-aRZ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="kDX-s2-BMn" secondAttribute="trailing" constant="67" id="dDB-4a-1lP"/>
                                                                 <constraint firstItem="Btx-ZA-NPY" firstAttribute="top" secondItem="kDX-s2-BMn" secondAttribute="bottom" constant="2" id="hxr-5P-TLN"/>
                                                                 <constraint firstItem="kDX-s2-BMn" firstAttribute="top" secondItem="gzR-eH-C8l" secondAttribute="top" constant="26" id="jV6-8Y-Nrv"/>
-                                                                <constraint firstAttribute="trailing" secondItem="Btx-ZA-NPY" secondAttribute="trailing" constant="67" id="lq0-f7-bw0"/>
-                                                                <constraint firstItem="kDX-s2-BMn" firstAttribute="leading" secondItem="gzR-eH-C8l" secondAttribute="leading" constant="67" id="vHW-KU-Gf9"/>
+                                                                <constraint firstItem="Btx-ZA-NPY" firstAttribute="leading" secondItem="kDX-s2-BMn" secondAttribute="leading" id="poD-Ur-GXR"/>
+                                                                <constraint firstItem="kDX-s2-BMn" firstAttribute="centerX" secondItem="gzR-eH-C8l" secondAttribute="centerX" id="q9k-vm-1YY"/>
+                                                                <constraint firstItem="Btx-ZA-NPY" firstAttribute="trailing" secondItem="kDX-s2-BMn" secondAttribute="trailing" id="zHa-2c-raf"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="articleImageView" destination="kDX-s2-BMn" id="oxM-lR-VF0"/>
@@ -183,7 +183,7 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOy-LK-wBE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="yOy-LK-wBE">
                                                     <rect key="frame" x="16" y="11" width="398" height="64.5"/>
                                                     <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="54"/>
@@ -605,7 +605,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohC-Ro-w0H">
-                              <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -818,7 +818,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qGh-PW-PNL"/>
-        <segue reference="7HH-7D-eEg"/>
+        <segue reference="kBa-qp-fba"/>
         <segue reference="ea5-uw-u41"/>
     </inferredMetricsTieBreakers>
 </document>

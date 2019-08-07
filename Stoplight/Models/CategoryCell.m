@@ -86,7 +86,7 @@
 
 //- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
 //    CGFloat totalCellWidth = CGRectGetWidth(collectionView.frame) * self.articles.count;
-//    CGFloat totalSpacingWidth = CGRectGetWidth(\) * (((float)self.articles.count - 1) < 0 ? 0 :self.articles.count - 1);
+//    CGFloat totalSpacingWidth = 15 * (((float)self.articles.count - 1) < 0 ? 0 :self.articles.count - 1);
 //    CGFloat leftInset = (self.bounds.size.width - (totalCellWidth + totalSpacingWidth)) / 2;
 //    CGFloat rightInset = leftInset;
 //    UIEdgeInsets sectionInset = UIEdgeInsetsMake(0, leftInset, 0, rightInset);

@@ -115,6 +115,11 @@
     if ([section isEqualToString:@"us"]){
         cell.categoryNameLabel.text = @"United States";
     }
+    // Check for "+" signs
+    else if ([section containsString:@"+"]){
+        NSString *stringWithoutPlusSign = [section stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+        cell.categoryNameLabel.text = stringWithoutPlusSign;
+    }
     else{
         cell.categoryNameLabel.text = [section capitalizedString];
     }
