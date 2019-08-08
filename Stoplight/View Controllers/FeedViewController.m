@@ -56,11 +56,6 @@
     self.activityIndicator.center = self.view.center;
     [self.activityIndicator startAnimating];
     
-    //Delete later
-//    [Utility saveDefaultSources];
-//    [Utility saveDefaultTopics];
-
-
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
     
     //Set delegate and datasource for tableview.
@@ -104,6 +99,11 @@
 #pragma mark - TableView management
 
 -(void) beginRefresh:(UIRefreshControl *)refreshControl {
+    
+    //Go through all articles and delete them.
+    for (NSString *section in self.sectionsList) {
+        [self.articlesDictionary[section] removeAllObjects];
+    }
     //Switching to a different thread to start network call.
     __weak __typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -112,7 +112,6 @@
             return;
         }
         [strongSelf fetchArticles];
-        
     });
     //[self fetchArticles];
 }
@@ -199,43 +198,16 @@
     [self.articlesDictionary[topic] addObjectsFromArray:filteredArticles];
     
     if ([self.articlesDictionary[topic] count] == 6) {
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
             NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
             [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-            //[self.categoryTableView reloadData];
-            
-            
             [self.refreshControl endRefreshing];
             self.categoryTableView.alpha = 1;
             [self.activityIndicator stopAnimating];
         });
     }
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//
-//        if ([self.articlesDictionary[topic] count] == 6) {
-//            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
-//            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
-//            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-//            //[self.categoryTableView reloadData];
-//
-//
-//            [self.refreshControl endRefreshing];
-//            self.categoryTableView.alpha = 1;
-//            [self.activityIndicator stopAnimating];
-//        }
-//        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
-//        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
-//        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-//        //[self.categoryTableView reloadData];
-//
-//
-//        [self.refreshControl endRefreshing];
-//        self.categoryTableView.alpha = 1;
-//        [self.activityIndicator stopAnimating];
-        
-//    });
 }
 
 /**
@@ -244,7 +216,6 @@ Uses API call that inputs a query, not a specific source.
 -(void)fetchArticlesByTopic {
     NSDictionary *sourcesDictionary = [Utility fetchGeneralSourceDictionary];
     for (NSString *topic in self.sectionsList) {
-        NSLog(@"%@", topic);
         for (NSString *slant in sourcesDictionary) {
             NSArray *sourcesArray = sourcesDictionary[slant];
             for (NSString *source in sourcesArray) {
@@ -261,7 +232,6 @@ Fetches articles by category, not topic.
 Uses a different data structure to store sources and a different api call.
 **/
 -(void)fetchArticlesByCategory {
-    //NSDictionary *sourcesDictionary = [Utility retrieveSourceDict];
     NSDictionary *sourcesDictionary = [Utility getSavedSourcesDictionary];
     for (NSString *category in self.sectionsList) {
         NSDictionary *sideDictionary = sourcesDictionary[category]; //Dictionary with keys left, middle, and right
