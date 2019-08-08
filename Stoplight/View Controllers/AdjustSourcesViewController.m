@@ -70,6 +70,8 @@ static int sourceIndex = 0;
     
 
     NSArray *sources = [[left_sources arrayByAddingObjectsFromArray:center_sources] arrayByAddingObjectsFromArray:right_sources];
+    
+    //there is a bug here watch out lmao
     cell.source_name = sources[indexPath.row];
     cell.sourceCellLabel.text = sources[indexPath.row];
     sourceIndex++; //literally what even is this?
@@ -104,7 +106,8 @@ static int sourceIndex = 0;
     }
     
     return cell;
-}
+    }
+
 
 //retrieve default list of all sources available
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -164,7 +167,7 @@ static int sourceIndex = 0;
     }
     // add the arrow image
     CGSize headerFrame = self.view.frame.size;
-    UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 32, 13, 18, 18)];
+    UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 50, 25, 25, 25)];
     theImageView.image = [UIImage imageNamed:@"Chevron-Dn-Wht"];
     theImageView.tag = kHeaderSectionTag + section;
     [header addSubview:theImageView];
