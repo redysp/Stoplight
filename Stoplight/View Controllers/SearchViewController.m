@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property NSInteger loadCount;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -104,7 +105,18 @@
             return;
         }
         [strongSelf queryForText:searchBarText];
+        
     });
+    
+    //Initialize refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+//i am very unsure of this part
+-(void) beginRefresh:(UIRefreshControl *)refreshControl {
+    [self queryForText:self.searchBar.text];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -129,7 +141,6 @@
     for (NSString *slant in sourcesDictionary) {
         NSArray *sources = sourcesDictionary[slant];
         for (NSString *source in sources) {
-            //[[APIManager shared] getTopicArticlesWith:searchBarText source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             [[APIManager shared] getTopicArticlesWithCountAndOffset:searchBarText source:source count:1 offset:self.articles.count/6 completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 if (error) {
                     return;
@@ -149,8 +160,9 @@
                     if (self.loadCount == 6) {
                         [self.tableView reloadData];
                         self.loadCount = 0;
+                        [self.refreshControl endRefreshing];
+
                     }
-                    
                 });
             }];
         }
