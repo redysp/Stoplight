@@ -329,10 +329,12 @@ static int sourceIndex = 0;
     [defaults synchronize];
 }
 
+
 /**
 Process to format compatible with feed view controller, save to user defaults.
 **/
--(void) saveSelectedItemsDictionary {
+
+-(NSMutableDictionary *) createSelectedItemsDictionary {
     NSMutableDictionary *feedDictionary = [[NSMutableDictionary alloc] init];
     NSArray *slantList = [NSArray arrayWithObjects:@"left", @"center", @"right", nil];
     
@@ -345,11 +347,13 @@ Process to format compatible with feed view controller, save to user defaults.
         }
         [feedDictionary setObject:categoryDictionary forKey:categoryName];
     }
-    
+    return feedDictionary;
+}
+
+-(void) saveSelectedItemsDictionary:(NSMutableDictionary *)feedDictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:feedDictionary forKey:@"savedSourcesDictionary"];
     [defaults synchronize];
-    
 }
 
 -(NSMutableArray *)sourcesBySlant:(NSInteger)categoryIndex slant:(NSString *)slant {
@@ -369,13 +373,39 @@ Process to format compatible with feed view controller, save to user defaults.
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+/**
+ 1. Make the right format.
+ 2. Check to see if it is ok.
+ a. If ok then save both
+ b. If not ok then alert user.
+ **/
 - (IBAction)didTapSave:(id)sender {
-    //Save the data
-    [self saveSelectedItems];
-    [self saveSelectedItemsDictionary];
     
-    //Dismiss view controller.
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSMutableDictionary *feedDictionary = [self createSelectedItemsDictionary];
+    
+    if ([self checkSourceRatio:feedDictionary]) {
+        [self saveSelectedItems];
+        [self saveSelectedItemsDictionary:feedDictionary];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Selection"
+                                                                       message:@"In order to maintain a balanced mix of liberal, moderate, and conservative news sources, we ask that users choose 2 providers from each political bias. Please check your selections and try again."
+                                                                preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) { }];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+- (BOOL) checkSourceRatio:(NSMutableDictionary *)categoryDictionary {
+    for (NSString *category in categoryDictionary) {
+        for (NSString *slant in categoryDictionary[category]) {
+            if ([categoryDictionary[category][slant] count] != 2) {
+                return NO;
+            }
+        }
+    }
+    return YES;
 }
 
 
