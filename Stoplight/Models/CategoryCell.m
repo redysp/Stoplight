@@ -63,7 +63,7 @@
         cell.article = article;
         cell.vc = self.vc;
         
-        [cell getButtonColor];
+        [cell getLabelColor];
 
         
         //sets headline text
@@ -76,6 +76,9 @@
             [cell.articleImageView setImageWithURL:article.imageLink];
         }
         
+        // set the source for the card view
+        cell.sourceLabel.text = article.provider; 
+        
         //Returns an ArticleCell
         return cell;
     } @catch (NSException *exception) {
@@ -86,7 +89,7 @@
 
 //- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
 //    CGFloat totalCellWidth = CGRectGetWidth(collectionView.frame) * self.articles.count;
-//    CGFloat totalSpacingWidth = CGRectGetWidth(\) * (((float)self.articles.count - 1) < 0 ? 0 :self.articles.count - 1);
+//    CGFloat totalSpacingWidth = 15 * (((float)self.articles.count - 1) < 0 ? 0 :self.articles.count - 1);
 //    CGFloat leftInset = (self.bounds.size.width - (totalCellWidth + totalSpacingWidth)) / 2;
 //    CGFloat rightInset = leftInset;
 //    UIEdgeInsets sectionInset = UIEdgeInsetsMake(0, leftInset, 0, rightInset);
