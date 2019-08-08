@@ -46,6 +46,7 @@
 
 - (IBAction)didTapCategories:(id)sender {
     AdjustCategoriesViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AdjustCategories"];
+    vc.delegate = self.tabBarController.viewControllers[1].childViewControllers[0]; //This is literally horrible
     [self presentViewController:vc animated:YES completion:nil];
 }
 

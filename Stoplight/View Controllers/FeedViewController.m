@@ -15,13 +15,13 @@
 #import "WebViewController.h"
 #import "ArticleCell.h"
 #import "User.h"
-
+#import "AdjustCategoriesViewController.h"
 /**
 For right now, tab bar
 0 - Home
 1 - Following
 **/
-@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate, AdjustTopicsViewControllerDelegate>
 
 //keys --> category; vals--> art list
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
@@ -55,7 +55,8 @@
     [self.activityIndicator startAnimating];
     
     //Delete later
-    [Utility saveDefaultSources];
+//    [Utility saveDefaultSources];
+//    [Utility saveDefaultTopics];
 
 
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
@@ -68,7 +69,7 @@
     if (self.tabBarController.selectedIndex == 0) { //Main feed page
         self.sectionsList = [Utility fetchCategoriesList];
     } else  { //Following topics page
-        self.sectionsList = [Utility fetchTopicsList];
+        self.sectionsList = [Utility getSelectedTopics];
     }
 
     
@@ -99,7 +100,17 @@
 #pragma mark - TableView management
 
 -(void) beginRefresh:(UIRefreshControl *)refreshControl {
-    [self fetchArticles];
+    //Switching to a different thread to start network call.
+    __weak __typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __strong __typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        [strongSelf fetchArticles];
+        
+    });
+    //[self fetchArticles];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -156,6 +167,7 @@
 
 
 -(void)completionBlock:(NSData * _Nullable)data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable)error slant:(NSString *)slant topic:(NSString *)topic{
+    
     if (error) {
         NSLog(@"Error");
         return;
@@ -172,20 +184,54 @@
         [article setAffiliation:slant];
     }
     
-    NSArray *filteredArticles = [self filterArticlesByTopic:topic articles:articles];
+    NSArray *filteredArticles;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.articlesDictionary[topic] addObjectsFromArray:filteredArticles];
+    if (self.tabBarController.selectedIndex == 0) {
+        filteredArticles = [self filterArticles:topic articles:articles];
+    } else  {
+        filteredArticles = [self filterArticlesByTopic:topic articles:articles];
+    }
+    
+    [self.articlesDictionary[topic] addObjectsFromArray:filteredArticles];
+    
+    if ([self.articlesDictionary[topic] count] == 6) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
+            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
+            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+            //[self.categoryTableView reloadData];
+            
+            
+            [self.refreshControl endRefreshing];
+            self.categoryTableView.alpha = 1;
+            [self.activityIndicator stopAnimating];
+        });
+    }
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//
+//        if ([self.articlesDictionary[topic] count] == 6) {
+//            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
+//            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
+//            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+//            //[self.categoryTableView reloadData];
+//
+//
+//            [self.refreshControl endRefreshing];
+//            self.categoryTableView.alpha = 1;
+//            [self.activityIndicator stopAnimating];
+//        }
+//        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
+//        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
+//        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+//        //[self.categoryTableView reloadData];
+//
+//
+//        [self.refreshControl endRefreshing];
+//        self.categoryTableView.alpha = 1;
+//        [self.activityIndicator stopAnimating];
         
-        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
-        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
-        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
-        [self.refreshControl endRefreshing];
-        
-        self.categoryTableView.alpha = 1;
-        [self.activityIndicator stopAnimating];
-        
-    });
+//    });
 }
 
 /**
@@ -193,12 +239,12 @@ Uses API call that inputs a query, not a specific source.
 **/
 -(void)fetchArticlesByTopic {
     NSDictionary *sourcesDictionary = [Utility fetchGeneralSourceDictionary];
-    
     for (NSString *topic in self.sectionsList) {
+        NSLog(@"%@", topic);
         for (NSString *slant in sourcesDictionary) {
             NSArray *sourcesArray = sourcesDictionary[slant];
             for (NSString *source in sourcesArray) {
-                [[APIManager shared] getTopicArticles:topic source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                [[APIManager shared] getTopicArticles:[Utility topicToQuery:topic] source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     [self completionBlock:data response:response error:error slant:slant topic:topic];
                 }];
             }
@@ -232,7 +278,7 @@ Uses a different data structure to store sources and a different api call.
 - (NSArray *) filterArticles:(NSString *)categoryName articles:(NSArray *)articles{
     NSMutableArray *keepArticles = [NSMutableArray new];
     for (Article *article in articles) {
-        if (keepArticles.count == 2) {
+        if (keepArticles.count == 1) {
             break;
         }
         if ([[article.category lowercaseString] isEqualToString:categoryName]) {
@@ -240,7 +286,7 @@ Uses a different data structure to store sources and a different api call.
         }
     }
     //TODO: DEAL WITH THIS. Maybe re-call the API but skip over the ones we already got? Not sure how to do that.
-    for (int i = 0; keepArticles.count < 2; i++) {
+    for (int i = 0; keepArticles.count < 1; i++) {
         [keepArticles addObject:[articles objectAtIndex:i]];
     }
     return keepArticles;
@@ -250,7 +296,7 @@ Uses a different data structure to store sources and a different api call.
     //For this one just take the first 2?
     NSMutableArray *keepArticles = [NSMutableArray new];
     [keepArticles addObject:[articles objectAtIndex:0]];
-    [keepArticles addObject:[articles objectAtIndex:1]];
+    //[keepArticles addObject:[articles objectAtIndex:1]];
     return keepArticles;
 }
 
@@ -269,4 +315,35 @@ Uses a different data structure to store sources and a different api call.
     }
     
 }
+
+- (void)didUpdateSources {
+    if (self.tabBarController.selectedIndex == 0) { //Main feed page
+        self.sectionsList = [Utility fetchCategoriesList];
+    } else  { //Following topics page
+        self.sectionsList = [Utility getSelectedTopics];
+    }
+    
+    //Need to see which ones weren't there before.
+    NSArray *allKeys = [self.articlesDictionary allKeys];
+    for (NSString *title in self.sectionsList) {
+        if (![allKeys containsObject:title]) {
+            self.articlesDictionary[title] = [NSMutableArray new];
+        }
+    }
+    [self.categoryTableView reloadData];
+    //[self fetchArticles];
+    
+    //Switching to a different thread to start network call.
+    __weak __typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __strong __typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        [strongSelf fetchArticles];
+        
+    });
+}
+
+
 @end

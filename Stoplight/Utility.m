@@ -53,13 +53,6 @@
     return [NSArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];;
 }
 
-+ (NSArray *)fetchTopicsList {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSArray *topicsList = [defaults objectForKey:@"topicsList"];
-//    return topicsList;
-    return [NSArray arrayWithObjects:@"Global+Warming", @"SUDAN", nil];
-}
-
 /**
 Returns dictionary with this structure
  {
@@ -91,14 +84,14 @@ query format (ex "Global+Warming)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     NSMutableDictionary *politicsDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"vox.com":@YES, @"nbcnews.com":@YES}], @"left",
-                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"reuters.com":@YES, @"apnews.com":@YES}], @"center",
-                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"foxnews.com":@YES, @"nypost.com":@YES}], @"right",
+                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"vox.com":@YES, @"nbcnews.com":@YES, @"huffpost.com":@NO, @"slate.com":@NO, @"msnbc.com":@NO}], @"left",
+                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"reuters.com":@YES, @"apnews.com":@YES, @"thehill.com":@NO, @"usatoday.com":@NO, @"npr.org":@NO}], @"center",
+                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"foxnews.com":@YES, @"nypost.com":@YES, @"washingtontimes.com":@NO, @"thefederalist.com":@NO, @"dailywire.com":@NO}], @"right",
                                          nil];
     NSMutableDictionary *businessDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"cnbc.com":@YES, @"economist.com":@YES}], @"left",
-                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"wsj.com":@YES, @"bloomberg.com":@YES}], @"center",
-                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES}], @"right",
+                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"cnbc.com":@YES, @"economist.com":@YES, @"cnn.com/business":@NO, }], @"left",
+                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"wsj.com":@YES, @"bloomberg.com":@YES, @"ft.com":@NO, }], @"center",
+                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES, @"marketwatch.com":@NO, }], @"right",
                                          nil];
     NSMutableDictionary *usDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                    [[NSMutableDictionary alloc] initWithDictionary:@{@"cnn.com":@YES, @"time.com":@YES}], @"left",
@@ -144,4 +137,32 @@ Returns dictionary format sources for FEED VIEW CONTROLLER.
     return savedSourcesDictionary;
 }
 
+/**
+Gives adjust topics page the array of topics.
+**/
++ (NSMutableArray *) getSelectedTopics {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *savedSources = [defaults objectForKey:@"selectedTopics"];
+    return [savedSources mutableCopy];
+}
+
+/**
+ Gives feed view controller list of things to query.
+ **/
++ (NSArray *) getSelectedTopicsQueryFormat {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *topicsList = [defaults objectForKey:@"selectedTopicsQueryFormat"];
+    return topicsList;
+}
+
++ (void) saveDefaultTopics {
+    //Save in raw form.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSArray arrayWithObjects:@"Global Warming", @"Sudan", nil] forKey:@"selectedTopics"];
+    [defaults synchronize];
+    
+    //Save in form feed view controller uses.
+    [defaults setObject:[NSArray arrayWithObjects:@"global+warming", @"sudan", nil] forKey:@"selectedTopicsQueryFormat"];
+    [defaults synchronize];
+}
 @end
