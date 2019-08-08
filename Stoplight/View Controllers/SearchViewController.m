@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UILabel *trendingLabel;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (strong, nonatomic) NSDictionary *sourcesDictionary;
 @property NSInteger loadCount;
 @property NSInteger searchContent;
 @property NSMutableArray *trendingTopics;
@@ -47,6 +48,7 @@
     
     self.searchContent = 0;
     
+    self.sourcesDictionary = [Utility fetchGeneralSourceDictionary];
     
     __weak __typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -128,6 +130,8 @@
     } else {
         self.searchContent = 1;
         self.searchBar.text = self.trendingTopics[indexPath.row];
+        [self.articles removeAllObjects];
+        self.loadCount = 0;
         __weak __typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             __strong __typeof(self) strongSelf = weakSelf;
@@ -147,6 +151,9 @@
     self.tableView.tableHeaderView = nil;
     [self.view endEditing:YES];
     NSString *searchBarText = self.searchBar.text;
+    
+    [self.articles removeAllObjects];
+    self.loadCount = 0;
     
     __weak __typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -169,9 +176,10 @@
 #pragma mark - Network Call
 
 -(void)queryForText:(NSString *)searchBarText {
-    NSDictionary *sourcesDictionary = [Utility fetchGeneralSourceDictionary];
-    for (NSString *slant in sourcesDictionary) {
-        NSArray *sources = sourcesDictionary[slant];
+    //Clear articles
+    
+    for (NSString *slant in self.sourcesDictionary) {
+        NSArray *sources = self.sourcesDictionary[slant];
         for (NSString *source in sources) {
             //[[APIManager shared] getTopicArticlesWith:searchBarText source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             [[APIManager shared] getTopicArticlesWithCountAndOffset:[Utility topicToQuery:searchBarText] source:source count:1 offset:self.articles.count/6 completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
