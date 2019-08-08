@@ -26,6 +26,22 @@
     self.cardView.layer.cornerRadius = 20;
     self.cardView.layer.maskedCorners = kCALayerMinXMaxYCorner | kCALayerMaxXMaxYCorner;
     
+    // Add shadow for card view
+    CALayer *cardLayer = self.cardView.layer;
+    cardLayer.shadowOffset = CGSizeMake(1, 1);
+    cardLayer.shadowColor = [[UIColor blackColor] CGColor];
+    cardLayer.shadowRadius = 6.0f;
+    cardLayer.shadowOpacity = 0.30f;
+    cardLayer.shadowPath = [[UIBezierPath bezierPathWithRect:cardLayer.bounds] CGPath];
+    
+    // Add shadow to circle view
+    CALayer *affiliationLayer = self.affiliationView.layer;
+    affiliationLayer.shadowOffset = CGSizeMake(1, 1);
+    affiliationLayer.shadowColor = [[UIColor blackColor] CGColor];
+    affiliationLayer.shadowRadius = 6.0f;
+    affiliationLayer.shadowOpacity = 0.30f;
+    affiliationLayer.shadowPath = [[UIBezierPath bezierPathWithRect:affiliationLayer.bounds] CGPath];
+    
 }
 
 - (void)getLabelColor{
@@ -40,11 +56,5 @@
         [self.affiliationView setBackgroundColor:[UIColor redColor]];
     }
 }
-
-//-(void) readButtonPressed:(UIButton *)sender {
-//    [self.vc performSegueWithIdentifier:@"toWeb" sender:self];
-//}
-
-
 
 @end
