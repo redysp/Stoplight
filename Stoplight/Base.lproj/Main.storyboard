@@ -684,8 +684,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABC News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ax2-DJ-3zx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="119.5"/>
+                                                    <rect key="frame" x="30" y="0.0" width="364" height="119.5"/>
                                                     <gestureRecognizers/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjd-TD-ouC">
+                                                    <rect key="frame" x="20" y="11" width="2" height="98"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -693,12 +700,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="ax2-DJ-3zx" secondAttribute="bottom" id="3Dy-0J-dex"/>
-                                                <constraint firstAttribute="trailing" secondItem="ax2-DJ-3zx" secondAttribute="trailing" id="5Jc-uj-iaw"/>
                                                 <constraint firstItem="ax2-DJ-3zx" firstAttribute="top" secondItem="P5q-xD-WQJ" secondAttribute="top" id="6Wu-sF-fUD"/>
-                                                <constraint firstItem="ax2-DJ-3zx" firstAttribute="leading" secondItem="P5q-xD-WQJ" secondAttribute="leading" id="Qdd-Sv-JHp"/>
+                                                <constraint firstAttribute="trailing" secondItem="ax2-DJ-3zx" secondAttribute="trailing" constant="20" id="fwq-i3-us9"/>
+                                                <constraint firstItem="ax2-DJ-3zx" firstAttribute="leading" secondItem="P5q-xD-WQJ" secondAttribute="leading" constant="30" id="tLv-Bk-15p"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="markerLabel" destination="Sjd-TD-ouC" id="Khu-Dm-v3R"/>
                                             <outlet property="sourceCellLabel" destination="ax2-DJ-3zx" id="uFh-Rs-7a7"/>
                                         </connections>
                                     </tableViewCell>
@@ -726,7 +734,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ib-qm-AcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Exn-hn-EGN"/>
             </objects>
-            <point key="canvasLocation" x="3897" y="2472"/>
+            <point key="canvasLocation" x="3895.652173913044" y="2471.6517857142858"/>
         </scene>
         <!--Adjust Categories View Controller-->
         <scene sceneID="sUh-04-lxn">
