@@ -19,22 +19,25 @@
     self.articleImageView.layer.cornerRadius = 20;
     self.articleImageView.layer.maskedCorners = kCALayerMinXMinYCorner | kCALayerMaxXMinYCorner;
     
+    // Customization for color label
+    self.affiliationView.layer.cornerRadius = 12;
+    
     // Customization for rest of card view
     self.cardView.layer.cornerRadius = 20;
     self.cardView.layer.maskedCorners = kCALayerMinXMaxYCorner | kCALayerMaxXMaxYCorner;
     
 }
 
-- (void)getButtonColor{
+- (void)getLabelColor{
     // Changes the color of the button depending on the affiliation
     if ([self.article.affiliation isEqualToString:@"left"]){
-        [self.readButton setBackgroundColor:[UIColor blueColor]];
+        [self.affiliationView setBackgroundColor:[UIColor blueColor]];
     }
     else if ([self.article.affiliation isEqualToString:@"center"]){
-        [self.readButton setBackgroundColor:[UIColor purpleColor]];
+        [self.affiliationView setBackgroundColor:[UIColor purpleColor]];
     }
     else{
-        [self.readButton setBackgroundColor:[UIColor redColor]];
+        [self.affiliationView setBackgroundColor:[UIColor redColor]];
     }
 }
 
