@@ -32,7 +32,6 @@ static int sourceIndex = 0;
     self.sourcesTableView.delegate = self;
     
     self.sectionNames = [Utility fetchCategoriesList];
-    
     [self initializeSectionItems];
 }
 
@@ -71,6 +70,8 @@ static int sourceIndex = 0;
     
 
     NSArray *sources = [[left_sources arrayByAddingObjectsFromArray:center_sources] arrayByAddingObjectsFromArray:right_sources];
+    
+    //there is a bug here watch out lmao
     cell.source_name = sources[indexPath.row];
     cell.sourceCellLabel.text = sources[indexPath.row];
     sourceIndex++; //literally what even is this?
@@ -88,6 +89,14 @@ static int sourceIndex = 0;
             break;
         }
     }
+    //set marker color
+    if ([affiliation isEqualToString:@"left"]) {
+        cell.markerLabel.backgroundColor = [UIColor blueColor];
+    } else if ([affiliation isEqualToString:@"center"]) {
+        cell.markerLabel.backgroundColor = [UIColor grayColor];
+    } else {
+        cell.markerLabel.backgroundColor = [UIColor redColor];
+    }
     
     //Set checkmark or no checkmark.
     if (cell.isSelected) {
@@ -96,16 +105,9 @@ static int sourceIndex = 0;
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    if ([affiliation isEqualToString:@"left"]) {
-        cell.contentView.backgroundColor = [UIColor blueColor];
-    } else if ([affiliation isEqualToString:@"center"]) {
-        cell.contentView.backgroundColor = [UIColor grayColor];
-    } else {
-        cell.contentView.backgroundColor = [UIColor redColor];
-    }
-    
     return cell;
-}
+    }
+
 
 //retrieve default list of all sources available
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -141,7 +143,11 @@ static int sourceIndex = 0;
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (self.sectionNames.count){
-        return [self.sectionNames objectAtIndex:section];
+        //only way to properly capitalize
+        if ([[self.sectionNames objectAtIndex:section] isEqualToString:@"us"]){
+            return @"US";
+        }
+        return [[self.sectionNames objectAtIndex:section] capitalizedString];
     }
     return @"";
 }
@@ -153,7 +159,7 @@ static int sourceIndex = 0;
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
     // recast your view as a UITableViewHeaderFooterView
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    header.contentView.backgroundColor = [UIColor colorWithHexString:@"#408000"];
+    header.contentView.backgroundColor = [UIColor colorWithHexString:@"#313131"];
     header.textLabel.textColor = [UIColor whiteColor];
     UIImageView *viewWithTag = [self.view viewWithTag:kHeaderSectionTag + section];
     if (viewWithTag) {
@@ -161,7 +167,7 @@ static int sourceIndex = 0;
     }
     // add the arrow image
     CGSize headerFrame = self.view.frame.size;
-    UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 32, 13, 18, 18)];
+    UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 50, 25, 25, 25)];
     theImageView.image = [UIImage imageNamed:@"Chevron-Dn-Wht"];
     theImageView.tag = kHeaderSectionTag + section;
     [header addSubview:theImageView];
@@ -254,7 +260,7 @@ static int sourceIndex = 0;
 
 -(void) selectSource:(NSIndexPath *)indexPath {
     //Retrieve header string.
-    NSString *headerTitle = [self.sourcesTableView headerViewForSection:indexPath.section].textLabel.text;
+    NSString *headerTitle = [[self.sourcesTableView headerViewForSection:indexPath.section].textLabel.text lowercaseString];
     //Retrieve selected cell
     SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
     
@@ -284,7 +290,7 @@ static int sourceIndex = 0;
 
 - (void) deselectSource:(NSIndexPath *)indexPath {
     //Retrieve header string.
-    NSString *headerTitle = [self.sourcesTableView headerViewForSection:indexPath.section].textLabel.text;
+    NSString *headerTitle = [[self.sourcesTableView headerViewForSection:indexPath.section].textLabel.text lowercaseString];
     //Retrieve selected cell
     SourceCell *cellSelected = [self.sourcesTableView cellForRowAtIndexPath:indexPath];
     
