@@ -141,7 +141,7 @@
                                                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKV-VC-pEl">
                                                                                 <rect key="frame" x="8" y="101" width="224" height="30"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                                <color key="backgroundColor" red="0.017561917959999999" green="1" blue="0.086678713709999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                <color key="backgroundColor" red="0.46666666666666667" green="0.8666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 <state key="normal" title="Read">
                                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </state>
@@ -158,6 +158,11 @@
                                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
+                                                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZjV-BU-e4k">
+                                                                                <rect key="frame" x="207" y="4" width="25" height="24"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <color key="backgroundColor" red="1" green="0.1647058824" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                            </view>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
@@ -165,6 +170,7 @@
                                                             </view>
                                                             <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <connections>
+                                                                <outlet property="affiliationView" destination="ZjV-BU-e4k" id="K1n-wF-qFo"/>
                                                                 <outlet property="articleImageView" destination="kDX-s2-BMn" id="oxM-lR-VF0"/>
                                                                 <outlet property="cardView" destination="Btx-ZA-NPY" id="62L-6j-kpl"/>
                                                                 <outlet property="readButton" destination="wKV-VC-pEl" id="Vf6-cZ-gwt"/>

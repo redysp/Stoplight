@@ -63,7 +63,7 @@
         cell.article = article;
         cell.vc = self.vc;
         
-        [cell getButtonColor];
+        [cell getLabelColor];
 
         
         //sets headline text
