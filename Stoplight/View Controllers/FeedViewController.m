@@ -21,7 +21,7 @@
 0 - Home
 1 - Following
 **/
-@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate, AdjustTopicsViewControllerDelegate>
+@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate, AdjustTopicsViewControllerDelegate, UISearchBarDelegate>
 
 //keys --> category; vals--> art list
 @property (strong, nonatomic) NSMutableDictionary *articlesDictionary;
@@ -38,6 +38,10 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *searchButton;
+@property (strong, nonatomic) UISearchBar *searchBar;
+
 
 @end
 
@@ -92,6 +96,8 @@
     [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.categoryTableView insertSubview:self.refreshControl atIndex:0];
     
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, self.categoryTableView.frame.size.width, 44.0)];
+    self.searchBar.delegate = self;
 }
 
 
@@ -337,6 +343,25 @@ Uses a different data structure to store sources and a different api call.
         
     });
 }
+
+#pragma mark - Search
+
+- (IBAction)openSearchBar:(id)sender {
+    self.categoryTableView.tableHeaderView = self.searchBar;
+    self.searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self.view endEditing:YES];
+    self.categoryTableView.tableHeaderView = nil;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self performSegueWithIdentifier:@"toSearch" sender:nil];
+}
+
+
+
 
 
 @end

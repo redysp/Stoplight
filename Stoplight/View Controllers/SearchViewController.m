@@ -19,8 +19,11 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) NSMutableArray *articles;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UILabel *trendingLabel;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property NSInteger loadCount;
+@property NSInteger searchContent;
+@property NSMutableArray *trendingTopics;
 
 @end
 
@@ -40,6 +43,23 @@
     self.searchBar.showsCancelButton = YES;
     
     self.loadCount = 0;
+    
+    self.searchContent = 0;
+    
+    
+    __weak __typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __strong __typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        [strongSelf getTrendingTopics];
+        
+    });
+    
+    self.trendingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.frame.size.width, 44.0)];
+    self.trendingLabel.text = @"Today's trending topics...";
+    self.tableView.tableHeaderView = self.trendingLabel;
 }
 
 
@@ -49,13 +69,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"SearchToWeb"]) {
-        
-        SearchArticleCell *tappedCell = sender;
-        Article *article = tappedCell.article;
-        
-        WebViewController *viewController = [segue destinationViewController];
-        viewController.url = article.link;
+    if (self.searchContent) {
+        if ([segue.identifier isEqualToString:@"SearchToWeb"]) {
+            
+            SearchArticleCell *tappedCell = sender;
+            Article *article = tappedCell.article;
+            
+            WebViewController *viewController = [segue destinationViewController];
+            viewController.url = article.link;
+        }
     }
 }
 
@@ -64,25 +86,34 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     SearchArticleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchArticleCell" forIndexPath:indexPath];
     
-    @try {
-        Article *article = self.articles[indexPath.row];
-        cell.article = article;
-        if (article.title){
-            cell.titleLabel.text = article.title;
+    if (self.searchContent) {
+        @try {
+            Article *article = self.articles[indexPath.row];
+            cell.article = article;
+            if (article.title){
+                cell.titleLabel.text = article.title;
+            }
+            if (article.imageLink) {
+                cell.articleImageView.layer.cornerRadius = 10;
+                cell.articleImageView.clipsToBounds = YES;
+                [cell.articleImageView setImageWithURL:article.imageLink];
+            }
+            return cell;
+        } @catch (NSException *exception){
+            return cell;
         }
-        if (article.imageLink) {
-            cell.articleImageView.layer.cornerRadius = 10;
-            cell.articleImageView.clipsToBounds = YES;
-            [cell.articleImageView setImageWithURL:article.imageLink];
-        }
-        return cell;
-    } @catch (NSException *exception){
+    } else {
+        cell.titleLabel.text = self.trendingTopics[indexPath.row];
         return cell;
     }
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.articles.count;
+    if (self.searchContent) {
+        return self.articles.count;
+    } else {
+        return self.trendingTopics.count;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -93,6 +124,8 @@
 #pragma mark - Search Bar Methods
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.searchContent = 1;
+    self.tableView.tableHeaderView = nil;
     [self.view endEditing:YES];
     NSString *searchBarText = self.searchBar.text;
     
@@ -109,6 +142,7 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     self.searchBar.text = @"";
     [self.view endEditing:YES];
+    self.searchContent = 0;
 }
 
 #pragma mark - Network Call
@@ -144,6 +178,15 @@
             }];
         }
     }
+}
+
+-(void)getTrendingTopics {
+    [[APIManager shared] getTrendingTopicsWithCompletion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        self.trendingTopics = [Utility parseTrendingTopics:data response:response error:error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 #pragma mark - Scroll View

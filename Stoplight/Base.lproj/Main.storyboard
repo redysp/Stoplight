@@ -217,15 +217,31 @@
                         <viewLayoutGuide key="safeArea" id="ift-xP-udJ"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" title="Stoplight" id="mzK-wV-aul"/>
+                    <navigationItem key="navigationItem" title="Stoplight" id="mzK-wV-aul">
+                        <barButtonItem key="rightBarButtonItem" image="search" landscapeImage="search" style="plain" id="vLH-P4-BdD">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nyk-zX-6ZX">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="openSearchBar:" destination="6fX-7B-GGG" eventType="touchUpInside" id="amf-1b-dLG"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="openSearchBar:" destination="6fX-7B-GGG" id="vRE-pv-kVG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="edg-MW-Ndr" id="bNB-e5-3jL"/>
                         <outlet property="categoryTableView" destination="6ki-gI-rfi" id="1JD-Y6-AeC"/>
+                        <outlet property="searchButton" destination="vLH-P4-BdD" id="2g0-PJ-Din"/>
+                        <segue destination="xcl-BD-4mm" kind="presentation" identifier="toSearch" id="5Xx-ep-i88"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uny-bx-A1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1157.9710144927537" y="1666.7410714285713"/>
+            <point key="canvasLocation" x="1084" y="1662"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="wuc-8Y-0Gw">
@@ -236,11 +252,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Pho-BG-VYq">
-                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WfP-tF-iw3">
-                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchArticleCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchArticleCell" rowHeight="151" id="hNL-S7-ZaW" customClass="SearchArticleCell">
@@ -863,6 +879,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="qGh-PW-PNL"/>
         <segue reference="9NU-hn-kh2"/>
+        <segue reference="5Xx-ep-i88"/>
         <segue reference="ea5-uw-u41"/>
     </inferredMetricsTieBreakers>
 </document>

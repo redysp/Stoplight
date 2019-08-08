@@ -13,6 +13,7 @@
 #import "Utility.h"
 
 static NSString * const URLString = @"https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=";
+static NSString * const trendingURL = @"https://api.cognitive.microsoft.com/bing/v7.0/news/trendingtopics?mkt=en-us";
 static NSString * const joinString = @"&";
 static NSString * const siteString = @"+site:";
 static NSString * const country = @"mkt=en-us";
@@ -101,6 +102,14 @@ static NSString * const testURL = @"https://api.cognitive.microsoft.com/bing/v7.
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
     [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
     
+    [self makeRequestWithCompletion:session request:request completionHandler:completion];
+}
+
+-(void)getTrendingTopicsWithCompletion:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURL *url = [[NSURL alloc] initWithString:trendingURL];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url]; //Request object
+    [request setValue:consumerKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
     [self makeRequestWithCompletion:session request:request completionHandler:completion];
 }
 
