@@ -20,7 +20,7 @@
     self.articleImageView.layer.maskedCorners = kCALayerMinXMinYCorner | kCALayerMaxXMinYCorner;
     
     // Customization for color label
-    self.affiliationView.layer.cornerRadius = 12;
+    self.affiliationView.layer.cornerRadius = 10;
     
     // Customization for rest of card view
     self.cardView.layer.cornerRadius = 20;
@@ -41,9 +41,9 @@
     }
 }
 
--(void) readButtonPressed:(UIButton *)sender {
-    [self.vc performSegueWithIdentifier:@"toWeb" sender:self];
-}
+//-(void) readButtonPressed:(UIButton *)sender {
+//    [self.vc performSegueWithIdentifier:@"toWeb" sender:self];
+//}
 
 
 

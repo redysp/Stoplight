@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UIImage *articleImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *cardView;
-@property (weak, nonatomic) IBOutlet UIButton *readButton;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 @property (weak, nonatomic) IBOutlet UIView *affiliationView;
 
@@ -30,7 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)customizeCardView;
 - (void)getLabelColor;
-- (void)readButtonPressed:(UIButton *)sender;
 
 @end
 
