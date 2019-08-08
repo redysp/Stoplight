@@ -172,22 +172,43 @@
         [article setAffiliation:slant];
     }
     
-    NSArray *filteredArticles = [self filterArticlesByTopic:topic articles:articles];
+    NSArray *filteredArticles;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.articlesDictionary[topic] addObjectsFromArray:filteredArticles];
-        
-        if ([self.articlesDictionary[topic] count] == 6) {
+    if (self.tabBarController.selectedIndex == 0) {
+        filteredArticles = [self filterArticles:topic articles:articles];
+    } else  {
+        filteredArticles = [self filterArticlesByTopic:topic articles:articles];
+    }
+    
+    [self.articlesDictionary[topic] addObjectsFromArray:filteredArticles];
+    
+    if ([self.articlesDictionary[topic] count] == 6) {
+        dispatch_async(dispatch_get_main_queue(), ^{
             NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
             NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
             [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
             //[self.categoryTableView reloadData];
-
-
+            
+            
             [self.refreshControl endRefreshing];
             self.categoryTableView.alpha = 1;
             [self.activityIndicator stopAnimating];
-        }
+        });
+    }
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//
+//        if ([self.articlesDictionary[topic] count] == 6) {
+//            NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
+//            NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
+//            [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
+//            //[self.categoryTableView reloadData];
+//
+//
+//            [self.refreshControl endRefreshing];
+//            self.categoryTableView.alpha = 1;
+//            [self.activityIndicator stopAnimating];
+//        }
 //        NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
 //        NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
 //        [self.categoryTableView reloadRowsAtIndexPaths:IPArray withRowAnimation:UITableViewRowAnimationNone];
@@ -198,7 +219,7 @@
 //        self.categoryTableView.alpha = 1;
 //        [self.activityIndicator stopAnimating];
         
-    });
+//    });
 }
 
 /**
