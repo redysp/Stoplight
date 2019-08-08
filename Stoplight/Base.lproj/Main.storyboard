@@ -176,6 +176,7 @@
                                                                 <outlet property="readButton" destination="wKV-VC-pEl" id="Vf6-cZ-gwt"/>
                                                                 <outlet property="sourceLabel" destination="x6X-wC-OgM" id="pGX-tK-tPr"/>
                                                                 <outlet property="titleLabel" destination="cXv-RH-3B8" id="f1t-6D-v78"/>
+                                                                <segue destination="Aks-PT-IQW" kind="presentation" identifier="toWeb" id="9NU-hn-kh2"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -220,7 +221,6 @@
                     <connections>
                         <outlet property="activityIndicator" destination="edg-MW-Ndr" id="bNB-e5-3jL"/>
                         <outlet property="categoryTableView" destination="6ki-gI-rfi" id="1JD-Y6-AeC"/>
-                        <segue destination="Aks-PT-IQW" kind="presentation" identifier="toWeb" id="kBa-qp-fba"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uny-bx-A1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -862,7 +862,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qGh-PW-PNL"/>
-        <segue reference="kBa-qp-fba"/>
+        <segue reference="9NU-hn-kh2"/>
         <segue reference="ea5-uw-u41"/>
     </inferredMetricsTieBreakers>
 </document>
