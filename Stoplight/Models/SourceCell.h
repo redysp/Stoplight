@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SourceCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *sourceCellLabel;
+@property (weak, nonatomic) IBOutlet UILabel *markerLabel;
 @property (assign, nonatomic) BOOL isSelected;
 @property (strong, nonatomic) NSString *source_name;
 @property (strong, nonatomic) User *user;
