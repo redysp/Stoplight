@@ -53,8 +53,8 @@
     [self.activityIndicator startAnimating];
     
     //Delete later
-    [Utility saveDefaultSources];
-    [Utility saveDefaultTopics];
+//    [Utility saveDefaultSources];
+//    [Utility saveDefaultTopics];
 
 
     self.articlesDictionary = [[NSMutableDictionary alloc]init];
@@ -271,7 +271,7 @@ Uses a different data structure to store sources and a different api call.
 - (NSArray *) filterArticles:(NSString *)categoryName articles:(NSArray *)articles{
     NSMutableArray *keepArticles = [NSMutableArray new];
     for (Article *article in articles) {
-        if (keepArticles.count == 2) {
+        if (keepArticles.count == 1) {
             break;
         }
         if ([[article.category lowercaseString] isEqualToString:categoryName]) {
@@ -279,7 +279,7 @@ Uses a different data structure to store sources and a different api call.
         }
     }
     //TODO: DEAL WITH THIS. Maybe re-call the API but skip over the ones we already got? Not sure how to do that.
-    for (int i = 0; keepArticles.count < 2; i++) {
+    for (int i = 0; keepArticles.count < 1; i++) {
         [keepArticles addObject:[articles objectAtIndex:i]];
     }
     return keepArticles;
@@ -289,7 +289,7 @@ Uses a different data structure to store sources and a different api call.
     //For this one just take the first 2?
     NSMutableArray *keepArticles = [NSMutableArray new];
     [keepArticles addObject:[articles objectAtIndex:0]];
-    [keepArticles addObject:[articles objectAtIndex:1]];
+    //[keepArticles addObject:[articles objectAtIndex:1]];
     return keepArticles;
 }
 
