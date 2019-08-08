@@ -208,6 +208,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="edg-MW-Ndr" id="bNB-e5-3jL"/>
                         <outlet property="categoryTableView" destination="6ki-gI-rfi" id="1JD-Y6-AeC"/>
+                        <segue destination="xcl-BD-4mm" kind="presentation" identifier="toSearch" id="5Xx-ep-i88"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uny-bx-A1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -217,7 +218,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1157.9710144927537" y="1666.7410714285713"/>
+            <point key="canvasLocation" x="1084" y="1662"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="wuc-8Y-0Gw">
@@ -227,12 +228,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Pho-BG-VYq">
-                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                            <searchBar contentMode="redraw" placeholder="Search for news..." translatesAutoresizingMaskIntoConstraints="NO" id="Pho-BG-VYq">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WfP-tF-iw3">
-                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchArticleCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchArticleCell" rowHeight="151" id="hNL-S7-ZaW" customClass="SearchArticleCell">
@@ -274,6 +275,31 @@
                                             <outlet property="articleImageView" destination="mfO-ki-eW9" id="KDl-0o-iax"/>
                                             <outlet property="titleLabel" destination="uyL-w0-ZnI" id="1ff-7E-p4B"/>
                                             <segue destination="Aks-PT-IQW" kind="presentation" identifier="SearchToWeb" id="7HH-7D-eEg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TrendingTopicsCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrendingTopicsCell" rowHeight="66" id="zFG-to-ezz" customClass="TrendingTopicsCell">
+                                        <rect key="frame" x="0.0" y="179" width="414" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zFG-to-ezz" id="Sq4-ra-Hut" customClass="TrendingTopicsCell">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trending" translatesAutoresizingMaskIntoConstraints="NO" id="2ph-0e-Bjf">
+                                                    <rect key="frame" x="353" y="11.5" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="TrendingTopicCell" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54m-xw-uz9">
+                                                    <rect key="frame" x="20" y="11" width="313" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="trendingImage" destination="2ph-0e-Bjf" id="994-rk-nle"/>
+                                            <outlet property="trendingTopicLabel" destination="54m-xw-uz9" id="Z6h-Lx-GuP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -858,10 +884,12 @@
         <image name="home" width="40" height="33"/>
         <image name="search" width="40" height="33"/>
         <image name="settings" width="36" height="30"/>
+        <image name="trending" width="573" height="548"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qGh-PW-PNL"/>
-        <segue reference="9NU-hn-kh2"/>
+        <segue reference="7HH-7D-eEg"/>
+        <segue reference="5Xx-ep-i88"/>
         <segue reference="ea5-uw-u41"/>
     </inferredMetricsTieBreakers>
 </document>

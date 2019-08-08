@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSMutableArray *) getSelectedTopics;
 + (void) saveDefaultTopics;
 + (NSArray *) getSelectedTopicsQueryFormat;
++ (NSMutableArray *) parseTrendingTopics:(NSData * _Nullable) data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable) error;
 
 //+ (NSString *)getSiteURL:(NSString *)site category:(NSString *)category;
 //+ (NSMutableArray *) decideSourcesList;

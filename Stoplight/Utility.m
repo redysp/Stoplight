@@ -165,4 +165,22 @@ Gives adjust topics page the array of topics.
     [defaults setObject:[NSArray arrayWithObjects:@"global+warming", @"sudan", nil] forKey:@"selectedTopicsQueryFormat"];
     [defaults synchronize];
 }
+
++ (NSMutableArray *) parseTrendingTopics:(NSData * _Nullable) data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable) error {
+    NSMutableArray *array = [NSMutableArray new];
+    
+    if (error) {
+        return array;
+    }
+    
+    NSDictionary *rawJSON = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    
+    NSArray *arrayOfDictionaries = rawJSON[@"value"];
+    
+    for (NSDictionary *dict in arrayOfDictionaries) {
+        [array addObject:dict[@"query"][@"text"]];
+    }
+    
+    return array;
+}
 @end
