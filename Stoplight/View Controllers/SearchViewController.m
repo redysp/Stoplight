@@ -58,9 +58,14 @@
         
     });
     
-    self.trendingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.frame.size.width, 44.0)];
-    self.trendingLabel.text = @"Today's trending topics...";
+    [self initializeTrendingLabel];
     self.tableView.tableHeaderView = self.trendingLabel;
+}
+
+- (void) initializeTrendingLabel {
+    self.trendingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.frame.size.width, 60.0)];
+    self.trendingLabel.text = @"Today's trending topics...";
+    self.trendingLabel.font = [UIFont systemFontOfSize:30.0 weight:UIFontWeightThin];
 }
 
 
@@ -157,6 +162,7 @@
     self.searchBar.text = @"";
     [self.view endEditing:YES];
     self.searchContent = 0;
+    self.tableView.tableHeaderView = self.trendingLabel;
     [self.tableView reloadData];
 }
 
