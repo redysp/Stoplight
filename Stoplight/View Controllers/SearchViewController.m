@@ -13,6 +13,7 @@
 #import "SearchArticleCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "WebViewController.h"
+#import "TrendingTopicsCell.h"
 
 @interface SearchViewController ()
 
@@ -84,9 +85,8 @@
 #pragma mark - TableView Methods
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    SearchArticleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchArticleCell" forIndexPath:indexPath];
-    
     if (self.searchContent) {
+        SearchArticleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchArticleCell" forIndexPath:indexPath];
         @try {
             Article *article = self.articles[indexPath.row];
             cell.article = article;
@@ -103,7 +103,8 @@
             return cell;
         }
     } else {
-        cell.titleLabel.text = self.trendingTopics[indexPath.row];
+        TrendingTopicsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TrendingTopicsCell" forIndexPath:indexPath];
+        cell.trendingTopicLabel.text = self.trendingTopics[indexPath.row];
         return cell;
     }
 }
@@ -117,7 +118,20 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"SearchToWeb" sender:[self.tableView cellForRowAtIndexPath:indexPath]];
+    if (self.searchContent) {
+        [self performSegueWithIdentifier:@"SearchToWeb" sender:[self.tableView cellForRowAtIndexPath:indexPath]];
+    } else {
+        self.searchContent = 1;
+        self.searchBar.text = self.trendingTopics[indexPath.row];
+        __weak __typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            __strong __typeof(self) strongSelf = weakSelf;
+            if (!strongSelf) {
+                return;
+            }
+            [strongSelf queryForText:self.trendingTopics[indexPath.row]];
+        });
+    }
 }
 
 
@@ -143,6 +157,7 @@
     self.searchBar.text = @"";
     [self.view endEditing:YES];
     self.searchContent = 0;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Network Call
@@ -153,7 +168,7 @@
         NSArray *sources = sourcesDictionary[slant];
         for (NSString *source in sources) {
             //[[APIManager shared] getTopicArticlesWith:searchBarText source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            [[APIManager shared] getTopicArticlesWithCountAndOffset:searchBarText source:source count:1 offset:self.articles.count/6 completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            [[APIManager shared] getTopicArticlesWithCountAndOffset:[Utility topicToQuery:searchBarText] source:source count:1 offset:self.articles.count/6 completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 if (error) {
                     return;
                 }
@@ -169,11 +184,12 @@
                 
                 self.isMoreDataLoading = false;
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    self.tableView.tableHeaderView = nil;
+                    //[self.tableView reloadData];
                     if (self.loadCount == 6) {
                         [self.tableView reloadData];
                         self.loadCount = 0;
                     }
-                    
                 });
             }];
         }

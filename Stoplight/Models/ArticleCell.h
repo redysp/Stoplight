@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *affiliationView;
 
 
-@property (strong, nonatomic) FeedViewController *vc;
+@property (weak, nonatomic) FeedViewController *vc;
 
 
 
