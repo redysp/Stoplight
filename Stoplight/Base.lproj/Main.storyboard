@@ -129,28 +129,15 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
                                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Btx-ZA-NPY">
-                                                                        <rect key="frame" x="21" y="154" width="240" height="146"/>
+                                                                        <rect key="frame" x="21" y="154" width="240" height="115"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXv-RH-3B8">
-                                                                                <rect key="frame" x="8" y="19" width="219" height="79"/>
+                                                                                <rect key="frame" x="8" y="19" width="219" height="90"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKV-VC-pEl">
-                                                                                <rect key="frame" x="8" y="101" width="224" height="30"/>
-                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                                <color key="backgroundColor" red="0.46666666666666667" green="0.8666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                                <state key="normal" title="Read">
-                                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                </state>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                                        <integer key="value" value="5"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                </userDefinedRuntimeAttributes>
-                                                                            </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6X-wC-OgM">
                                                                                 <rect key="frame" x="8" y="8" width="224" height="17"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -159,7 +146,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZjV-BU-e4k">
-                                                                                <rect key="frame" x="207" y="4" width="25" height="24"/>
+                                                                                <rect key="frame" x="212" y="6" width="20" height="21"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <color key="backgroundColor" red="1" green="0.1647058824" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             </view>
@@ -169,13 +156,14 @@
                                                                 </subviews>
                                                             </view>
                                                             <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <gestureRecognizers/>
                                                             <connections>
                                                                 <outlet property="affiliationView" destination="ZjV-BU-e4k" id="K1n-wF-qFo"/>
                                                                 <outlet property="articleImageView" destination="kDX-s2-BMn" id="oxM-lR-VF0"/>
                                                                 <outlet property="cardView" destination="Btx-ZA-NPY" id="62L-6j-kpl"/>
-                                                                <outlet property="readButton" destination="wKV-VC-pEl" id="Vf6-cZ-gwt"/>
                                                                 <outlet property="sourceLabel" destination="x6X-wC-OgM" id="pGX-tK-tPr"/>
                                                                 <outlet property="titleLabel" destination="cXv-RH-3B8" id="f1t-6D-v78"/>
+                                                                <outletCollection property="gestureRecognizers" destination="e0X-wt-vuI" appends="YES" id="jyU-is-7iR"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -224,6 +212,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uny-bx-A1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="e0X-wt-vuI">
+                    <connections>
+                        <action selector="didTap:" destination="6fX-7B-GGG" id="Ytd-ey-iGP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1157.9710144927537" y="1666.7410714285713"/>
         </scene>

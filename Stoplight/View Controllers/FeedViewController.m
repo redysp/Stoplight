@@ -39,6 +39,8 @@
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+
+
 @end
 
 @implementation FeedViewController
@@ -147,6 +149,11 @@
         [self fetchArticlesByTopic];
     }
 }
+
+- (IBAction)didTap:(id)sender {
+    [self performSegueWithIdentifier:@"toWeb" sender:nil];
+}
+
 
 -(void)completionBlock:(NSData * _Nullable)data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable)error slant:(NSString *)slant topic:(NSString *)topic{
     if (error) {
