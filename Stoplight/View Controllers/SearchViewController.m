@@ -23,7 +23,6 @@
 @property (strong, nonatomic) UILabel *trendingLabel;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (strong, nonatomic) NSDictionary *sourcesDictionary;
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property NSInteger loadCount;
 @property NSInteger searchContent;
 @property NSMutableArray *trendingTopics;
@@ -67,10 +66,6 @@
     
     [self initializeTrendingLabel];
     self.tableView.tableHeaderView = self.trendingLabel;
-    
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(queryForText:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void) initializeTrendingLabel {
@@ -144,6 +139,11 @@
         [self.articles removeAllObjects];
         [self clearTrendingTopics];
         self.loadCount = 0;
+        [UIView animateWithDuration:0.15
+                              delay:0.0
+                            options: UIViewAnimationOptionCurveEaseOut
+                         animations:^{self.trendingLabel.alpha = 0;}
+                         completion:nil];
         __weak __typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             __strong __typeof(self) strongSelf = weakSelf;
@@ -165,7 +165,14 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.searchContent = 1;
-    self.tableView.tableHeaderView = nil;
+    
+    //Animate disappearance.
+    [UIView animateWithDuration:0.15
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseOut
+                     animations:^{self.trendingLabel.alpha = 0;}
+                     completion:nil];
+    
     [self.view endEditing:YES];
     NSString *searchBarText = self.searchBar.text;
     
@@ -216,7 +223,6 @@
                 
                 self.isMoreDataLoading = false;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.refreshControl endRefreshing];
                     self.tableView.tableHeaderView = nil;
                     if (self.loadCount == 6) {
                         [self.tableView reloadData];
