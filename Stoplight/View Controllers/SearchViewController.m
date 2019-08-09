@@ -195,6 +195,7 @@
     self.searchBar.text = @"";
     [self.view endEditing:YES];
     self.searchContent = 0;
+    self.trendingLabel.alpha = 1;
     self.tableView.tableHeaderView = self.trendingLabel;
     self.trendingTopics = [self.trendingTopicsCopy mutableCopy];
     [self.articles removeAllObjects];
