@@ -128,8 +128,15 @@ Gives adjust topics page the array of topics.
 **/
 + (NSMutableArray *) getSelectedTopics {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *savedSources = [defaults objectForKey:@"selectedTopics"];
-    return [savedSources mutableCopy];
+    NSArray *selectedTopics = [defaults objectForKey:@"selectedTopics"];
+    
+    if (selectedTopics) {
+        return [selectedTopics mutableCopy];
+    } else {
+        [Utility saveDefaultTopics];
+        selectedTopics = [defaults objectForKey:@"selectedTopics"];
+        return [selectedTopics mutableCopy];
+    }
 }
 
 /**
