@@ -29,7 +29,7 @@
 @property (strong, nonatomic) NSArray *sectionsList;
 
 //Dictionary containing articles we want organized by source
-@property (strong,nonatomic) NSMutableDictionary *displayDict;
+//@property (strong,nonatomic) NSMutableDictionary *displayDict;
 
 //dictionary --> (key) pol aff. to (val) list of sources
 @property (strong,nonatomic) NSDictionary *sortedSourcesDict;

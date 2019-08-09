@@ -69,12 +69,25 @@ query format (ex "Global+Warming)
     [defaults setObject:arr forKey:@"savedSources"];
     [defaults synchronize];
     
-    NSDictionary *defaultSourcesDictionary = [[NSMutableDictionary alloc] init];
-    [defaultSourcesDictionary setValue:politicsDict forKey:@"politics"];
-    [defaultSourcesDictionary setValue:businessDict forKey:@"business"];
-    [defaultSourcesDictionary setValue:usDict forKey:@"us"];
-    [defaultSourcesDictionary setValue:worldDict forKey:@"world"];
+    NSMutableDictionary *defaultSourcesDictionary = [[NSMutableDictionary alloc] init];
     
+    NSArray *slantList = [NSArray arrayWithObjects:@"left", @"center", @"right", nil];
+    NSArray *sectionNames = [NSArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];
+    
+    for (int i = 0; i < sectionNames.count; i++) {
+        NSString *categoryName = sectionNames[i];
+        NSMutableDictionary *categoryDictionary = [[NSMutableDictionary alloc] init];
+        for (NSString *slant in slantList) {
+            NSMutableArray *sourcesBySlant = [NSMutableArray new];
+            for (NSString *source in arr[i][slant]) {
+                if ([arr[i][slant][source] boolValue]) {
+                    [sourcesBySlant addObject:source];
+                }
+            }
+            [categoryDictionary setObject:sourcesBySlant forKey:slant];
+        }
+        [defaultSourcesDictionary setObject:categoryDictionary forKey:categoryName];
+    }
     [defaults setObject:defaultSourcesDictionary forKey:@"savedSourcesDictionary"];
     [defaults synchronize];
 }
@@ -100,7 +113,14 @@ Returns dictionary format sources for FEED VIEW CONTROLLER.
 + (NSDictionary *)getSavedSourcesDictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *savedSourcesDictionary = [defaults objectForKey:@"savedSourcesDictionary"];
-    return savedSourcesDictionary;
+    
+    if (savedSourcesDictionary) {
+        return savedSourcesDictionary;
+    } else {
+        [Utility saveDefaultSources];
+        savedSourcesDictionary = [defaults objectForKey:@"savedSources"];
+        return savedSourcesDictionary;
+    }
 }
 
 /**

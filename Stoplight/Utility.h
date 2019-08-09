@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSArray *categoriesList;
 
 //Retrieving data
-+ (NSDictionary *)retrieveSourceDict;
+//+ (NSDictionary *)retrieveSourceDict;
 + (NSArray *)fetchCategoriesList;
 + (NSMutableArray *) getSelectedTopics;
 + (NSArray *) getSelectedTopicsQueryFormat;

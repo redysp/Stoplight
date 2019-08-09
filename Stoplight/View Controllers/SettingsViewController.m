@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [Utility saveDefaultSources];
+    //[Utility saveDefaultSources];
 }
 
 - (IBAction)didTapSources:(id)sender {
