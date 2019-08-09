@@ -136,7 +136,7 @@
         NSString *stringWithoutPlusSign = [section stringByReplacingOccurrencesOfString:@"+" withString:@" "];
         cell.categoryNameLabel.text = stringWithoutPlusSign;
     }
-    else{
+    else {
         cell.categoryNameLabel.text = [section capitalizedString];
     }
     [cell.categoryCollectionView reloadData];

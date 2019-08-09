@@ -628,7 +628,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTj-Eq-sDd">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="PNL-Jf-40b">
+                                    <navigationItem title="News Article" id="PNL-Jf-40b">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="dqS-HH-5N3">
                                             <connections>
                                                 <action selector="didTapBack:" destination="Aks-PT-IQW" id="A5r-Q9-GB5"/>
