@@ -12,6 +12,9 @@
 #import "Utility.h"
 
 @interface SettingsViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *settingsImageView;
+@property (weak, nonatomic) IBOutlet UILabel *accentLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *accentLabel2;
 
 @end
 
@@ -19,7 +22,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    CAGradientLayer *gradient1 = [CAGradientLayer layer];
+    CAGradientLayer *gradient2 = [CAGradientLayer layer];
+    CAGradientLayer *gradient3 = [CAGradientLayer layer];
+    
+    gradient1.frame = self.accentLabel1.bounds;
+    gradient2.frame = self.accentLabel2.bounds;
+    gradient3.frame = self.settingsImageView.bounds;
+    
+    gradient1.colors = @[(id)[UIColor blueColor].CGColor, (id)[UIColor redColor].CGColor];
+    gradient2.colors = @[(id)[UIColor blueColor].CGColor, (id)[UIColor redColor].CGColor];
+    gradient3.colors = @[(id)[UIColor blueColor].CGColor, (id)[UIColor redColor].CGColor];
+    
+    [self.accentLabel1.layer insertSublayer:gradient1 atIndex:0];
+    [self.accentLabel2.layer insertSublayer:gradient2 atIndex:0];
+    [self.settingsImageView.layer insertSublayer:gradient3 atIndex:0];
+    
+    gradient1.startPoint = CGPointMake(0.0, 0.5);
+    gradient1.endPoint = CGPointMake(1.0, 0.5);
+    gradient2.startPoint = CGPointMake(0.0, 0.5);
+    gradient2.endPoint = CGPointMake(1.0, 0.5);
+    gradient3.startPoint = CGPointMake(0.0, .5);
+    gradient3.endPoint = CGPointMake(1.0, 0.5);
+    
+    self.accentLabel1.layer.masksToBounds = YES;
+    self.accentLabel1.layer.cornerRadius = 3.0;
+    self.accentLabel2.layer.masksToBounds = YES;
+    self.accentLabel2.layer.cornerRadius = 3.0;
+    self.settingsImageView.layer.cornerRadius = 25.0;
+    self.settingsImageView.layer.masksToBounds = YES;
+    
     //[Utility saveDefaultSources];
 }
 

@@ -151,11 +151,11 @@ Gives adjust topics page the array of topics.
 + (void) saveDefaultTopics {
     //Save in raw form.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSArray arrayWithObjects:@"Global Warming", @"Sudan", nil] forKey:@"selectedTopics"];
+    [defaults setObject:[NSArray arrayWithObjects:@"Global Warming", @"Sudan", @"Kashmir", @"Toni Morrison", @"El Paso", nil] forKey:@"selectedTopics"];
     [defaults synchronize];
     
     //Save in form feed view controller uses.
-    [defaults setObject:[NSArray arrayWithObjects:@"global+warming", @"sudan", nil] forKey:@"selectedTopicsQueryFormat"];
+    [defaults setObject:[NSArray arrayWithObjects:@"global+warming", @"sudan", @"kashmir", @"toni+morrison", @"el+paso", nil] forKey:@"selectedTopicsQueryFormat"];
     [defaults synchronize];
 }
 
