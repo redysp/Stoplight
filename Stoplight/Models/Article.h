@@ -21,10 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *provider;
 @property (nonatomic, strong) NSString *affiliation;
 @property (nonatomic, strong) NSString *category;
-//@property (nonatomic, strong) NSString *author;
-//@property (nonatomic, strong) NSString *description;
-//@property (nonatomic, strong) NSString *text;
-//@property (nonatomic, strong) NSDate *publishedAt;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 + (NSMutableArray *)articlesWithArray:(NSArray *)dictionaries;

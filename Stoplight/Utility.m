@@ -12,44 +12,7 @@
 
 @implementation Utility
 
-+ (instancetype)shared {
-    static Utility *sharedManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedManager = [[self alloc] init];
-        
-        NSDictionary *politicsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@[@"vox.com", @"nbcnews.com"], @"left",
-                                            @[@"reuters.com", @"apnews.com"], @"center",
-                                            @[@"foxnews.com", @"nypost.com"], @"right", nil];
-        
-        NSDictionary *businessDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@[@"cnbc.com", @"economist.com"], @"left",
-                                            @[@"wsj.com", @"bloomberg.com"], @"center",
-                                            @[@"foxbusiness.com", @"washingtonexaminer.com/business"], @"right", nil];
-        
-        NSDictionary *usDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@[@"cnn.com", @"time.com"], @"left",
-                                      @[@"npr.org", @"usatoday.com"], @"center",
-                                      @[@"foxnews.com", @"spectator.org"], @"right", nil];
-        
-        NSDictionary *worldDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@[@"cnn.com/world", @"theguardian.com"], @"left",
-                                         @[@"reuters.com", @"bbc.com"], @"center",
-                                         @[@"foxnews.com/world", @"dailymail.co.uk"], @"right", nil];
-        
-        
-        
-        sharedManager.siteDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:politicsDictionary, @"politics", businessDictionary, @"business", usDictionary, @"us", worldDictionary, @"world", nil];
-    });
-    return sharedManager;
-}
-
-+ (NSDictionary *)retrieveSourceDict{
-    return [Utility shared].siteDictionary;
-}
-
 + (NSArray *)fetchCategoriesList {
-    //This is what it should be eventually but just keeping it like this for functionality rn.
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSArray *categoriesList = [defaults objectForKey:@"categoriesList"];
-//    return categoriesList
     return [NSArray arrayWithObjects:@"politics", @"business", @"us", @"world", nil];;
 }
 
@@ -62,9 +25,6 @@ Returns dictionary with this structure
  }
 **/
 + (NSDictionary *)fetchGeneralSourceDictionary {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *sourcesDictionary = [defaults objectForKey:@"sourcesForTopics"];
-//    return sourcesDictionary;
     NSArray *leftArray = [NSArray arrayWithObjects:@"cnn.com", @"theguardian.com", nil];
     NSArray *centerArray = [NSArray arrayWithObjects:@"npr.org", @"reuters.com", nil];
     NSArray *rightArray = [NSArray arrayWithObjects:@"foxnews.com", @"wsj.com", nil];
@@ -90,8 +50,8 @@ query format (ex "Global+Warming)
                                          nil];
     NSMutableDictionary *businessDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                          [[NSMutableDictionary alloc] initWithDictionary:@{@"cnbc.com":@YES, @"economist.com":@YES, @"cnn.com/business":@NO, }], @"left",
-                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"wsj.com":@YES, @"bloomberg.com":@YES, @"ft.com":@NO, }], @"center",
-                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES, @"marketwatch.com":@NO, }], @"right",
+                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"wsj.com":@YES, @"bloomberg.com":@YES, @"ft.com":@NO}], @"center",
+                                         [[NSMutableDictionary alloc] initWithDictionary:@{@"foxbusiness.com":@YES, @"washingtonexaminer.com/business":@YES, @"marketwatch.com":@NO}], @"right",
                                          nil];
     NSMutableDictionary *usDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                    [[NSMutableDictionary alloc] initWithDictionary:@{@"cnn.com":@YES, @"time.com":@YES}], @"left",
@@ -123,9 +83,15 @@ query format (ex "Global+Warming)
 Returns that weird array of dictionaries you want for categories, for the ADJUST CATEGORIES SOURCES page.
 **/
 + (NSMutableArray *)getSavedSources {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSMutableArray *savedSources = [defaults objectForKey:@"savedSources"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *savedSources = [defaults objectForKey:@"savedSources"];
+    if (savedSources) {
         return savedSources;
+    } else {
+        [Utility saveDefaultSources];
+        savedSources = [defaults objectForKey:@"savedSources"];
+        return savedSources;
+    }
 }
 
 /**
