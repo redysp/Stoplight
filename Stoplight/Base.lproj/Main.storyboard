@@ -877,6 +877,15 @@
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DE2-Lu-jmy">
+                                <rect key="frame" x="190" y="316" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="didTapBack:" destination="AX5-Jx-GtT" eventType="touchUpInside" id="Ymx-AA-Xd8"/>
+                                    <action selector="isPressed:" destination="AX5-Jx-GtT" eventType="touchUpInside" id="H14-EZ-WH5"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPH-bP-2Bn">
                                 <rect key="frame" x="161.5" y="249" width="91" height="52"/>
                                 <color key="backgroundColor" red="0.59843543628516471" green="0.46424230732269722" blue="0.92133218050003052" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -910,6 +919,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="DE2-Lu-jmy" id="cBo-vV-D7f"/>
                         <outlet property="followButton" destination="tPH-bP-2Bn" id="gbo-SC-NK6"/>
                         <outlet property="userInputTextView" destination="GBU-jX-IHQ" id="9uF-t3-31T"/>
                     </connections>
