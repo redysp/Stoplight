@@ -882,7 +882,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <action selector="didTapBack:" destination="AX5-Jx-GtT" eventType="touchUpInside" id="Ymx-AA-Xd8"/>
+                                    <action selector="backToTopics:" destination="AX5-Jx-GtT" eventType="touchUpInside" id="VOs-ox-Bs2"/>
                                     <action selector="isPressed:" destination="AX5-Jx-GtT" eventType="touchUpInside" id="H14-EZ-WH5"/>
                                 </connections>
                             </button>
