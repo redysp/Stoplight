@@ -139,7 +139,7 @@
         [self.articles removeAllObjects];
         [self clearTrendingTopics];
         self.loadCount = 0;
-        [UIView animateWithDuration:0.15
+        [UIView animateWithDuration:0.5
                               delay:0.0
                             options: UIViewAnimationOptionCurveEaseOut
                          animations:^{self.trendingLabel.alpha = 0;}
@@ -157,7 +157,8 @@
 
 - (void) clearTrendingTopics {
     [self.trendingTopics removeAllObjects];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
@@ -167,7 +168,7 @@
     self.searchContent = 1;
     
     //Animate disappearance.
-    [UIView animateWithDuration:0.15
+    [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseOut
                      animations:^{self.trendingLabel.alpha = 0;}
@@ -199,7 +200,8 @@
     self.tableView.tableHeaderView = self.trendingLabel;
     self.trendingTopics = [self.trendingTopicsCopy mutableCopy];
     [self.articles removeAllObjects];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - Network Call
@@ -226,7 +228,8 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.tableView.tableHeaderView = nil;
                     if (self.loadCount == 6) {
-                        [self.tableView reloadData];
+                        //[self.tableView reloadData];
+                        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
                         self.loadCount = 0;
                     }
                 });
@@ -240,7 +243,8 @@
         self.trendingTopics = [Utility parseTrendingTopics:data response:response error:error];
         self.trendingTopicsCopy = [self.trendingTopics mutableCopy];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            //[self.tableView reloadData];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         });
     }];
 }
