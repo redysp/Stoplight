@@ -23,9 +23,11 @@
 @property (strong, nonatomic) UILabel *trendingLabel;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (strong, nonatomic) NSDictionary *sourcesDictionary;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property NSInteger loadCount;
 @property NSInteger searchContent;
 @property NSMutableArray *trendingTopics;
+@property NSMutableArray *trendingTopicsCopy;
 
 @end
 
@@ -50,6 +52,9 @@
     
     self.sourcesDictionary = [Utility fetchGeneralSourceDictionary];
     
+    self.trendingTopics = [[NSMutableArray alloc] init];
+    self.trendingTopicsCopy = [self.trendingTopics mutableCopy];
+    
     __weak __typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         __strong __typeof(self) strongSelf = weakSelf;
@@ -62,6 +67,10 @@
     
     [self initializeTrendingLabel];
     self.tableView.tableHeaderView = self.trendingLabel;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(queryForText:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void) initializeTrendingLabel {
@@ -85,6 +94,8 @@
             
             WebViewController *viewController = [segue destinationViewController];
             viewController.url = article.link;
+            
+            [sender setSelected:NO];
         }
     }
 }
@@ -131,6 +142,7 @@
         self.searchContent = 1;
         self.searchBar.text = self.trendingTopics[indexPath.row];
         [self.articles removeAllObjects];
+        [self clearTrendingTopics];
         self.loadCount = 0;
         __weak __typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -138,9 +150,14 @@
             if (!strongSelf) {
                 return;
             }
-            [strongSelf queryForText:self.trendingTopics[indexPath.row]];
+            [strongSelf queryForText:self.trendingTopicsCopy[indexPath.row]];
         });
     }
+}
+
+- (void) clearTrendingTopics {
+    [self.trendingTopics removeAllObjects];
+    [self.tableView reloadData];
 }
 
 
@@ -151,6 +168,8 @@
     self.tableView.tableHeaderView = nil;
     [self.view endEditing:YES];
     NSString *searchBarText = self.searchBar.text;
+    
+    [self clearTrendingTopics];
     
     [self.articles removeAllObjects];
     self.loadCount = 0;
@@ -170,18 +189,17 @@
     [self.view endEditing:YES];
     self.searchContent = 0;
     self.tableView.tableHeaderView = self.trendingLabel;
+    self.trendingTopics = [self.trendingTopicsCopy mutableCopy];
+    [self.articles removeAllObjects];
     [self.tableView reloadData];
 }
 
 #pragma mark - Network Call
 
 -(void)queryForText:(NSString *)searchBarText {
-    //Clear articles
-    
     for (NSString *slant in self.sourcesDictionary) {
         NSArray *sources = self.sourcesDictionary[slant];
         for (NSString *source in sources) {
-            //[[APIManager shared] getTopicArticlesWith:searchBarText source:source completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             [[APIManager shared] getTopicArticlesWithCountAndOffset:[Utility topicToQuery:searchBarText] source:source count:1 offset:self.articles.count/6 completion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 if (error) {
                     return;
@@ -198,8 +216,8 @@
                 
                 self.isMoreDataLoading = false;
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.refreshControl endRefreshing];
                     self.tableView.tableHeaderView = nil;
-                    //[self.tableView reloadData];
                     if (self.loadCount == 6) {
                         [self.tableView reloadData];
                         self.loadCount = 0;
@@ -213,6 +231,7 @@
 -(void)getTrendingTopics {
     [[APIManager shared] getTrendingTopicsWithCompletion:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         self.trendingTopics = [Utility parseTrendingTopics:data response:response error:error];
+        self.trendingTopicsCopy = [self.trendingTopics mutableCopy];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });

@@ -20,6 +20,8 @@
     self.categoryCollectionView.delegate = self;
     self.categoryCollectionView.dataSource = self;
     [self.categoryCollectionView reloadData];
+    
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
