@@ -111,6 +111,16 @@
                 cell.articleImageView.clipsToBounds = YES;
                 [cell.articleImageView setImageWithURL:article.imageLink];
             }
+            
+            if ([article.affiliation isEqualToString:@"left"]){
+                [cell.affiliationView setBackgroundColor:[UIColor blueColor]];
+            }
+            else if ([article.affiliation isEqualToString:@"center"]){
+                [cell.affiliationView setBackgroundColor:[UIColor purpleColor]];
+            }
+            else{
+                [cell.affiliationView setBackgroundColor:[UIColor redColor]];
+            }
             return cell;
         } @catch (NSException *exception){
             return cell;
@@ -220,6 +230,11 @@
                 if (articles.count == 0) {
                     return;
                 }
+                
+                for (Article *article in articles) {
+                    [article setAffiliation:slant];
+                }
+                
                 [[articles objectAtIndex:0] setAffiliation:slant];
                 [self.articles addObject:[articles objectAtIndex:0]];
                 self.loadCount += 1;
