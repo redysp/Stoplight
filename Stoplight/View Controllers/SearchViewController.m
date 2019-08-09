@@ -106,6 +106,9 @@
             if (article.title){
                 cell.titleLabel.text = article.title;
             }
+            if (article.provider) {
+                cell.providerLabel.text = article.provider;
+            }
             if (article.imageLink) {
                 cell.articleImageView.layer.cornerRadius = 10;
                 cell.articleImageView.clipsToBounds = YES;
@@ -235,16 +238,21 @@
                     [article setAffiliation:slant];
                 }
                 
-                [[articles objectAtIndex:0] setAffiliation:slant];
+                //[[articles objectAtIndex:0] setAffiliation:slant];
                 [self.articles addObject:[articles objectAtIndex:0]];
                 self.loadCount += 1;
                 
-                self.isMoreDataLoading = false;
+                //self.isMoreDataLoading = false;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.tableView.tableHeaderView = nil;
                     if (self.loadCount == 6) {
                         //[self.tableView reloadData];
-                        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                        if (self.isMoreDataLoading) {
+                            [self.tableView reloadData];
+                            self.isMoreDataLoading = NO;
+                        } else {
+                            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                        }
                         self.loadCount = 0;
                     }
                 });
