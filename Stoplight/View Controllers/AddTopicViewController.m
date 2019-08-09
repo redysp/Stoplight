@@ -35,7 +35,7 @@
     [self.view endEditing:YES];
 }
 
-- (IBAction)backToTopics:(id)sender {
+- (IBAction)goBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
