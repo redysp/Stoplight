@@ -45,17 +45,10 @@
 }
 
 #pragma mark - Collection View Methods
-//table view asks its dataSource for num rows and cell for row at
 
-//This is creating an ARTICLE CELL
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     ArticleCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCell" forIndexPath:indexPath];
-    
-//    [cell.readButton addTarget:cell action:@selector(readButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
     @try {
-        
-        //[self setOppositeAffiliation];
         [cell customizeCardView];
 
         Article *article = self.articles[indexPath.row];

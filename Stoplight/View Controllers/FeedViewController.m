@@ -267,7 +267,7 @@ Uses a different data structure to store sources and a different api call.
 }
 
 - (NSArray *) filterArticlesByTopic:(NSString *)topic articles:(NSArray *)articles {
-    //For this one just take the first 2?
+    //For this one just take the first one.
     NSMutableArray *keepArticles = [NSMutableArray new];
     [keepArticles addObject:[articles objectAtIndex:0]];
     //[keepArticles addObject:[articles objectAtIndex:1]];
@@ -305,7 +305,6 @@ Uses a different data structure to store sources and a different api call.
         }
     }
     [self.categoryTableView reloadData];
-    //[self fetchArticles];
     
     //Switching to a different thread to start network call.
     __weak __typeof(self) weakSelf = self;

@@ -16,7 +16,7 @@
     self = [super init];
     
     self.title = dictionary[@"name"];
-    //self.author = dictionary[@"author"];
+    
     self.link = [NSURL URLWithString:dictionary[@"url"]];
     
     self.imageLink = [NSURL URLWithString:dictionary[@"image"][@"contentUrl"]];
@@ -30,9 +30,7 @@
     
     self.category = dictionary[@"category"];
     self.provider = [dictionary valueForKeyPath:@"provider.name"][0];
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-    //self.publishedAt = [dateFormatter dateFromString:dictionary[@"publishedAt"]];
+    
     return self;
 }
 

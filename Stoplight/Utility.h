@@ -20,23 +20,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSDictionary *siteDictionary;
 @property (strong, nonatomic) NSArray *categoriesList;
 
-+ (instancetype)shared;
+//Retrieving data
 + (NSDictionary *)retrieveSourceDict;
 + (NSArray *)fetchCategoriesList;
-+ (NSArray *)fetchTopicsList;
-+ (NSDictionary *)fetchGeneralSourceDictionary;
-+ (NSString *) topicToQuery:(NSString *)topic;
-+ (NSMutableArray *)getSavedSources;
-+ (void)saveDefaultSources;
-+ (NSDictionary *)getSavedSourcesDictionary;
 + (NSMutableArray *) getSelectedTopics;
-+ (void) saveDefaultTopics;
 + (NSArray *) getSelectedTopicsQueryFormat;
-+ (NSMutableArray *) parseTrendingTopics:(NSData * _Nullable) data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable) error;
++ (NSDictionary *)fetchGeneralSourceDictionary;
++ (NSMutableArray *)getSavedSources;
++ (NSDictionary *)getSavedSourcesDictionary;
 
-//+ (NSString *)getSiteURL:(NSString *)site category:(NSString *)category;
-//+ (NSMutableArray *) decideSourcesList;
-//- (NSArray *)getAllPossibleSources;
+//Saving data
++ (void)saveDefaultSources;
++ (void)saveDefaultTopics;
+
+//General functioning
++ (NSString *) topicToQuery:(NSString *)topic;
++ (NSMutableArray *) parseTrendingTopics:(NSData * _Nullable) data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable) error;
 
 @end
 
