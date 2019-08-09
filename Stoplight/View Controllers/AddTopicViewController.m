@@ -19,7 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.followButton.layer.cornerRadius = 10;
 }
 
 
@@ -29,4 +30,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     //reload the view
 }
+
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:YES];
+}
+
+
 @end
