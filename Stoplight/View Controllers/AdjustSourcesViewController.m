@@ -366,6 +366,7 @@ static int sourceIndex = 0;
 #pragma mark - Navigation
 
 - (IBAction)didTapBack:(id)sender {
+    currentHeaderTag = 0;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
