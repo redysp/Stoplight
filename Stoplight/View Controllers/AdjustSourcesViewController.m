@@ -371,6 +371,7 @@ static int sourceIndex = 0;
 }
 
 - (IBAction)didTapSave:(id)sender {
+    currentHeaderTag = 0;
     //Save the data
     [self saveSelectedItems];
     [self saveSelectedItemsDictionary];
