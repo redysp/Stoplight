@@ -380,12 +380,9 @@ static int sourceIndex = 0;
  **/
 - (IBAction)didTapSave:(id)sender {
     currentHeaderTag = 0;
-    //Save the data
-    [self saveSelectedItems];
-    [self saveSelectedItemsDictionary];
-NSMutableDictionary *feedDictionary = [self createSelectedItemsDictionary];
+    NSMutableDictionary *feedDictionary = [self createSelectedItemsDictionary];
     
-if ([self checkSourceRatio:feedDictionary]) {
+    if ([self checkSourceRatio:feedDictionary]) {
         [self saveSelectedItems];
         [self saveSelectedItemsDictionary:feedDictionary];
         [self dismissViewControllerAnimated:YES completion:nil];
