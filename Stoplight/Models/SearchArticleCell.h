@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Article *article;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *articleImageView;
+@property (strong, nonatomic) IBOutlet UIView *affiliationView;
+@property (strong, nonatomic) IBOutlet UILabel *providerLabel;
 
 @end
 

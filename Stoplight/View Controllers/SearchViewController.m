@@ -23,7 +23,6 @@
 @property (strong, nonatomic) UILabel *trendingLabel;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (strong, nonatomic) NSDictionary *sourcesDictionary;
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property NSInteger loadCount;
 @property NSInteger searchContent;
 @property NSMutableArray *trendingTopics;
@@ -67,10 +66,6 @@
     
     [self initializeTrendingLabel];
     self.tableView.tableHeaderView = self.trendingLabel;
-    
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(queryForText:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void) initializeTrendingLabel {
@@ -111,10 +106,23 @@
             if (article.title){
                 cell.titleLabel.text = article.title;
             }
+            if (article.provider) {
+                cell.providerLabel.text = article.provider;
+            }
             if (article.imageLink) {
                 cell.articleImageView.layer.cornerRadius = 10;
                 cell.articleImageView.clipsToBounds = YES;
                 [cell.articleImageView setImageWithURL:article.imageLink];
+            }
+            
+            if ([article.affiliation isEqualToString:@"left"]){
+                [cell.affiliationView setBackgroundColor:[UIColor blueColor]];
+            }
+            else if ([article.affiliation isEqualToString:@"center"]){
+                [cell.affiliationView setBackgroundColor:[UIColor purpleColor]];
+            }
+            else{
+                [cell.affiliationView setBackgroundColor:[UIColor redColor]];
             }
             return cell;
         } @catch (NSException *exception){
@@ -144,6 +152,11 @@
         [self.articles removeAllObjects];
         [self clearTrendingTopics];
         self.loadCount = 0;
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options: UIViewAnimationOptionCurveEaseOut
+                         animations:^{self.trendingLabel.alpha = 0;}
+                         completion:nil];
         __weak __typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             __strong __typeof(self) strongSelf = weakSelf;
@@ -157,7 +170,8 @@
 
 - (void) clearTrendingTopics {
     [self.trendingTopics removeAllObjects];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
@@ -165,7 +179,14 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.searchContent = 1;
-    self.tableView.tableHeaderView = nil;
+    
+    //Animate disappearance.
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseOut
+                     animations:^{self.trendingLabel.alpha = 0;}
+                     completion:nil];
+    
     [self.view endEditing:YES];
     NSString *searchBarText = self.searchBar.text;
     
@@ -188,10 +209,12 @@
     self.searchBar.text = @"";
     [self.view endEditing:YES];
     self.searchContent = 0;
+    self.trendingLabel.alpha = 1;
     self.tableView.tableHeaderView = self.trendingLabel;
     self.trendingTopics = [self.trendingTopicsCopy mutableCopy];
     [self.articles removeAllObjects];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - Network Call
@@ -210,16 +233,26 @@
                 if (articles.count == 0) {
                     return;
                 }
-                [[articles objectAtIndex:0] setAffiliation:slant];
+                
+                for (Article *article in articles) {
+                    [article setAffiliation:slant];
+                }
+                
+                //[[articles objectAtIndex:0] setAffiliation:slant];
                 [self.articles addObject:[articles objectAtIndex:0]];
                 self.loadCount += 1;
                 
-                self.isMoreDataLoading = false;
+                //self.isMoreDataLoading = false;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.refreshControl endRefreshing];
                     self.tableView.tableHeaderView = nil;
                     if (self.loadCount == 6) {
-                        [self.tableView reloadData];
+                        //[self.tableView reloadData];
+                        if (self.isMoreDataLoading) {
+                            [self.tableView reloadData];
+                            self.isMoreDataLoading = NO;
+                        } else {
+                            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                        }
                         self.loadCount = 0;
                     }
                 });
@@ -233,7 +266,8 @@
         self.trendingTopics = [Utility parseTrendingTopics:data response:response error:error];
         self.trendingTopicsCopy = [self.trendingTopics mutableCopy];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            //[self.tableView reloadData];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         });
     }];
 }

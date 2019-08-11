@@ -21,6 +21,9 @@
     
     self.imageLink = [NSURL URLWithString:dictionary[@"image"][@"contentUrl"]];
     
+    if (self.imageLink == nil) {
+        self.imageLink = [NSURL URLWithString:dictionary[@"image"][@"thumbnail"][@"contentUrl"]];
+    }
     // No image is found, thumbnail is used
     if (self.imageLink == nil){
         self.imageLink = [NSURL URLWithString:dictionary[@"provider"][0][@"image"][@"thumbnail"][@"contentUrl"]];

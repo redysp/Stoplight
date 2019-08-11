@@ -62,6 +62,9 @@
     self.categoryTableView.delegate = self;
     self.categoryTableView.dataSource = self;
     
+    // Make sure tab bar has the correct color
+    [self.tabBarController.tabBar setTranslucent:NO]; 
+    
      //After merging and doing user defaults from the settings page, it should be like this:
     if (self.tabBarController.selectedIndex == 0) { //Main feed page
         self.sectionsList = [Utility fetchCategoriesList];
@@ -136,7 +139,7 @@
         NSString *stringWithoutPlusSign = [section stringByReplacingOccurrencesOfString:@"+" withString:@" "];
         cell.categoryNameLabel.text = stringWithoutPlusSign;
     }
-    else{
+    else {
         cell.categoryNameLabel.text = [section capitalizedString];
     }
     [cell.categoryCollectionView reloadData];
