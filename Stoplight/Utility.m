@@ -118,7 +118,7 @@ Returns dictionary format sources for FEED VIEW CONTROLLER.
         return savedSourcesDictionary;
     } else {
         [Utility saveDefaultSources];
-        savedSourcesDictionary = [defaults objectForKey:@"savedSources"];
+        savedSourcesDictionary = [defaults objectForKey:@"savedSourcesDictionary"];
         return savedSourcesDictionary;
     }
 }

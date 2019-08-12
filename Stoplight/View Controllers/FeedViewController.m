@@ -173,7 +173,7 @@
 
 
 -(void)completionBlock:(NSData * _Nullable)data response:(NSURLResponse * _Nullable)response error:(NSError * _Nullable)error slant:(NSString *)slant topic:(NSString *)topic{
-    
+
     if (error) {
         NSLog(@"Error");
         return;
@@ -183,6 +183,7 @@
     NSArray *articles = [Article articlesWithArray:articlesDictionary[@"value"]];
     
     if (articles.count == 0) {
+        NSLog(@"%@ %@", topic, slant);
         return;
     }
     
@@ -198,10 +199,11 @@
         filteredArticles = [self filterArticlesByTopic:topic articles:articles];
     }
     
+    
+    
     [self.articlesDictionary[topic] addObjectsFromArray:filteredArticles];
     
     if ([self.articlesDictionary[topic] count] == 6) {
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             NSIndexPath *myIP = [NSIndexPath indexPathForRow:[self.sectionsList indexOfObjectIdenticalTo:topic] inSection:0];
             NSArray *IPArray = [NSArray arrayWithObjects:myIP, nil];
