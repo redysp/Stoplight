@@ -300,22 +300,35 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TrendingTopicsCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrendingTopicsCell" rowHeight="66" id="zFG-to-ezz" customClass="TrendingTopicsCell">
                                         <rect key="frame" x="0.0" y="179" width="414" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zFG-to-ezz" id="Sq4-ra-Hut" customClass="TrendingTopicsCell">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zFG-to-ezz" id="Sq4-ra-Hut" customClass="TrendingTopicsCell">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trending" translatesAutoresizingMaskIntoConstraints="NO" id="2ph-0e-Bjf">
-                                                    <rect key="frame" x="353" y="11.5" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="TrendingTopicCell" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54m-xw-uz9">
-                                                    <rect key="frame" x="20" y="11" width="313" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" restorationIdentifier="TrendingTopicCell" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54m-xw-uz9">
+                                                    <rect key="frame" x="12" y="-8" width="200" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="6el-qi-EGJ"/>
+                                                        <constraint firstAttribute="width" constant="200" id="QS7-Vi-eez"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trending" translatesAutoresizingMaskIntoConstraints="NO" id="2ph-0e-Bjf">
+                                                    <rect key="frame" x="232" y="8" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="3R6-c9-gvw"/>
+                                                        <constraint firstAttribute="height" constant="50" id="pXS-gZ-U4E"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="2ph-0e-Bjf" secondAttribute="trailing" constant="12" id="6rL-7C-hoi"/>
+                                                <constraint firstItem="2ph-0e-Bjf" firstAttribute="leading" secondItem="54m-xw-uz9" secondAttribute="trailing" constant="20" id="7rj-AM-Tc0"/>
+                                                <constraint firstItem="2ph-0e-Bjf" firstAttribute="firstBaseline" secondItem="54m-xw-uz9" secondAttribute="firstBaseline" id="CQL-zl-45x"/>
+                                                <constraint firstItem="2ph-0e-Bjf" firstAttribute="top" secondItem="Sq4-ra-Hut" secondAttribute="top" constant="8" id="Oe9-1A-PgI"/>
+                                                <constraint firstItem="54m-xw-uz9" firstAttribute="leading" secondItem="Sq4-ra-Hut" secondAttribute="leading" constant="12" id="blN-In-SwK"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="trendingImage" destination="2ph-0e-Bjf" id="994-rk-nle"/>
@@ -949,7 +962,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qGh-PW-PNL"/>
-        <segue reference="9NU-hn-kh2"/>
+        <segue reference="7HH-7D-eEg"/>
         <segue reference="5Xx-ep-i88"/>
         <segue reference="ea5-uw-u41"/>
     </inferredMetricsTieBreakers>
