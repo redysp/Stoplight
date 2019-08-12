@@ -368,6 +368,7 @@ static int sourceIndex = 0;
 #pragma mark - Navigation
 
 - (IBAction)didTapBack:(id)sender {
+    currentHeaderTag = 0;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -378,7 +379,7 @@ static int sourceIndex = 0;
  b. If not ok then alert user.
  **/
 - (IBAction)didTapSave:(id)sender {
-    
+    currentHeaderTag = 0;
     NSMutableDictionary *feedDictionary = [self createSelectedItemsDictionary];
     
     if ([self checkSourceRatio:feedDictionary]) {
