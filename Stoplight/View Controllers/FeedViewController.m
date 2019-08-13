@@ -290,7 +290,7 @@ Uses a different data structure to store sources and a different api call.
         
         WebViewController *viewController = [segue destinationViewController];
         viewController.url = article.link;
-        
+        viewController.navigationItem.title = article.provider;
     }
     
 }
